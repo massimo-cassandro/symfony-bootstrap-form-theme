@@ -1,0 +1,24 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "globalReturn": false
+    }
+  },
+
+  "globals": {},
+  "rules": {
+    "eqeqeq": "warn",
+    "no-extra-semi": "error",
+    "semi-spacing": ["error", {"before": false, "after": true}],
+    "semi": ["error", "always"],
+    "no-console": "warn",
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
+  }
+}
