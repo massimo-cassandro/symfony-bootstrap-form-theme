@@ -15,7 +15,7 @@
 <div class="form-test-element">
   <h3>{{ title }}</h3>
   {% if info|default() %}
-    <div class="info small text-muted">{{ info }}</div>
+    <div class="info small text-muted">{{ info|raw }}</div>
   {% endif %}
   <div class="row align-items-stretch">
     <div class="col-4 result">

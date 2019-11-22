@@ -152,17 +152,17 @@ validazione?
 {% block checkbox_row -%}
   {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
   {%- if 'checkbox-custom' in parent_label_class -%}
-  {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
-  <div class="custom-control custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">
-    {{- block('checkbox_widget') -}}
-    {{- form_label(form) -}}
-  </div>
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+    <div class="custom-control custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">
+      {{- block('checkbox_widget') -}}
+      {{- form_label(form) -}}
+    </div>
   {%- else -%}
-  {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
-  <div class="form-check{{ 'checkbox-inline' in parent_label_class ? ' form-check-inline' }}">
-    {{- block('checkbox_widget') -}}
-    {{- form_label(form) -}}
-  </div>
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
+    <div class="form-check{{ 'checkbox-inline' in parent_label_class ? ' form-check-inline' }}">
+      {{- block('checkbox_widget') -}}
+      {{- form_label(form) -}}
+    </div>
   {%- endif -%}
 {%- endblock checkbox_row %}
 
