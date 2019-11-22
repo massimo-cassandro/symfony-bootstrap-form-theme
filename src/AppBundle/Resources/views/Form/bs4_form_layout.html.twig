@@ -5,20 +5,170 @@
 #}
 
 {#
-aggiornamento template forms personalizzati symfony
+Implementazione del markup Bootsrap 4 per il rendering degli elementi form
+Per gli elementi `select`, l'impostazione di default è quella con l'opzione
+`custom-select` (https://getbootstrap.com/docs/4.3/components/forms/#select-menu)
 
-    /sf_ada.test/app/config/config_dev.yml
-    /sf_ada.test/src/Ada/AppBundle/Controller/Superadmin/TestController.php
-    /ada/ADA_sf/sf_ada.test/src/Ada/AppBundle/Resources/public/css/_scss/tipografia/_forms.scss
-    prevedere checkbox con label sopra OK PERFEZIONARE
-    nel caso in cui il parametro help sia vuoto non renderizzare il blocco form-help-text OK (CONTROLLARE)
-    prevedere possibilità di prepend e append nei campi?
+Il testo d'aiuto degli elementi form viene formattato con la classe `form-help-text`
+non presente in Bootstrap ma definita in `_forms.scss`
 
+
+Utilizzo
+==============================
+css
+-------------------------------
+Aggiungere il file `_forms.scss` al proprio progetto dopo l'implementazione di Bootstrap,
+modificando le variabili di default se necessario
+
+
+Twig (Symfony 3.x)
+-------------------------------
+Impostare il template twig form in
+
+  /app/config/config.yml
+
+nella sezione twig / form_themes:
+
+```
+# Twig Configuration
+twig:
+  form_themes:
+    - '/form/bs4_form_layout.html.twig'
+```
+
+Pagina di test e di riferimento per l'utilizzo: /app_dev.php/test-form
+twig: src/AppBundle/Resources/views/test_form/test_form.html.twig
+controller: src/AppBundle/Controller/TestFormController.php
+
+Reference:
+------------------------------
+https://symfony.com/doc/3.4/form/form_themes.html
+https://symfony.com/doc/3.4/forms.html
 https://symfony.com/doc/current/reference/forms/types.html
+https://symfony.com/doc/3.4/form/rendering.html
+https://symfony.com/doc/3.4/reference/forms/twig_reference.html
+https://symfony.com/doc/3.4/form/bootstrap4.html
 
-    Sistemare custom validity di elementi form con pattern * in _avvio.js * vedi comunicazioni → scheda tag (https://sf-ada.test:8890/tag) * https://css-tricks.com/form-validation-part-1-constraint-validation-html/
-    superare multiselect con drpdown e serie checkbox?
- #}
+https://getbootstrap.com/docs/4.3/components/forms/
+https://getbootstrap.com/docs/4.3/components/input-group/
+https://getbootstrap.com/docs/4.3/components/buttons/
 
 
+TODO:
+custom validity
+checkbox singoli label sopra
+serie checkbox e radio
+liste tipo multiselect
+range
+file
+Switches
+input groups
+progress?
+buttons?
+validazione?
+#}
 
+{#
+  estende il template form base:
+  `/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig`
+#}
+{% use "form_div_layout.html.twig" %}
+
+{# base #}
+{% block form_widget_simple -%}
+  {% if type is not defined or type != 'hidden' %}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control' ~ (type|default('') == 'file' ? '-file' : ''))|trim}) -%}
+  {% endif %}
+  {%- if type is defined and (type == 'range' or type == 'color') %}
+    {# Attribute "required" is not supported #}
+    {%- set required = false -%}
+  {% endif %}
+  {{- parent() -}}
+{%- endblock form_widget_simple %}
+
+{%- block widget_attributes -%}
+  {%- if not valid %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) %}
+  {% endif -%}
+  {{ parent() }}
+{%- endblock widget_attributes -%}
+
+
+{% block form_label -%}
+  {% if label is not same as(false) -%}
+    {%- if compound is defined and compound -%}
+      {%- set element = 'legend' -%}
+      {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' col-form-label')|trim}) -%}
+    {%- else -%}
+      {%- set label_attr = label_attr|merge({for: id}) -%}
+    {%- endif -%}
+    {% if required -%}
+      {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
+    {%- endif -%}
+    {% if label is empty -%}
+      {%- if label_format is not empty -%}
+        {% set label = label_format|replace({
+          '%name%': name,
+          '%id%': id,
+        }) %}
+      {%- else -%}
+        {% set label = name|humanize %}
+      {%- endif -%}
+    {%- endif -%}
+    <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+      {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}{% block form_label_errors %}{{- form_errors(form) -}}{% endblock form_label_errors %}
+    </{{ element|default('label') }}>
+  {%- else -%}
+    {%- if errors|length > 0 -%}
+    <div id="{{ id }}_errors" class="mb-2">
+      {{- form_errors(form) -}}
+    </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endblock form_label %}
+
+{# Rows #}
+{% block form_row -%}
+  {%- if compound is defined and compound -%}
+    {%- set element = 'fieldset' -%}
+  {%- endif -%}
+  <{{ element|default('div') }} class="form-group {%- if disabled is defined and disabled %} disabled{%- endif -%}">
+    {{- form_label(form) -}}
+    {{- form_widget(form) -}}
+
+    {%- if help is defined and help|trim -%}
+      <div class="form-help-text">{{ help|raw }}</div>
+    {%- endif -%}
+
+  </{{ element|default('div') }}>
+
+{%- endblock form_row %}
+
+{# checkboxes #}
+{% block checkbox_widget -%}
+  {{ parent() }}
+{%- endblock checkbox_widget %}
+
+{% block checkbox_row -%}
+  {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
+  {%- if 'checkbox-custom' in parent_label_class -%}
+  {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+  <div class="custom-control custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">
+    {{- block('checkbox_widget') -}}
+    {{- form_label(form) -}}
+  </div>
+  {%- else -%}
+  {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
+  <div class="form-check{{ 'checkbox-inline' in parent_label_class ? ' form-check-inline' }}">
+    {{- block('checkbox_widget') -}}
+    {{- form_label(form) -}}
+  </div>
+  {%- endif -%}
+{%- endblock checkbox_row %}
+
+
+{# textarea #}
+{% block textarea_widget -%}
+  {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) %}
+  {{- parent() -}}
+{%- endblock textarea_widget %}

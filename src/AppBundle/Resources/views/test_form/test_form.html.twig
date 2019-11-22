@@ -1,0 +1,244 @@
+{# controller: /src/AppBundle/Controller/TestFormController.php #}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Symfony + Bootstrap 4 Form Test</title>
+  {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> #}
+  <link rel="stylesheet" href="{{ asset('/assets/prism/prism.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('/assets/forms/test_page_assets/sf_test_form.css') }}" type="text/css" media="all">
+
+</head>
+<body>
+  <main class="container-fluid my-4">
+    <h1>Symfony + Bootstrap 4 Form Test</h1>
+
+    <p>Test rendering degli elementi form.</p>
+    <p>Per le impostazioni Symfony vedi
+    <code>/src/AppBundle/Controller/TestFormController.php</code><br>
+    File twig di questa pagina: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
+    Template form: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
+    File scss: <code>src/AppBundle/Resources/public/forms/_forms.scss</code>
+    </p>
+
+    <div id="toc"></div>
+
+
+    {{ form_start(form, {attr: {id: 'form1'}}) }}
+    {{ form_errors(form) }}
+
+      <h2>Elementi base</h2>
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'form_widget',
+          info: 'Elemento widget base (input text)',
+          is_widget: true,
+          varname: 'campo_text'
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Campo hidden',
+          info: 'Nota: anche se si utilizza form_row, viene restituito solo il campo',
+          is_widget: false,
+          varname: 'campo_hidden'
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'form_row required con help text',
+          info: 'input text',
+          varname: 'campo_text2',
+          args: {
+            help: 'Help text',
+            label: 'form label'
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'form_row required + disabled con help text',
+          info: 'input text',
+          varname: 'campo_text3',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            disabled: true,
+            attr: {placeholder: 'Placeholder text'}
+          }
+        } %}
+
+      <h2>Checkboxes</h2>
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox (solo elemento input)',
+          is_widget: true,
+          varname: 'campoCheckboxSoloWidget'
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked)',
+          varname: 'campoCheckboxStd',
+          args: {
+            id: 'myCheckbox',
+            help: 'Help text',
+            label: 'Checkbox label'
+          }
+        } %}
+
+      {#
+
+
+
+//!Campo checkbox std + required
+    {% set phpcode %}
+    ->add('campoCheckboxStdReq', CheckboxType::class, array(
+      'required' => true
+    ))
+    {% endset %}
+    {{ m.field(
+      'Checkbox std + required',
+      'campoCheckboxStdReq',
+      phpcode,
+      {
+        label: 'Campo checkbox std required',
+        attr: {},
+        help: 'Help text'
+      },
+      _context
+    ) }}
+
+
+//!Campo checkbox single
+    {% set phpcode %}
+    ->add('campoCheckboxSingle', CheckboxType::class, array(
+      'required' => false
+    ))
+    {% endset %}
+    {{ m.field(
+      'Checkbox label sopra',
+      'campoCheckboxSingle',
+      phpcode,
+      {
+        label: 'Campo checkbox label sopra',
+        attr: {},
+        setlabel: 'single',
+        help: 'Help text'
+      },
+      _context
+    ) }}
+
+//!Campo checkbox single + required
+    {% set phpcode %}
+    ->add('campoCheckboxSingleReq', CheckboxType::class, array(
+      'required' => true
+    ))
+    {% endset %}
+    {{ m.field(
+      'Checkbox label sopra + required',
+      'campoCheckboxSingleReq',
+      phpcode,
+      {
+        label: 'Campo checkbox label sopra required',
+        attr: {},
+        setlabel: 'single',
+        help: 'Help text'
+      },
+      _context
+    ) }}
+
+
+      #}
+
+      <h2>Altri elementi</h2>
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'form_row textarea',
+        varname: 'campo_textarea',
+        args: {
+          help: 'Help text',
+          label: 'form label',
+          attr: {placeholder: 'Placeholder text'}
+        }
+      } %}
+
+    {{ form_end(form) }}
+
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
+  <script src="{{ asset('/assets/prism/prism-min.js') }}" data-manual></script>
+  <script src="{{ asset('/assets/forms/test_page_assets/sf_test_form-min.js') }}"></script>
+</body>
+</html>
+
+
+{#
+
+
+
+    <div class="row">
+    {*
+      <div class="col-sm-6 col-md-3">
+        {{ form_row(form.campo_text, {
+          id: 'my_id',
+          label: 'Campo text',
+          attr: {}
+        }) }}
+      </div>
+    *}
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group">
+          {{ form_label(form.campo_text2,
+            'Campo con form_label separato',
+            {id: 'custom_id'}
+          ) }}
+          {{ form_widget(form.campo_text2, {
+            id: 'custom_id',
+            attr: {}
+          }) }}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        {{ form_row(form.campo_select, {
+          id: 'campo_select',
+          label: 'Campo select',
+          attr: {},
+          help: 'help text'
+        }) }}
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+
+      </div>
+    </div>
+
+    // TODO trasformare in widget
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="form-group">
+          <label for="select_optgroup">Select con option group</label>
+          <select class="form-control custom-select"  id="select_optgroup">
+            <option value="">&mdash;</option>
+            <option value="1">Option semplice</option>
+
+            <optgroup label="Option group 1">
+              <option value="2">Option in option group 1</option>
+              <option value="3">Option in option group 2</option>
+            </optgroup>
+
+            <optgroup label="Option group con annidamento">
+              <optgroup label="Option group annidato">
+                <option value="4">Option in option group annidato 1</option>
+                <option value="5">Option in option group annidato 2</option>
+              </optgroup>
+            </optgroup>
+
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+#}
+

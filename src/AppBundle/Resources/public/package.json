@@ -1,7 +1,7 @@
 {
-  "name": "sf-form",
+  "name": "sf-test",
   "version": "1.0.0",
-  "description": "symfony form template",
+  "description": "symfony form template per BS4 e altro...",
   "main": "/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,6 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
     "prismjs": "^1.17.1"
   }
 }

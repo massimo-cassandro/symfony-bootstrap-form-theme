@@ -1,0 +1,36 @@
+{% spaceless %}
+{#
+  {% include 'test_form/test_form.incl.html.twig' with {
+    title: '__title__',
+    info: null | string,
+    is_widget: false,     <== true -> form_row, false -> form_widget
+    varname: 'varname',
+    args: {} | null       <== widget params
+  } %}
+#}
+
+{% set is_widget = is_widget is defined? is_widget : false %}
+{% set args = (args is defined and args != null)? args : {} %}
+
+<div class="form-test-element">
+  <h3>{{ title }}</h3>
+  {% if info|default() %}
+    <div class="info small text-muted">{{ info }}</div>
+  {% endif %}
+  <div class="row align-items-stretch">
+    <div class="col-4 result">
+      <div>
+        {% if is_widget %}
+          {{ form_widget(form[varname], args) }}
+        {% else %}
+          {{ form_row(form[varname], args) }}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-4 twig"
+      {%- if is_widget %} data-is-widget="true" {% endif -%}
+      data-args="{{ (args and args|length)? args|json_encode() : '' }}"></div>
+    <div class="col-4 markup"></div>
+  </div>
+</div>
+{% endspaceless %}

@@ -1,0 +1,106 @@
+/*
+Foglio di implementazione e adattamento del template form BS4
+----------------------------------------------------------------
+Espande e modifica alcune impostazione del css Bootstrap
+Questo foglio stile va incluso nei progetti in cui è utilizzato
+il template `bs4_form_layout.html.twig`
+
+Vedi note nel template per altre info
+*/
+
+$sf-label-color : $body-color!default; // condiviso da legend in alcuni casi
+$sf-label-font-weight: $font-weight-bold!default;
+$sf-label-font-size: .9rem!default;
+$sf-form-font-family: $font-family-base!default;
+$sf-form-help-text-color: $gray-300|default;
+$sf-input-group-text-weight: $font-weight-normal!default;
+$sf-disabled-color: $gray-500!default;
+$sf-required-asterisk-color: #c00!default;
+
+input, button, select, textarea {
+  font-family: $sf-form-font-family;
+
+  &[disabled] {
+    color:$sf-disabled-color;
+    font-style:italic;
+  }
+}
+
+.form-help-text {
+  @extend .form-text;
+  //@extend .text-muted;
+  color: $sf-form-help-text-color;
+  @extend .small;
+  .disabled & {
+    color: $sf-disabled-color;
+  }
+}
+
+
+label {
+  font-weight: $sf-label-font-weight;
+  font-size: $sf-label-font-size;
+
+	&.disabled, .disabled &, [disabled] & {
+  	font-style: italic;
+    color: $sf-disabled-color;
+
+  	&::before {
+    	content:none!important;
+  	}
+	}
+
+	&.required:not(.disabled) {
+		//position: relative;
+		&::before {
+			color: $sf-required-asterisk-color;
+			position:relative;
+			margin-right:.1em;
+			top:3px;
+			font-size: 1.2rem;
+			line-height: 1;
+			content: '\002A'; //'\2733'; //'*';
+		}
+
+		&.form-check-label {
+  		.form-check-input {
+        margin-left: -2rem;
+      }
+		}
+	}
+
+
+	.form-group &{
+
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: block;
+		margin-bottom: .3rem;
+
+		&:not(.input-group-text) {
+		  font-size: .8rem;
+		}
+		&.input-group-text {
+  		font-weight: $sf-input-group-text-weight;
+		}
+	}
+}
+
+.label { // usata per simulare il tag label
+	@extend label;
+	color: $sf-label-color;
+}
+
+// // !checkbox e radio con label sopra
+// .form-check-single {
+//   padding-left:0;
+//   label {
+//     margin:0;
+//   }
+//   .form-check-input {
+//     position: static;
+//     margin:0;
+//     padding:0;
+//   }
+// }

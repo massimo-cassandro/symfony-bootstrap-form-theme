@@ -2,6 +2,21 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form"
+		},
+		{
+			"path": "src/AppBundle/Resources/views"
+		},
+		{
+			"path": "src/AppBundle/Resources/public"
+		},
+		{
+			"path": "src/AppBundle/Controller"
+		},
+		{
+			"path": "vendor/symfony/symfony/src/Symfony/Component/Form/Extension/Core/Type"
 		}
 	],
 	"settings": {}
