@@ -5,54 +5,6 @@
 #}
 
 {#
-Implementazione del markup Bootsrap 4 per il rendering degli elementi form
-Per gli elementi `select`, l'impostazione di default è quella con l'opzione
-`custom-select` (https://getbootstrap.com/docs/4.3/components/forms/#select-menu)
-
-Il testo d'aiuto degli elementi form viene formattato con la classe `form-help-text`
-non presente in Bootstrap ma definita in `_forms.scss`
-
-
-Utilizzo
-==============================
-css
--------------------------------
-Aggiungere il file `_forms.scss` al proprio progetto dopo l'implementazione di Bootstrap,
-modificando le variabili di default se necessario
-
-
-Twig (Symfony 3.x)
--------------------------------
-Impostare il template twig form in
-
-  /app/config/config.yml
-
-nella sezione twig / form_themes:
-
-```
-# Twig Configuration
-twig:
-  form_themes:
-    - '/form/bs4_form_layout.html.twig'
-```
-
-Pagina di test e di riferimento per l'utilizzo: /app_dev.php/test-form
-twig: src/AppBundle/Resources/views/test_form/test_form.html.twig
-controller: src/AppBundle/Controller/TestFormController.php
-
-Reference:
-------------------------------
-https://symfony.com/doc/3.4/form/form_themes.html
-https://symfony.com/doc/3.4/forms.html
-https://symfony.com/doc/current/reference/forms/types.html
-https://symfony.com/doc/3.4/form/rendering.html
-https://symfony.com/doc/3.4/reference/forms/twig_reference.html
-https://symfony.com/doc/3.4/form/bootstrap4.html
-
-https://getbootstrap.com/docs/4.3/components/forms/
-https://getbootstrap.com/docs/4.3/components/input-group/
-https://getbootstrap.com/docs/4.3/components/buttons/
-
 
 TODO:
 custom validity

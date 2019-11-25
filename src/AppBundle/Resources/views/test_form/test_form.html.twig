@@ -46,12 +46,13 @@
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'form_row required con help text',
+          title: 'form_row required + help text',
           info: 'input text',
           varname: 'campo_text2',
           args: {
             help: 'Help text',
-            label: 'form label'
+            label: 'form label',
+            required: true
           }
         } %}
 
