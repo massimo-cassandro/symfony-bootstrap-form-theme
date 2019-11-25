@@ -13,7 +13,7 @@
 {% set args = (args is defined and args != null)? args : {} %}
 
 <div class="form-test-element">
-  <h3>{{ title }}</h3>
+  <h3>{{ title|raw }}</h3>
   {% if info|default() %}
     <div class="info small text-muted">{{ info|raw }}</div>
   {% endif %}
@@ -28,8 +28,7 @@
       </div>
     </div>
     <div class="col-4 twig"
-      {%- if is_widget %} data-is-widget="true" {% endif -%}
-      data-args="{{ (args and args|length)? args|json_encode() : '' }}"></div>
+      {%- if is_widget %} data-is-widget="true" {% endif %} data-args="{{ (args and args|length)? args|json_encode() : '' }}"></div>
     <div class="col-4 markup"></div>
   </div>
 </div>

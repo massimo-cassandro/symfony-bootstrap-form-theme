@@ -80,19 +80,25 @@ validazione?
 {%- endblock form_label %}
 
 {# Rows #}
+{% block form_container_start -%}
+  <{{ element|default('div') }} class="form-group {%- if disabled is defined and disabled %} disabled{%- endif -%}">
+{%- endblock form_container_start %}
+
+{% block form_container_end -%}
+  {%- if help is defined and help|trim -%}
+    <div class="form-help-text">{{ help|raw }}</div>
+  {%- endif -%}
+  </{{ element|default('div') }}>
+{%- endblock form_container_end %}
+
 {% block form_row -%}
   {%- if compound is defined and compound -%}
     {%- set element = 'fieldset' -%}
   {%- endif -%}
-  <{{ element|default('div') }} class="form-group {%- if disabled is defined and disabled %} disabled{%- endif -%}">
+    {{ block('form_container_start') }}
     {{- form_label(form) -}}
     {{- form_widget(form) -}}
-
-    {%- if help is defined and help|trim -%}
-      <div class="form-help-text">{{ help|raw }}</div>
-    {%- endif -%}
-
-  </{{ element|default('div') }}>
+    {{ block('form_container_end') }}
 
 {%- endblock form_row %}
 
@@ -102,19 +108,35 @@ validazione?
 {%- endblock checkbox_widget %}
 
 {% block checkbox_row -%}
-  {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
-  {%- if 'checkbox-custom' in parent_label_class -%}
+  {% set params = {
+    container: true,
+    bs_custom_control: false
+  }|merge(params|default({})) %}
+
+      {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
+
+
+  {%- if params.bs_custom_control -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
     <div class="custom-control custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">
       {{- block('checkbox_widget') -}}
-      {{- form_label(form) -}}
+      {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
+      {% if required %}
+        <span class="required"></span>
+      {% endif %}
     </div>
   {%- else -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
+    {% if params.container %}
+      {{ block('form_container_start') }}
+    {% endif %}
     <div class="form-check{{ 'checkbox-inline' in parent_label_class ? ' form-check-inline' }}">
       {{- block('checkbox_widget') -}}
       {{- form_label(form) -}}
     </div>
+    {% if params.container %}
+      {{ block('form_container_end') }}
+    {% endif %}
   {%- endif -%}
 {%- endblock checkbox_row %}
 

@@ -41,55 +41,55 @@ label {
   font-weight: $sf-label-font-weight;
   font-size: $sf-label-font-size;
 
-	&.disabled, .disabled &, [disabled] & {
-  	font-style: italic;
+  &.disabled, .disabled &, [disabled] & {
+    font-style: italic;
     color: $sf-disabled-color;
 
-  	&::before {
-    	content:none!important;
-  	}
-	}
+    &:not(.custom-control-label)::before {
+      content:none!important;
+    }
+  }
 
-	&.required:not(.disabled) {
-		//position: relative;
-		&::before {
-			color: $sf-required-asterisk-color;
-			position:relative;
-			margin-right:.1em;
-			top:3px;
-			font-size: 1.2rem;
-			line-height: 1;
-			content: '\002A'; //'\2733'; //'*';
-		}
+  &.required:not(.disabled) {
 
-		&.form-check-label {
-  		.form-check-input {
-        margin-left: -2rem;
-      }
-		}
-	}
+    &:not(.custom-control-label)::before,
+    &.custom-control-label + .required::before {
+      position:relative;
+      top:3px;
+      color: $sf-required-asterisk-color;
+      margin-right:.1em;
+      font-size: 1.2rem;
+      line-height: 1;
+      content: '\002A'; //'\2733'; //'*';
+    }
+    &.custom-control-label + .required::before {
+      margin:0 0 0 .3rem;
+    }
 
 
-	.form-group &{
+  }
 
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		display: block;
-		margin-bottom: .3rem;
 
-		&:not(.input-group-text) {
-		  font-size: .8rem;
-		}
-		&.input-group-text {
-  		font-weight: $sf-input-group-text-weight;
-		}
-	}
+  .form-group &{
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    margin-bottom: .3rem;
+
+    &:not(.input-group-text) {
+      font-size: .8rem;
+    }
+    &.input-group-text {
+      font-weight: $sf-input-group-text-weight;
+    }
+  }
 }
 
 .label { // usata per simulare il tag label
-	@extend label;
-	color: $sf-label-color;
+  @extend label;
+  color: $sf-label-color;
 }
 
 // // !checkbox e radio con label sopra

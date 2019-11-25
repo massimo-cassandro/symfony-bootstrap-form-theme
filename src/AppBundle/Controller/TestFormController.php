@@ -21,59 +21,37 @@ class TestFormController extends Controller
         //$em = $this->getDoctrine()->getManager();
 
         $form = $this->createFormBuilder()
-          // base
-          ->add('campo_text', TextType::class, array(
-            'required' => false
-          ))
-          ->add('campo_hidden', HiddenType::class, array(
-            'required' => false
-          ))
-          ->add('campo_text2', TextType::class)
-          ->add('campo_text3', TextType::class, array(
-            'required' => true,
+          // basic
+          ->add('hiddenField1', HiddenType::class, array('required' => false))
+          ->add('textField1', TextType::class, array('required' => false))
+          ->add('textField2', TextType::class, array('required' => false))
+          ->add('textField3', TextType::class, array(
             'attr' => array('value'=>'Some values'),
+            'required' => false
           ))
 
           // checkboxes
-          ->add('campoCheckboxSoloWidget', CheckboxType::class, array(
-            'label'    => 'Campo checkbox solo widget',
-            'required' => false
-          ))
-          ->add('campoCheckboxStd', CheckboxType::class, array(
-              'required' => false
-          ))
-          ->add('campoCheckboxStdReq', CheckboxType::class, array(
-              'required' => true
-          ))
-          ->add('campoCheckboxSingle', CheckboxType::class, array(
-              'required' => false
-          ))
-          ->add('campoCheckboxSingleReq', CheckboxType::class, array(
-              'required' => true
-          ))
+          ->add('checkboxField1', CheckboxType::class, array('required' => false))
+          ->add('checkboxField2', CheckboxType::class, array('required' => false))
+          ->add('checkboxField3', CheckboxType::class, array('required' => false))
+          ->add('checkboxField4', CheckboxType::class, array('required' => false))
+          ->add('checkboxField5', CheckboxType::class, array('required' => false))
+          ->add('checkboxField6', CheckboxType::class, array('required' => false))
 
           // select
-          ->add('campo_select', ChoiceType::class, array(
+          ->add('selectField1', ChoiceType::class, array(
             'choices'  => array(
                 'val1'    =>  '1',
                 'val2'    =>  '2',
                 'val3'    =>  '3',
                 'val4'    =>  '4'
             ),
-            'placeholder' => '',
-            'required' => true
-          ))
-          ->add('esempio_label', TextType::class, array(
-            'required' => false
-          ))
-          ->add('esempio_required', TextType::class, array(
             'required' => false
           ))
 
-          // altri elementi
-          ->add('campo_textarea', TextareaType::class, array(
-            'required' => false
-          ))
+
+          // other elements
+          ->add('textareaField1', TextareaType::class, array('required' => false))
 
         ->getForm();
 

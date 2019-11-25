@@ -7555,18 +7555,22 @@ label, .label {
   label.disabled, .disabled.label, .disabled label, .disabled .label, [disabled] label, [disabled] .label {
     font-style: italic;
     color: #adb5bd; }
-    label.disabled::before, .disabled.label::before, .disabled label::before, .disabled .label::before, [disabled] label::before, [disabled] .label::before {
+    label.disabled:not(.custom-control-label)::before, .disabled.label:not(.custom-control-label)::before, .disabled label:not(.custom-control-label)::before, .disabled .label:not(.custom-control-label)::before, [disabled] label:not(.custom-control-label)::before, [disabled] .label:not(.custom-control-label)::before {
       content: none !important; }
-  label.required:not(.disabled)::before, .required.label:not(.disabled)::before {
-    color: #c00;
+  label.required:not(.disabled):not(.custom-control-label)::before, .required.label:not(.disabled):not(.custom-control-label)::before,
+  label.required:not(.disabled).custom-control-label + .required::before,
+  .required:not(.disabled).custom-control-label.label + .required::before {
     position: relative;
-    margin-right: .1em;
     top: 3px;
+    color: #c00;
+    margin-right: .1em;
     font-size: 1.2rem;
     line-height: 1;
     content: '\002A'; }
-  label.required:not(.disabled).form-check-label .form-check-input, .required:not(.disabled).form-check-label.label .form-check-input {
-    margin-left: -2rem; }
+  
+  label.required:not(.disabled).custom-control-label + .required::before,
+  .required:not(.disabled).custom-control-label.label + .required::before {
+    margin: 0 0 0 .3rem; }
   .form-group label, .form-group .label {
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -15,13 +15,16 @@
   <main class="container-fluid my-4">
     <h1>Symfony + Bootstrap 4 Form Test</h1>
 
-    <p>Test rendering degli elementi form.</p>
-    <p>Per le impostazioni Symfony vedi
+    <p>Rendering test of form elements.</p>
+    <p>Symfony controller:
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
-    File twig di questa pagina: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
-    Template form: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
-    File scss: <code>src/AppBundle/Resources/public/forms/_forms.scss</code>
+    This page twig template: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
+    Form template: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
+    Scss file: <code>src/AppBundle/Resources/public/forms/_forms.scss</code>
     </p>
+    <p class="font-italic">Note: for better clarity, in this test page, twig parameters
+    (as required or disabled) have been added to the twig widget,
+    even if they are tipically defined in the controller.</p>
 
     <div id="toc"></div>
 
@@ -29,41 +32,43 @@
     {{ form_start(form, {attr: {id: 'form1'}}) }}
     {{ form_errors(form) }}
 
-      <h2>Elementi base</h2>
+      <h2>Basic elements</h2>
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'form_widget',
-          info: 'Elemento widget base (input text)',
+          info: 'Widget basic element (input text)',
           is_widget: true,
-          varname: 'campo_text'
+          varname: 'textField1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'Campo hidden',
-          info: 'Nota: anche se si utilizza form_row, viene restituito solo il campo',
+          title: 'Hidden field',
+          info: 'Note: only the field is returned, even if <code>form_row</code> is used',
           is_widget: false,
-          varname: 'campo_hidden'
+          varname: 'hiddenField1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'form_row required + help text',
           info: 'input text',
-          varname: 'campo_text2',
+          varname: 'textField2',
           args: {
             help: 'Help text',
             label: 'form label',
-            required: true
+            required: true,
+            attr: {placeholder: 'Placeholder text'}
           }
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'form_row required + disabled con help text',
+          title: 'form_row required + disabled + help text',
           info: 'input text',
-          varname: 'campo_text3',
+          varname: 'textField3',
           args: {
             help: 'Help text',
             label: 'form label',
             disabled: true,
+            required: true,
             attr: {placeholder: 'Placeholder text'}
           }
         } %}
@@ -71,20 +76,72 @@
       <h2>Checkboxes</h2>
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'Checkbox (solo elemento input)',
+          title: 'Checkbox (input element only)',
           is_widget: true,
-          varname: 'campoCheckboxSoloWidget'
+          varname: 'checkboxField1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'Checkbox Bootstrap default (stacked)',
-          varname: 'campoCheckboxStd',
+          title: 'Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required',
+          info: 'With custom id and custom label',
+          varname: 'checkboxField2',
           args: {
-            id: 'myCheckbox',
+            id: 'custom-id',
             help: 'Help text',
-            label: 'Checkbox label'
+            label: 'Checkbox label',
+            required: true
           }
         } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) without container',
+          varname: 'checkboxField3',
+          args: {
+            help: 'Help text',
+            params: {
+              container: false
+            }
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox stacked + custom control + required',
+          info: "Note that the <code>help</code> and <code>params.container</code> don't take effect,
+            and that the required asterisk is located after the label string
+            through the <code>span.required</code> element",
+          varname: 'checkboxField4',
+          args: {
+            help: 'Help text',
+            required: true,
+            params: {
+              container: true,
+              bs_custom_control: true
+            }
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) + container + required + disabled',
+          varname: 'checkboxField5',
+          args: {
+            help: 'Help text',
+            required: true,
+            disabled: true
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox stacked + custom control + required + disabled',
+          varname: 'checkboxField6',
+          args: {
+            required: true,
+            disabled: true,
+            params: {
+              bs_custom_control: true
+            }
+          }
+        } %}
+
 
       {#
 
@@ -150,26 +207,7 @@
 
       #}
 
-      <h2>Altri elementi</h2>
-      {% include 'test_form/test_form.incl.html.twig' with {
-        title: 'form_row textarea',
-        varname: 'campo_textarea',
-        args: {
-          help: 'Help text',
-          label: 'form label',
-          attr: {placeholder: 'Placeholder text'}
-        }
-      } %}
-
-    {{ form_end(form) }}
-
-  </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
-  <script src="{{ asset('/assets/prism/prism-min.js') }}" data-manual></script>
-  <script src="{{ asset('/assets/forms/test_page_assets/sf_test_form-min.js') }}"></script>
-</body>
-</html>
-
+      <h2>Select</h2>
 
 {#
 
@@ -178,7 +216,7 @@
     <div class="row">
     {*
       <div class="col-sm-6 col-md-3">
-        {{ form_row(form.campo_text, {
+        {{ form_row(form.textField, {
           id: 'my_id',
           label: 'Campo text',
           attr: {}
@@ -187,11 +225,11 @@
     *}
       <div class="col-sm-6 col-md-3">
         <div class="form-group">
-          {{ form_label(form.campo_text2,
+          {{ form_label(form.textField2,
             'Campo con form_label separato',
             {id: 'custom_id'}
           ) }}
-          {{ form_widget(form.campo_text2, {
+          {{ form_widget(form.textField2, {
             id: 'custom_id',
             attr: {}
           }) }}
@@ -242,4 +280,24 @@
     </div>
 
 #}
+
+      <h2>Other elements</h2>
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Textarea',
+        varname: 'textareaField1',
+        args: {
+          help: 'Help text',
+          label: 'form label',
+          attr: {placeholder: 'Placeholder text'}
+        }
+      } %}
+
+    {{ form_end(form) }}
+
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
+  <script src="{{ asset('/assets/prism/prism-min.js') }}" data-manual></script>
+  <script src="{{ asset('/assets/forms/test_page_assets/sf_test_form-min.js') }}"></script>
+</body>
+</html>
 
