@@ -34,15 +34,16 @@
 @codekit-prepend '../node_modules/prismjs/plugins/unescaped-markup/prism-unescaped-markup.js'
 */
 
+/* globals Prism */
 
 Prism.plugins.NormalizeWhitespace.setDefaults({
-	'remove-trailing': false,
-	'remove-indent': false,
-	'left-trim': false,
-	'right-trim': false,
-	//'break-lines': 80,
-	//'indent': 2,
-	'remove-initial-line-feed': true,
-	'tabs-to-spaces': 2
-	//'spaces-to-tabs': 4
+  'remove-trailing': false,
+  'remove-indent': false,
+  'left-trim': false,
+  'right-trim': false,
+  //'break-lines': 80,
+  //'indent': 2,
+  'remove-initial-line-feed': true,
+  'tabs-to-spaces': 2
+  //'spaces-to-tabs': 4
 });
