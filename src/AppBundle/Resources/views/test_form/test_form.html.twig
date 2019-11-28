@@ -176,6 +176,7 @@
           However, the final check must be performed using javascript",
         varname: 'multiCbox1',
         args: {
+          help: 'Help text',
           label: 'Multiple checkboxes',
           required: true
         }
@@ -186,6 +187,7 @@
         info: "Same of previous with disabled parameter",
         varname: 'multiCbox2',
         args: {
+          help: 'Help text',
           label: 'Multiple checkboxes',
           required: true,
           disabled: true
@@ -194,9 +196,11 @@
 
       {% include 'test_form/test_form.incl.html.twig' with {
         title: 'Multiple stacked checkboxes without fieldset',
-        info: "For cases where checkboxes must be inserted in a fieldset already present in the markup",
+        info: "For cases where checkboxes must be inserted in a fieldset already present in the markup.
+          In this case, the <code>help</code> parameter takes no effects.",
         varname: 'multiCbox3',
         args: {
+          help: 'Help text',
           label: 'Multiple checkboxes',
           params: {
             compound_container: false
@@ -224,7 +228,8 @@
         id: 'multiple_cboxes_multi_columns',
         info: "Distributes checkboxes into responsive columns.
           The <code>column</code> parameter is an array whose keys are the bootstrap breakpoints
-          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5)",
+          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5).
+          This option also works with <code>params.compound_container = false</code> parameter",
         varname: 'multiCbox5',
         args: {
           label: 'Multiple checkboxes',
@@ -236,7 +241,7 @@
 
       {% include 'test_form/test_form.incl.html.twig' with {
         title: 'Multiple stacked checkboxes + custom control',
-        info: "Note that multiple checkboxes with custom controls don't fully support
+        info: "Note that actually multiple checkboxes with custom controls don't fully support
           all the parameters like disabled, required etc...",
         varname: 'multiCbox6',
         args: {

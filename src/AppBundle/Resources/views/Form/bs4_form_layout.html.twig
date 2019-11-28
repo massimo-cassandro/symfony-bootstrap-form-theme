@@ -204,8 +204,13 @@ validazione?
 
   {%- if params.columns is defined and params.columns is iterable -%}
     {% set inner_container_classes = inner_container_classes ~ ' rcolumns'  %}
+    {%- for brkp, cols in params.columns -%}
+      {% set inner_container_classes = inner_container_classes ~ " rcolumns-#{brkp}-#{cols}"  %}
+    {%- endfor -%}
   {%- endif -%}
-  <div {%- if inner_container_classes %} class="{{ inner_container_classes|trim }}"{% endif -%}>
+
+  <div class="form-collection{%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}">
+
     {%- for child in form %}
       {{- form_row(child, {
         parent_label_class: label_attr.class|default(''),
@@ -214,6 +219,7 @@ validazione?
         params: params
       }|merge(disabled is defined and disabled? {disabled:true}: {})) -}}
     {% endfor -%}
+
   </div>
 
 {#     {% if '-inline' in label_attr.class|default('') -%}

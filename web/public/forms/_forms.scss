@@ -74,12 +74,12 @@ label {
     // display: block;
     margin-bottom: .3rem;
 
-    &:not(.input-group-text) {
-      font-size: .8rem;
-    }
-    &.input-group-text {
-      font-weight: $sf-input-group-text-weight;
-    }
+    // &:not(.input-group-text) {
+    //   font-size: .8rem;
+    // }
+    // &.input-group-text {
+    //   font-weight: $sf-input-group-text-weight;
+    // }
   }
 }
 
@@ -106,10 +106,9 @@ fieldset.required:not(.disabled) {
 }
 
 // multiple checkbox
-fieldset.form-group {
-  .form-check {
-    label {
-      font-weight: $font-weight-normal;
-    }
+.form-collection {
+  .custom-control-label, // custom controls
+  .form-check label {
+    font-weight: $font-weight-normal;
   }
 }

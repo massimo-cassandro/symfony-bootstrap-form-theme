@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * Bootstrap v4.4.0 (https://getbootstrap.com/)
+ * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -1716,7 +1716,8 @@ textarea.form-control {
   position: absolute;
   margin-top: 0.3rem;
   margin-left: -1.25rem; }
-  .form-check-input[disabled] ~ .form-check-label {
+  .form-check-input[disabled] ~ .form-check-label,
+  .form-check-input:disabled ~ .form-check-label {
     color: #6c757d; }
 
 .form-check-label {
@@ -2913,9 +2914,9 @@ input[type="button"].btn-block {
     color: #fff;
     background-color: #b3d7ff;
     border-color: #b3d7ff; }
-  .custom-control-input[disabled] ~ .custom-control-label {
+  .custom-control-input[disabled] ~ .custom-control-label, .custom-control-input:disabled ~ .custom-control-label {
     color: #6c757d; }
-    .custom-control-input[disabled] ~ .custom-control-label::before {
+    .custom-control-input[disabled] ~ .custom-control-label::before, .custom-control-input:disabled ~ .custom-control-label::before {
       background-color: #e9ecef; }
 
 .custom-control-label {
@@ -3067,7 +3068,8 @@ input[type="button"].btn-block {
   .custom-file-input:focus ~ .custom-file-label {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-  .custom-file-input[disabled] ~ .custom-file-label {
+  .custom-file-input[disabled] ~ .custom-file-label,
+  .custom-file-input:disabled ~ .custom-file-label {
     background-color: #e9ecef; }
   .custom-file-input:lang(en) ~ .custom-file-label::after {
     content: "Browse"; }
@@ -7675,6 +7677,111 @@ be included in the projects that implement the `bs4_form_layout.html.twig` templ
 
 https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 */
+.rcolumns {
+  -webkit-column-rule: 1px dotted #ccc;
+     -moz-column-rule: 1px dotted #ccc;
+          column-rule: 1px dotted #ccc;
+  -webkit-column-gap: 2rem;
+     -moz-column-gap: 2rem;
+          column-gap: 2rem;
+  -webkit-column-width: auto;
+     -moz-column-width: auto;
+          column-width: auto;
+  orphans: 1;
+  widows: 1; }
+
+.rcolumns-2 {
+  -webkit-column-count: 2 !important;
+     -moz-column-count: 2 !important;
+          column-count: 2 !important; }
+
+.rcolumns-3 {
+  -webkit-column-count: 3 !important;
+     -moz-column-count: 3 !important;
+          column-count: 3 !important; }
+
+.rcolumns-4 {
+  -webkit-column-count: 4 !important;
+     -moz-column-count: 4 !important;
+          column-count: 4 !important; }
+
+.rcolumns-5 {
+  -webkit-column-count: 5 !important;
+     -moz-column-count: 5 !important;
+          column-count: 5 !important; }
+
+@media (min-width: 576px) {
+  .rcolumns-sm-2 {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important; }
+  .rcolumns-sm-3 {
+    -webkit-column-count: 3 !important;
+       -moz-column-count: 3 !important;
+            column-count: 3 !important; }
+  .rcolumns-sm-4 {
+    -webkit-column-count: 4 !important;
+       -moz-column-count: 4 !important;
+            column-count: 4 !important; }
+  .rcolumns-sm-5 {
+    -webkit-column-count: 5 !important;
+       -moz-column-count: 5 !important;
+            column-count: 5 !important; } }
+
+@media (min-width: 768px) {
+  .rcolumns-md-2 {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important; }
+  .rcolumns-md-3 {
+    -webkit-column-count: 3 !important;
+       -moz-column-count: 3 !important;
+            column-count: 3 !important; }
+  .rcolumns-md-4 {
+    -webkit-column-count: 4 !important;
+       -moz-column-count: 4 !important;
+            column-count: 4 !important; }
+  .rcolumns-md-5 {
+    -webkit-column-count: 5 !important;
+       -moz-column-count: 5 !important;
+            column-count: 5 !important; } }
+
+@media (min-width: 992px) {
+  .rcolumns-lg-2 {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important; }
+  .rcolumns-lg-3 {
+    -webkit-column-count: 3 !important;
+       -moz-column-count: 3 !important;
+            column-count: 3 !important; }
+  .rcolumns-lg-4 {
+    -webkit-column-count: 4 !important;
+       -moz-column-count: 4 !important;
+            column-count: 4 !important; }
+  .rcolumns-lg-5 {
+    -webkit-column-count: 5 !important;
+       -moz-column-count: 5 !important;
+            column-count: 5 !important; } }
+
+@media (min-width: 1200px) {
+  .rcolumns-xl-2 {
+    -webkit-column-count: 2 !important;
+       -moz-column-count: 2 !important;
+            column-count: 2 !important; }
+  .rcolumns-xl-3 {
+    -webkit-column-count: 3 !important;
+       -moz-column-count: 3 !important;
+            column-count: 3 !important; }
+  .rcolumns-xl-4 {
+    -webkit-column-count: 4 !important;
+       -moz-column-count: 4 !important;
+            column-count: 4 !important; }
+  .rcolumns-xl-5 {
+    -webkit-column-count: 5 !important;
+       -moz-column-count: 5 !important;
+            column-count: 5 !important; } }
+
 input, button, select, textarea {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; }
   input[disabled], button[disabled], select[disabled], textarea[disabled] {
@@ -7686,6 +7793,16 @@ input, button, select, textarea {
   .disabled .form-help-text {
     color: #adb5bd; }
 
+label.required:not(.disabled)::before, .required.label:not(.disabled)::before,
+div.required:not(.disabled) label::before, div.required:not(.disabled) .label::before, fieldset.required:not(.disabled) legend::before, .custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
+  position: relative;
+  top: 3px;
+  color: #c00;
+  margin-right: .1em;
+  font-size: 1.2rem;
+  line-height: 1;
+  content: '\002A'; }
+
 label, .label {
   font-weight: 700;
   font-size: 0.9rem; }
@@ -7694,25 +7811,7 @@ label, .label {
     color: #adb5bd; }
     label.disabled:not(.custom-control-label)::before, .disabled.label:not(.custom-control-label)::before, .disabled label:not(.custom-control-label)::before, .disabled .label:not(.custom-control-label)::before, [disabled] label:not(.custom-control-label)::before, [disabled] .label:not(.custom-control-label)::before {
       content: none !important; }
-  label.required:not(.disabled):not(.custom-control-label)::before, .required.label:not(.disabled):not(.custom-control-label)::before,
-  label.required:not(.disabled).custom-control-label + .required::before,
-  .required:not(.disabled).custom-control-label.label + .required::before {
-    position: relative;
-    top: 3px;
-    color: #c00;
-    margin-right: .1em;
-    font-size: 1.2rem;
-    line-height: 1;
-    content: '\002A'; }
-  
-  label.required:not(.disabled).custom-control-label + .required::before,
-  .required:not(.disabled).custom-control-label.label + .required::before {
-    margin: 0 0 0 .3rem; }
   .form-group label, .form-group .label {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
     margin-bottom: .3rem; }
     .form-group label:not(.input-group-text), .form-group .label:not(.input-group-text) {
       font-size: .8rem; }
@@ -7721,6 +7820,9 @@ label, .label {
 
 .label {
   color: #212529; }
+
+.custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
+  margin: 0 0 0 .3rem; }
 
 fieldset.form-group .form-check label, fieldset.form-group .form-check .label {
   font-weight: 400; }
@@ -7760,6 +7862,14 @@ h2 {
     height: 100%;
     padding: .3rem;
     background-color: #efefef; }
+
+.badge-link {
+  margin-left: .4rem;
+  font-size: .7rem;
+  position: relative;
+  bottom: 4px; }
+  .badge-link:first-of-type {
+    margin-left: 2rem; }
 
 .code-toolbar {
   height: 100%; }

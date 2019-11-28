@@ -7813,10 +7813,6 @@ label, .label {
       content: none !important; }
   .form-group label, .form-group .label {
     margin-bottom: .3rem; }
-    .form-group label:not(.input-group-text), .form-group .label:not(.input-group-text) {
-      font-size: .8rem; }
-    .form-group label.input-group-text, .form-group .input-group-text.label {
-      font-weight: 400; }
 
 .label {
   color: #212529; }
@@ -7824,7 +7820,9 @@ label, .label {
 .custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
   margin: 0 0 0 .3rem; }
 
-fieldset.form-group .form-check label, fieldset.form-group .form-check .label {
+.form-collection .custom-control-label,
+.form-collection .form-check label,
+.form-collection .form-check .label {
   font-weight: 400; }
 
 /*
