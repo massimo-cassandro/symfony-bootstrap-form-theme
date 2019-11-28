@@ -1,12 +1,12 @@
 /*
-Foglio di implementazione e adattamento del template form BS4
-----------------------------------------------------------------
-Espande e modifica alcune impostazione del css Bootstrap
-Questo foglio stile va incluso nei progetti in cui è utilizzato
-il template `bs4_form_layout.html.twig`
+This style sheet expands and modify some Bootstrap css settings and must
+be included in the projects that implement the `bs4_form_layout.html.twig` template
 
-Vedi note nel template per altre info
+https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 */
+
+// https://github.com/massimo-cassandro/m-utilities
+@import '../node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
 
 $sf-label-color : $body-color!default; // condiviso da legend in alcuni casi
 $sf-label-font-weight: $font-weight-bold!default;
@@ -36,6 +36,17 @@ input, button, select, textarea {
   }
 }
 
+%required {
+  &::before {
+    position:relative;
+    top:3px;
+    color: $sf-required-asterisk-color;
+    margin-right:.1em;
+    font-size: 1.2rem;
+    line-height: 1;
+    content: '\002A'; //'\2733'; //'*';
+  }
+}
 
 label {
   font-weight: $sf-label-font-weight;
@@ -50,32 +61,17 @@ label {
     }
   }
 
-  &.required:not(.disabled) {
-
-    &:not(.custom-control-label)::before,
-    &.custom-control-label + .required::before {
-      position:relative;
-      top:3px;
-      color: $sf-required-asterisk-color;
-      margin-right:.1em;
-      font-size: 1.2rem;
-      line-height: 1;
-      content: '\002A'; //'\2733'; //'*';
-    }
-    &.custom-control-label + .required::before {
-      margin:0 0 0 .3rem;
-    }
-
-
+  &.required:not(.disabled),      // required class applied directly to the label
+  div.required:not(.disabled) & { // must not be applied to fieldset containers
+    @extend %required;
   }
-
 
   .form-group &{
 
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: block;
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
+    // overflow: hidden;
+    // display: block;
     margin-bottom: .3rem;
 
     &:not(.input-group-text) {
@@ -87,20 +83,33 @@ label {
   }
 }
 
+// multiple choices
+fieldset.required:not(.disabled) {
+  legend {
+    @extend %required;
+  }
+}
+
 .label { // usata per simulare il tag label
   @extend label;
   color: $sf-label-color;
 }
 
-// // !checkbox e radio con label sopra
-// .form-check-single {
-//   padding-left:0;
-//   label {
-//     margin:0;
-//   }
-//   .form-check-input {
-//     position: static;
-//     margin:0;
-//     padding:0;
-//   }
-// }
+// custom checkboxes
+.custom-checkbox {
+  .custom-control-input[required]:not([disabled]) ~ .required {
+    @extend %required;
+    &::before {
+      margin:0 0 0 .3rem;
+    }
+  }
+}
+
+// multiple checkbox
+fieldset.form-group {
+  .form-check {
+    label {
+      font-weight: $font-weight-normal;
+    }
+  }
+}

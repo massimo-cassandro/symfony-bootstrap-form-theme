@@ -74,10 +74,19 @@ https://prismjs.com/
   let toc ='';
 
   toTocElements.forEach( (item,idx) => {
-    let this_id = `toc-${idx}`,
-      toc_str = `<a href="#${this_id}">${item.innerText}</a>`;
+    let this_id = item.id;
 
-    item.id = this_id;
+    if(!this_id) {
+      this_id = item.innerText.toLowerCase().replace(/[ |\W]+/g, '_'); //`toc-${idx}`;
+      item.id = this_id;
+    }
+
+    let toc_str = `<a href="#${this_id}">${item.innerText}</a>`;
+
+    item.insertAdjacentHTML('beforeend',
+      '<a href="#top" class="badge-link badge badge-secondary initialism">top</a>' +
+      `<a href="#${this_id}" class="badge-link badge badge-primary initialism">link</a>`
+    );
 
     if(item.tagName === 'H2') {
       if(idx > 0 ) {

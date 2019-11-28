@@ -1,18 +1,20 @@
 {#
   Bootstrap 4 Symfony form layout
   =======================================
-  Massimo Cassandro - 2019
+  Massimo Cassandro
+  https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 #}
 
 {#
 
 TODO:
 custom validity
-checkbox singoli label sopra
 serie checkbox e radio
 liste tipo multiselect
 range
 file
+number, date, datetime, money, time
+dateinterval
 Switches
 input groups
 progress?
@@ -47,16 +49,19 @@ validazione?
 
 
 {% block form_label -%}
+
   {% if label is not same as(false) -%}
     {%- if compound is defined and compound -%}
       {%- set element = 'legend' -%}
-      {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' col-form-label')|trim}) -%}
+      {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' label')|trim}) -%}
     {%- else -%}
       {%- set label_attr = label_attr|merge({for: id}) -%}
     {%- endif -%}
-    {% if required -%}
+
+ {#    {% if required -%}
       {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
-    {%- endif -%}
+    {%- endif -%} #}
+
     {% if label is empty -%}
       {%- if label_format is not empty -%}
         {% set label = label_format|replace({
@@ -80,8 +85,13 @@ validazione?
 {%- endblock form_label %}
 
 {# Rows #}
+{% block containers_classes -%}
+  {%- if disabled is defined and disabled %} disabled{%- endif -%}
+  {%- if required is defined and required %} required{%- endif -%}
+{%- endblock containers_classes %}
+
 {% block form_container_start -%}
-  <{{ element|default('div') }} class="form-group {%- if disabled is defined and disabled %} disabled{%- endif -%}">
+  <{{ element|default('div') }} class="form-group {{- block('containers_classes') -}}">
 {%- endblock form_container_start %}
 
 {% block form_container_end -%}
@@ -92,13 +102,26 @@ validazione?
 {%- endblock form_container_end %}
 
 {% block form_row -%}
-  {%- if compound is defined and compound -%}
+  {% set params = {
+      container: true,
+      compound_container: true
+    }|merge(params|default({}))
+  %}
+
+  {%- if compound is defined and compound and params.compound_container -%}
     {%- set element = 'fieldset' -%}
   {%- endif -%}
-    {{ block('form_container_start') }}
+
+  {%- if params.container == true and params.compound_container == true -%}
+    {{- block('form_container_start') -}}
     {{- form_label(form) -}}
-    {{- form_widget(form) -}}
-    {{ block('form_container_end') }}
+  {% endif %}
+
+   {{- form_widget(form) -}}
+
+  {%- if params.container == true and params.compound_container == true -%}
+    {{- block('form_container_end') -}}
+  {%- endif -%}
 
 {%- endblock form_row %}
 
@@ -108,12 +131,21 @@ validazione?
 {%- endblock checkbox_widget %}
 
 {% block checkbox_row -%}
+
   {% set params = {
     container: true,
-    bs_custom_control: false
+    compound_container: true,
+    bs_custom_control: false,
+    top_label: false
   }|merge(params|default({})) %}
 
-      {%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
+  {# the `top_label` option requires the container #}
+  {% if params.top_label %}
+    {% set params = params|merge({container: true}) %}
+  {% endif %}
+
+{# TODO inline #}
+{%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
 
 
   {%- if params.bs_custom_control -%}
@@ -126,20 +158,90 @@ validazione?
       {% endif %}
     </div>
   {%- else -%}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
     {% if params.container %}
       {{ block('form_container_start') }}
     {% endif %}
-    <div class="form-check{{ 'checkbox-inline' in parent_label_class ? ' form-check-inline' }}">
-      {{- block('checkbox_widget') -}}
+
+    {% if params.top_label %}
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' d-block')|trim}) -%}
       {{- form_label(form) -}}
-    </div>
+      {{- block('checkbox_widget') -}}
+    {% else %}
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
+      <div class="form-check
+        {%- if 'checkbox-inline' in parent_label_class %} form-check-inline{% endif -%}
+        {%- if not (params.compound is defined and params.compound) -%}
+          {{- block('containers_classes') -}}
+        {%- endif -%}">
+        {{- block('checkbox_widget') -}}
+        {{- form_label(form) -}}
+      </div>
+    {% endif %}
+
     {% if params.container %}
       {{ block('form_container_end') }}
     {% endif %}
   {%- endif -%}
 {%- endblock checkbox_row %}
 
+{# multiple checkbox #}
+{% block choice_widget_expanded -%}
+
+  {% set params = {
+      bs_custom_control: false,
+      compound_container: true,
+    }|merge(params|default({}))|merge({
+      container: false,
+      top_label: false,
+      compound: true
+    })
+  %}
+
+  {% set inner_container_classes = '' %}
+  {% if not params.compound_container %}
+    {% set inner_container_classes = 'form-group' ~ block('containers_classes')  %}
+  {% endif %}
+
+  {%- if params.columns is defined and params.columns is iterable -%}
+    {% set inner_container_classes = inner_container_classes ~ ' rcolumns'  %}
+  {%- endif -%}
+  <div {%- if inner_container_classes %} class="{{ inner_container_classes|trim }}"{% endif -%}>
+    {%- for child in form %}
+      {{- form_row(child, {
+        parent_label_class: label_attr.class|default(''),
+        translation_domain: choice_translation_domain,
+        valid: valid,
+        params: params
+      }|merge(disabled is defined and disabled? {disabled:true}: {})) -}}
+    {% endfor -%}
+  </div>
+
+{#     {% if '-inline' in label_attr.class|default('') -%}
+      {%- for child in form %}
+        {{- form_row(child, {
+          parent_label_class: label_attr.class|default(''),
+          translation_domain: choice_translation_domain,
+          valid: valid,
+          params: params
+        }) -}}
+      {% endfor -%}
+    {%- else -%}
+      {%- if not valid -%}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control is-invalid')|trim}) %}
+      {%- endif -%}
+      {%- for child in form %}
+        {{- form_row(child, {
+          parent_label_class: label_attr.class|default(''),
+          translation_domain: choice_translation_domain,
+          valid: true,
+          params: params
+        }) -}}
+      {% endfor -%}
+
+    {%- endif %} #}
+
+
+{%- endblock choice_widget_expanded %}
 
 {# textarea #}
 {% block textarea_widget -%}

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form"
+		}
+	],
+	"settings": {}
+}

@@ -22,24 +22,111 @@ class TestFormController extends Controller
 
         $form = $this->createFormBuilder()
           // basic
-          ->add('hiddenField1', HiddenType::class, array('required' => false))
-          ->add('textField1', TextType::class, array('required' => false))
-          ->add('textField2', TextType::class, array('required' => false))
-          ->add('textField3', TextType::class, array(
+          ->add('hidden1', HiddenType::class, array('required' => false))
+          ->add('text1', TextType::class, array('required' => false))
+          ->add('text2', TextType::class, array('required' => false))
+          ->add('text3', TextType::class, array(
             'attr' => array('value'=>'Some values'),
             'required' => false
           ))
 
           // checkboxes
-          ->add('checkboxField1', CheckboxType::class, array('required' => false))
-          ->add('checkboxField2', CheckboxType::class, array('required' => false))
-          ->add('checkboxField3', CheckboxType::class, array('required' => false))
-          ->add('checkboxField4', CheckboxType::class, array('required' => false))
-          ->add('checkboxField5', CheckboxType::class, array('required' => false))
-          ->add('checkboxField6', CheckboxType::class, array('required' => false))
+          ->add('cbox1', CheckboxType::class, array('required' => false))
+          ->add('cbox2', CheckboxType::class, array('required' => false))
+          ->add('cbox3', CheckboxType::class, array('required' => false))
+          ->add('cbox4', CheckboxType::class, array('required' => false))
+          ->add('cbox5', CheckboxType::class, array('required' => false))
+          ->add('cbox6', CheckboxType::class, array('required' => false))
+          ->add('cbox7', CheckboxType::class, array('required' => false))
+
+          // multiple checkbox
+          ->add('multiCbox1', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox2', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox3', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox4', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox5', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3',
+                'Option 4'  =>  '4'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox6', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+
+          // multiselect
+          ->add('multiSelect1', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiSelect2', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
+                'Option 3'  =>  '3',
+                'Option 4'  =>  '4'
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
 
           // select
-          ->add('selectField1', ChoiceType::class, array(
+          ->add('select1', ChoiceType::class, array(
             'choices'  => array(
                 'val1'    =>  '1',
                 'val2'    =>  '2',
@@ -51,7 +138,7 @@ class TestFormController extends Controller
 
 
           // other elements
-          ->add('textareaField1', TextareaType::class, array('required' => false))
+          ->add('textarea1', TextareaType::class, array('required' => false))
 
         ->getForm();
 

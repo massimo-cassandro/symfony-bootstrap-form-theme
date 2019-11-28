@@ -2,9 +2,39 @@
 
 A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too).
 
-For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap4-form-theme/form-test.html>, that is the html produced buy the Symfony apps, and can be viewed without installing the whole app.
+For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced buy the Symfony apps, and can be viewed without installing it.
 
-## Summary
+## Using the form theme
+
+* Add the `/Resources/public/test_form/_forms.scss` file to your css (after Bootstrap css). Change default options if necessary
+* Place the `/Resources/views/form/bs4_form_layout.html.twig` in your *view* folder (in this test app it is located in the `form` subdir)
+* Modify your `/app/config/config.yml` file and add
+
+```yaml
+# Twig Configuration
+twig:
+  form_themes:
+    - '/form/bs4_form_layout.html.twig'
+```
+
+
+## Using the test Symfony application
+
+You can clone the test app repository and run the form test app.
+Clone the repo and run composer to install Symfony. Run npm in the public directory to install Bootstrap, if you need to test your changes.
+
+The form test page url will be: `<your_test_domain>/test-form'.
+The css and js directory is `/web/assets`.
+
+* twig: `src/AppBundle/Resources/views/test_form/test_form.html.twig`
+* controller: `src/AppBundle/Controller/TestFormController.php`
+
+The test page gives you detailed informations about all form widgets:
+
+![](docs/readme_files/sample.png)
+
+
+## Reference
 
 ### General
 
@@ -12,7 +42,7 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
 
 ```twig
 {{ form_row(form.xxxx, {
-  "help": "Help text",
+  "help": "Help text"
 }) }}
 ```
 
@@ -81,6 +111,16 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
 }) }}
 ```
 
+* A single checkbox with label on top, can be obuained thru the `top_label` option. This option requires the `.form-group`, therefore the `params.container` is always forced to true.
+
+```twig
+{{ form_row(form.xxxx, {
+  "params": {
+    "top_label": true
+  }
+}) }}
+```
+
 * Custom checkbox control can be activated using the `params.bs_custom_control` parameter:
 
 ```twig
@@ -91,7 +131,7 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
 }) }}
 ```
 
-* Custom checkbox controls use `::before` and `::after` pseudo-elements, which makes it impossible to use the `:: before` pseudo-element used in other cases. For this reason, the required parameter, if associated with a custom-checkbox, generates a `<span class ="required">` element placed after the `label` element. Therefore, in this case, the required asterisk is located after the label string and not before:
+* Custom checkbox controls use `::before` and `::after` pseudo-elements, which makes it impossible to use the `::before` pseudo-element used for styling required fields' labels. For this reason, the required parameter, if associated with a custom-checkbox, generates a `<span class="required">` element placed after the `label` element. Therefore, in this case, the asterisk for required fields is located after the label string and not before:
 
 ```markup
 <div class="custom-control custom-checkbox">
@@ -100,42 +140,24 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
   <span class="required"></span>
 </div>
 ```
-* Actually, custom checkbox is incompatible with the `params.container` option, therefore it will be ignored even if it setted to true. For the same reason, the `help` parameter will not take effect with custom checkbox, as it is related to the `.form-group` container.
+* Actually, custom checkbox is incompatible with the `params.container` and `params.top_label` options, therefore they will be ignored even if they are setted to true. For the same reason, the `help` parameter will not take effect with custom checkbox, as it is related to the `.form-group` container.
+
+#### Multiple checkboxes
+
+Multiple checkboxes are element rendered by the `ChoyceType` type (https://symfony.com/doc/current/reference/forms/types/choice.html) with 'expanded' => true, 'multiple' => true options.
+
+The multiple columns option uses a scss snippet included in my [m-utilities](https://github.com/massimo-cassandro/m-utilities) package. See the [`_forms.scss`](/blob/master/web/public/_forms.scss) file and [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_cboxes_multi_columns) for info and examples.
+
+Take a look to the [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_checkboxes) for detailed info.
+
+### Radios
+
+### Multiselect
 
 ### Select elements
 
 * Select elements have `custom-select` (<https://getbootstrap.com/docs/4.3/components/forms/#select-menu>) by default, this behaviour can be changed using the `params` element of `form_row`
 
-
-
-## Use of the form theme
-
-* Add the `/Resources/public/test_form/_forms.scss` file to your css (after Bootstrap css). Change default options if necessary
-* Place the `/Resources/views/form/bs4_form_layout.html.twig` in your *view* folder (in this test app it is located in the `form` subdir)
-* Modify your `/app/config/config.yml` file and add
-
-```yaml
-# Twig Configuration
-twig:
-  form_themes:
-    - '/form/bs4_form_layout.html.twig'
-```
-
-
-## Use of the test Symfony application
-
-You can clone the test app repository and run the form test app.
-Clone the repo and run composer to install Symfony. Run npm in the public directory to install Bootstrap, if you need to test your changes.
-
-The form test page url will be: `<your_test_domain>/test-form'.
-The css and js directory is `/web/assets`.
-
-* twig: `src/AppBundle/Resources/views/test_form/test_form.html.twig`
-* controller: `src/AppBundle/Controller/TestFormController.php`
-
-The test page gives you detailed informations about all form widgets:
-
-![](docs/readme_files/sample.png)
 
 
 

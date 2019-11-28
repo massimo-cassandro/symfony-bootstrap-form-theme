@@ -38,7 +38,7 @@
       form label    </label><input type="text" id="form_textField2" name="form[textField2]" required="required" placeholder="Placeholder text" class="form-control" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>form_row required + disabled + help text</h3><div class="info small text-muted">input text</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group disabled"><label for="form_textField3" class="required">
       form label    </label><input type="text" id="form_textField3" name="form[textField3]" disabled="disabled" required="required" value="Some values" placeholder="Placeholder text" class="form-control" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;disabled&quot;:true,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
-      <h2>Checkboxes</h2>
+      <h2>Single checkboxes</h2>
 
         <div class="form-test-element"><h3>Checkbox (input element only)</h3><div class="row align-items-stretch"><div class="col-4 result"><div><input type="checkbox" id="form_checkboxField1" name="form[checkboxField1]" value="1" /></div></div><div class="col-4 twig" data-is-widget="true"  data-args=""></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required</h3><div class="info small text-muted">With custom id and custom label</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group"><div class="form-check"><input type="checkbox" id="custom-id" name="form[checkboxField2]" required="required" class="form-check-input" value="1" /><label for="custom-id" class="required">
@@ -53,8 +53,21 @@
       Checkbox field5    </label></div><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true}"></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>Checkbox stacked + custom control + required + disabled</h3><div class="row align-items-stretch"><div class="col-4 result"><div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_checkboxField6" name="form[checkboxField6]" disabled="disabled" required="required" class="custom-control-input" value="1" /><label class="custom-control-label disabled required" for="form_checkboxField6">
       Checkbox field6    </label><span class="required"></span></div></div></div><div class="col-4 twig" data-args="{&quot;required&quot;:true,&quot;disabled&quot;:true,&quot;params&quot;:{&quot;bs_custom_control&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
+        <div class="form-test-element"><h3>Checkbox with label on top</h3><div class="info small text-muted">Place the label above the checkbox field. This option requires the cointainer markup,
+            therefore the <code>container: false</code> option is ignored. Furhermore,
+            the <code>top_label</code> option can't be activated if the <code>bs_custom_control</code>
+            is set to true</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group"><label for="form_checkboxField7" class="required">
+      Checkbox field7    </label><input type="checkbox" id="form_checkboxField7" name="form[checkboxField7]" required="required" value="1" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;required&quot;:true,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;container&quot;:false,&quot;top_label&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
+      <h2>Multiple checkbox</h2>
+      <p>Checkbox series obtained thru the <code>ChoiceType</code> type
+        (<a href="https://symfony.com/doc/current/reference/forms/types/choice.html">https://symfony.com/doc/current/reference/forms/types/choice.html</a>)</p>
 
-      
+      <div class="form-test-element"><h3>Multiple stacked checkbox</h3><div class="info small text-muted">Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code></div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-check"><input type="checkbox" id="form_multipleCheckboxField1_0" name="form[multipleCheckboxField1][]" class="form-check-input" value="1" /><label for="form_multipleCheckboxField1_0">
+      Yes    </label></div><div class="form-check"><input type="checkbox" id="form_multipleCheckboxField1_1" name="form[multipleCheckboxField1][]" class="form-check-input" value="0" /><label for="form_multipleCheckboxField1_1">
+      No    </label></div><div class="form-check"><input type="checkbox" id="form_multipleCheckboxField1_2" name="form[multipleCheckboxField1][]" class="form-check-input" value="3" /><label for="form_multipleCheckboxField1_2">
+      Maybe    </label></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;}"></div><div class="col-4 markup"></div></div></div>
+
       <h2>Select</h2>
 
 
@@ -62,7 +75,7 @@
       <div class="form-test-element"><h3>Textarea</h3><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group"><label for="form_textareaField1">
       form label    </label><textarea id="form_textareaField1" name="form[textareaField1]" placeholder="Placeholder text" class="form-control"></textarea><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
     <div class="form-group"><label for="form_selectField1">
-      Select field1    </label><select id="form_selectField1" name="form[selectField1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="XQcTLe2C31ajhs4FS9Zr9AW5YCEuFTky4xFzPSRo3AE" /></form>
+      Select field1    </label><select id="form_selectField1" name="form[selectField1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="bEN5jhpVJcu0sO3RgGbqBiiMu5H9XS8AfxyIKSddpyA" /></form>
 
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>

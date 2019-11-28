@@ -10,7 +10,8 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.4.0",
+    "bootstrap": "^4.4.1",
+    "m-utilities": "^1.2.4",
     "prismjs": "^1.17.1"
   }
 }

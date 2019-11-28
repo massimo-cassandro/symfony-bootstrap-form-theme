@@ -7,15 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Symfony + Bootstrap 4 Form Test</title>
   {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> #}
-  <link rel="stylesheet" href="{{ asset('/assets/prism/prism.css') }}" type="text/css" media="all">
-  <link rel="stylesheet" href="{{ asset('/assets/forms/test_page_assets/sf_test_form.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('/public/prism/prism.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('/public/forms/test_page_assets/sf_test_form.css') }}" type="text/css" media="all">
 
 </head>
 <body>
   <main class="container-fluid my-4">
-    <h1>Symfony + Bootstrap 4 Form Test</h1>
+    <h1 id="top">Symfony + Bootstrap 4 Form Test</h1>
+    <p class="font-italic mb-2">Rendering test of form elements (Massimo Cassandro 2016/2019 - v. 1.0).</p>
 
-    <p>Rendering test of form elements.</p>
     <p>Symfony controller:
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
     This page twig template: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
@@ -28,7 +28,6 @@
 
     <div id="toc"></div>
 
-
     {{ form_start(form, {attr: {id: 'form1'}}) }}
     {{ form_errors(form) }}
 
@@ -38,20 +37,20 @@
           title: 'form_widget',
           info: 'Widget basic element (input text)',
           is_widget: true,
-          varname: 'textField1'
+          varname: 'text1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'Hidden field',
           info: 'Note: only the field is returned, even if <code>form_row</code> is used',
           is_widget: false,
-          varname: 'hiddenField1'
+          varname: 'hidden1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'form_row required + help text',
           info: 'input text',
-          varname: 'textField2',
+          varname: 'text2',
           args: {
             help: 'Help text',
             label: 'form label',
@@ -63,7 +62,7 @@
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'form_row required + disabled + help text',
           info: 'input text',
-          varname: 'textField3',
+          varname: 'text3',
           args: {
             help: 'Help text',
             label: 'form label',
@@ -73,18 +72,18 @@
           }
         } %}
 
-      <h2>Checkboxes</h2>
+      <h2>Single checkboxes</h2>
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'Checkbox (input element only)',
           is_widget: true,
-          varname: 'checkboxField1'
+          varname: 'cbox1'
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required',
           info: 'With custom id and custom label',
-          varname: 'checkboxField2',
+          varname: 'cbox2',
           args: {
             id: 'custom-id',
             help: 'Help text',
@@ -94,22 +93,54 @@
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'Checkbox Bootstrap default (stacked) without container',
-          varname: 'checkboxField3',
+          title: 'Checkbox Bootstrap default (stacked) without container + required + disabled',
+          varname: 'cbox3',
           args: {
             help: 'Help text',
+            required : true,
+            disabled: true,
             params: {
               container: false
             }
           }
         } %}
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) + container + required + disabled',
+          varname: 'cbox5',
+          args: {
+            help: 'Help text',
+            required: true,
+            disabled: true
+          }
+        } %}
 
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Checkbox with label on top',
+          info: "Place the label above the checkbox field. This option requires the cointainer markup,
+            therefore the <code>container: false</code> option is ignored. Furhermore,
+            the <code>top_label</code> option can't be activated if the <code>bs_custom_control</code>
+            is set to true",
+          varname: 'cbox7',
+          args: {
+            required: true,
+            help: 'Help text',
+            params: {
+              container: false,
+              top_label: true
+           }
+          }
+        } %}
+
+
+        <h2>Single checkboxes with custom controls</h2>
+        <p>Note that checkboxes with custom controls are not fully supported with this template.<br>
+          Bootsrap docs: <a href="https://getbootstrap.com/docs/4.3/components/forms/#checkboxes-and-radios-1">https://getbootstrap.com/docs/4.3/components/forms/#checkboxes-and-radios-1</a></p>
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'Checkbox stacked + custom control + required',
           info: "Note that the <code>help</code> and <code>params.container</code> don't take effect,
             and that the required asterisk is located after the label string
             through the <code>span.required</code> element",
-          varname: 'checkboxField4',
+          varname: 'cbox4',
           args: {
             help: 'Help text',
             required: true,
@@ -120,19 +151,10 @@
           }
         } %}
 
-        {% include 'test_form/test_form.incl.html.twig' with {
-          title: 'Checkbox Bootstrap default (stacked) + container + required + disabled',
-          varname: 'checkboxField5',
-          args: {
-            help: 'Help text',
-            required: true,
-            disabled: true
-          }
-        } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
           title: 'Checkbox stacked + custom control + required + disabled',
-          varname: 'checkboxField6',
+          varname: 'cbox6',
           args: {
             required: true,
             disabled: true,
@@ -142,70 +164,107 @@
           }
         } %}
 
+      <h2 id="multiple_checkboxes">Multiple checkboxes</h2>
+      <p>Checkbox series obtained thru the <code>ChoiceType</code> type
+        (<a href="https://symfony.com/doc/current/reference/forms/types/choice.html">https://symfony.com/doc/current/reference/forms/types/choice.html</a>)</p>
 
-      {#
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes',
+        info: "Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code>.<br>" ~
+          "Note that the <code>required</code> has the unique effect to add the required class to the fieldset,
+          to highlight that at least one of the controls must be selected.
+          However, the final check must be performed using javascript",
+        varname: 'multiCbox1',
+        args: {
+          label: 'Multiple checkboxes',
+          required: true
+        }
+      } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + disabled',
+        info: "Same of previous with disabled parameter",
+        varname: 'multiCbox2',
+        args: {
+          label: 'Multiple checkboxes',
+          required: true,
+          disabled: true
+        }
+      } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without fieldset',
+        info: "For cases where checkboxes must be inserted in a fieldset already present in the markup",
+        varname: 'multiCbox3',
+        args: {
+          label: 'Multiple checkboxes',
+          params: {
+            compound_container: false
+          }
+        }
+      } %}
 
-//!Campo checkbox std + required
-    {% set phpcode %}
-    ->add('campoCheckboxStdReq', CheckboxType::class, array(
-      'required' => true
-    ))
-    {% endset %}
-    {{ m.field(
-      'Checkbox std + required',
-      'campoCheckboxStdReq',
-      phpcode,
-      {
-        label: 'Campo checkbox std required',
-        attr: {},
-        help: 'Help text'
-      },
-      _context
-    ) }}
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without fieldset + required + disabled ',
+        info: "Same of previous with disabled and required parameter.
+        Note that the <code>required</code> parameter takes no effect.",
+        varname: 'multiCbox4',
+        args: {
+          label: 'Multiple checkboxes',
+          disabled:true,
+          required: true,
+          params: {
+            compound_container: false
+          }
+        }
+      } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + multiple columns',
+        id: 'multiple_cboxes_multi_columns',
+        info: "Distributes checkboxes into responsive columns.
+          The <code>column</code> parameter is an array whose keys are the bootstrap breakpoints
+          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5)",
+        varname: 'multiCbox5',
+        args: {
+          label: 'Multiple checkboxes',
+          params: {
+            columns: {sm:1, md:2}
+          }
+        }
+      } %}
 
-//!Campo checkbox single
-    {% set phpcode %}
-    ->add('campoCheckboxSingle', CheckboxType::class, array(
-      'required' => false
-    ))
-    {% endset %}
-    {{ m.field(
-      'Checkbox label sopra',
-      'campoCheckboxSingle',
-      phpcode,
-      {
-        label: 'Campo checkbox label sopra',
-        attr: {},
-        setlabel: 'single',
-        help: 'Help text'
-      },
-      _context
-    ) }}
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + custom control',
+        info: "Note that multiple checkboxes with custom controls don't fully support
+          all the parameters like disabled, required etc...",
+        varname: 'multiCbox6',
+        args: {
+          label: 'Multiple checkboxes',
+          params: {
+            bs_custom_control: true
+          }
+        }
+      } %}
 
-//!Campo checkbox single + required
-    {% set phpcode %}
-    ->add('campoCheckboxSingleReq', CheckboxType::class, array(
-      'required' => true
-    ))
-    {% endset %}
-    {{ m.field(
-      'Checkbox label sopra + required',
-      'campoCheckboxSingleReq',
-      phpcode,
-      {
-        label: 'Campo checkbox label sopra required',
-        attr: {},
-        setlabel: 'single',
-        help: 'Help text'
-      },
-      _context
-    ) }}
+      <h2>Radios</h2>
 
+      <h2 id="multiselect">Multiselect</h2>
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'MultiSelect',
+        varname: 'multiSelect1',
+        args: {
+          label: 'Multiselect',
+        }
+      } %}
 
-      #}
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'MultiSelect',
+        varname: 'multiSelect2',
+        args: {
+          label: 'Multiselect',
+        }
+      } %}
 
       <h2>Select</h2>
 
@@ -284,7 +343,7 @@
       <h2>Other elements</h2>
       {% include 'test_form/test_form.incl.html.twig' with {
         title: 'Textarea',
-        varname: 'textareaField1',
+        varname: 'textarea1',
         args: {
           help: 'Help text',
           label: 'form label',
@@ -296,8 +355,8 @@
 
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
-  <script src="{{ asset('/assets/prism/prism-min.js') }}"></script>
-  <script src="{{ asset('/assets/forms/test_page_assets/sf_test_form-min.js') }}"></script>
+  <script src="{{ asset('/public/prism/prism-min.js') }}"></script>
+  <script src="{{ asset('/public/forms/test_page_assets/sf_test_form-min.js') }}"></script>
 </body>
 </html>
 

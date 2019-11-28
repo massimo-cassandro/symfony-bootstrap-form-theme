@@ -2,10 +2,11 @@
 {#
   {% include 'test_form/test_form.incl.html.twig' with {
     title: '__title__',
+    id: '__custom_title_id__',  <== optional
     info: null | string,
-    is_widget: false,     <== true -> form_row, false -> form_widget
+    is_widget: false,           <== true -> form_row, false -> form_widget
     varname: 'varname',
-    args: {} | null       <== widget params
+    args: {} | null             <== widget params
   } %}
 #}
 
@@ -13,9 +14,9 @@
 {% set args = (args is defined and args != null)? args : {} %}
 
 <div class="form-test-element">
-  <h3>{{ title|raw }}</h3>
+  <h3 {%- if id|default() %} id="{{ id }}"{% endif -%}>{{ title|raw }}</h3>
   {% if info|default() %}
-    <div class="info small text-muted">{{ info|raw }}</div>
+    <div class="info">{{ info|raw }}</div>
   {% endif %}
   <div class="row align-items-stretch">
     <div class="col-4 result">
