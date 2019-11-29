@@ -7673,7 +7673,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 /*
 This style sheet expands and modify some Bootstrap css settings and must
-be included in the projects that implement the `bs4_form_layout.html.twig` template
+be included in projects that implement the `bs4_form_layout.html.twig` template
 
 https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 */
@@ -7792,6 +7792,8 @@ input, button, select, textarea {
   color: #dee2e6 |default; }
   .disabled .form-help-text {
     color: #adb5bd; }
+  .form-help-text.form-help-top {
+    margin: 0 0 .5rem 0; }
 
 label.required:not(.disabled)::before, .required.label:not(.disabled)::before,
 div.required:not(.disabled) label::before, div.required:not(.disabled) .label::before, fieldset.required:not(.disabled) legend::before, .custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
@@ -7824,6 +7826,48 @@ label, .label {
 .form-collection .form-check label,
 .form-collection .form-check .label {
   font-weight: 400; }
+
+.form-multiselect, .form-multiselect button {
+  width: 100%;
+  max-width: 100%; }
+
+.form-multiselect .btn {
+  text-align: left; }
+  .form-multiselect .btn::after {
+    position: absolute;
+    top: 50%;
+    right: 0.375rem;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
+  .form-multiselect .btn.btn-multiselect {
+    color: #212529;
+    background-color: #fff;
+    border-color: #ced4da; }
+    .form-multiselect .btn.btn-multiselect:hover {
+      color: #212529;
+      background-color: #ececec;
+      border-color: #b1bbc4; }
+    .form-multiselect .btn.btn-multiselect:focus, .form-multiselect .btn.btn-multiselect.focus {
+      color: #212529;
+      background-color: #ececec;
+      border-color: #b1bbc4;
+      box-shadow: 0 0 0 0.2rem rgba(180, 186, 191, 0.5); }
+    .form-multiselect .btn.btn-multiselect.disabled, .form-multiselect .btn.btn-multiselect:disabled {
+      color: #212529;
+      background-color: #fff;
+      border-color: #ced4da; }
+    .form-multiselect .btn.btn-multiselect:not(:disabled):not(.disabled):active, .form-multiselect .btn.btn-multiselect:not(:disabled):not(.disabled).active,
+    .show > .form-multiselect .btn.btn-multiselect.dropdown-toggle {
+      color: #212529;
+      background-color: #e6e6e6;
+      border-color: #aab4bf; }
+      .form-multiselect .btn.btn-multiselect:not(:disabled):not(.disabled):active:focus, .form-multiselect .btn.btn-multiselect:not(:disabled):not(.disabled).active:focus,
+      .show > .form-multiselect .btn.btn-multiselect.dropdown-toggle:focus {
+        box-shadow: 0 0 0 0.2rem rgba(180, 186, 191, 0.5); }
+
+.form-multiselect .dropdown-menu {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; }
 
 /*
 Foglio per la corretta visualizzazione della pagina di test del template form BS4

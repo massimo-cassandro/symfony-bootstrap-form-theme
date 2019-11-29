@@ -8,9 +8,10 @@
 {#
 
 TODO:
+boostrap validation markup
 custom validity
-serie checkbox e radio
-liste tipo multiselect
+grouped checkboxes
+
 range
 file
 number, date, datetime, money, time
@@ -19,7 +20,6 @@ Switches
 input groups
 progress?
 buttons?
-validazione?
 #}
 
 {#
@@ -95,7 +95,7 @@ validazione?
 {%- endblock form_container_start %}
 
 {% block form_container_end -%}
-  {%- if help is defined and help|trim -%}
+  {%- if help is defined and help|trim and not compound -%}
     <div class="form-help-text">{{ help|raw }}</div>
   {%- endif -%}
   </{{ element|default('div') }}>
@@ -104,39 +104,46 @@ validazione?
 {% block form_row -%}
   {% set params = {
       container: true,
-      compound_container: true
+      collection_container: true
     }|merge(params|default({}))
   %}
 
-  {%- if compound is defined and compound and params.compound_container -%}
+  {%- if compound is defined and compound and params.collection_container -%}
     {%- set element = 'fieldset' -%}
   {%- endif -%}
 
-  {%- if params.container == true and params.compound_container == true -%}
+  {%- if params.container == true and params.collection_container == true -%}
     {{- block('form_container_start') -}}
     {{- form_label(form) -}}
+    {%- if help is defined and help|trim and compound -%}
+      <div class="form-help-text form-help-top">{{ help|raw }}</div>
+    {%- endif -%}
   {% endif %}
 
    {{- form_widget(form) -}}
 
-  {%- if params.container == true and params.compound_container == true -%}
+  {%- if params.container == true and params.collection_container == true -%}
     {{- block('form_container_end') -}}
   {%- endif -%}
 
 {%- endblock form_row %}
 
-{# checkboxes #}
+{# checkboxes and radios #}
 {% block checkbox_widget -%}
   {{ parent() }}
 {%- endblock checkbox_widget %}
+{% block radio_widget -%}
+  {{ parent() }}
+{%- endblock radio_widget %}
 
-{% block checkbox_row -%}
+{% block checkbox_radio_row -%}
 
   {% set params = {
     container: true,
-    compound_container: true,
+    collection_container: true,
     bs_custom_control: false,
-    top_label: false
+    top_label: false,
+    inline: false
   }|merge(params|default({})) %}
 
   {# the `top_label` option requires the container #}
@@ -144,13 +151,9 @@ validazione?
     {% set params = params|merge({container: true}) %}
   {% endif %}
 
-{# TODO inline #}
-{%- set parent_label_class = parent_label_class|default(label_attr.class|default('')) -%}
-
-
   {%- if params.bs_custom_control -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
-    <div class="custom-control custom-checkbox{{ 'checkbox-inline' in parent_label_class ? ' custom-control-inline' }}">
+    <div class="custom-control custom-checkbox{{ params.inline ? ' custom-control-inline' }}">
       {{- block('checkbox_widget') -}}
       {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
       {% if required %}
@@ -165,15 +168,15 @@ validazione?
     {% if params.top_label %}
       {%- set attr = attr|merge({class: (attr.class|default('') ~ ' d-block')|trim}) -%}
       {{- form_label(form) -}}
-      {{- block('checkbox_widget') -}}
+        {{- block( element ~ '_widget') -}}
     {% else %}
       {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
       <div class="form-check
-        {%- if 'checkbox-inline' in parent_label_class %} form-check-inline{% endif -%}
-        {%- if not (params.compound is defined and params.compound) -%}
+        {%- if params.inline %} form-check-inline{% endif -%}
+        {%- if not (params.collection is defined and params.collection) -%}
           {{- block('containers_classes') -}}
         {%- endif -%}">
-        {{- block('checkbox_widget') -}}
+        {{- block( element ~ '_widget') -}}
         {{- form_label(form) -}}
       </div>
     {% endif %}
@@ -182,70 +185,92 @@ validazione?
       {{ block('form_container_end') }}
     {% endif %}
   {%- endif -%}
+{%- endblock checkbox_radio_row %}
+
+{% block checkbox_row -%}
+  {% set element = 'checkbox' %}
+  {{- block('checkbox_radio_row') -}}
 {%- endblock checkbox_row %}
 
-{# multiple checkbox #}
+{% block radio_row -%}
+  {% set element = 'radio' %}
+  {{- block('checkbox_radio_row') -}}
+{%- endblock radio_row %}
+
+{# multiple checkbox / radios #}
 {% block choice_widget_expanded -%}
 
+  {# the params.collection option tells to other widgets we are making a series of fields #}
   {% set params = {
       bs_custom_control: false,
-      compound_container: true,
+      collection_container: true,
+      inline: false,
+      multiselect: false
     }|merge(params|default({}))|merge({
       container: false,
       top_label: false,
-      compound: true
+      collection: true
     })
   %}
-
   {% set inner_container_classes = '' %}
-  {% if not params.compound_container %}
+  {% if not params.collection_container %}
     {% set inner_container_classes = 'form-group' ~ block('containers_classes')  %}
   {% endif %}
 
-  {%- if params.columns is defined and params.columns is iterable -%}
+  {%- if params.columns is defined and params.columns is iterable and not params.inline -%}
+    {# rcolumns classes come from https://github.com/massimo-cassandro/m-utilities #}
     {% set inner_container_classes = inner_container_classes ~ ' rcolumns'  %}
     {%- for brkp, cols in params.columns -%}
       {% set inner_container_classes = inner_container_classes ~ " rcolumns-#{brkp}-#{cols}"  %}
     {%- endfor -%}
   {%- endif -%}
 
+  {%- if params.multiselect != false -%}
+
+    {# multiselect is not compatible with inline option #}
+    {% set params = params|merge({
+      inline:false}) %}
+
+    {% set params = params|merge({multiselect:
+      {
+        placeholder: '&nbsp;',
+        button_class: 'btn-multiselect',
+        menu_class: ''
+      }|merge(params.multiselect is iterable? params.multiselect : {})
+    }) %}
+
+    <div class="btn-group form-multiselect">
+      <button type="button" class="btn dropdown-toggle
+        {%- if params.multiselect.button_class %} {{ params.multiselect.button_class}}{% endif -%}"
+        {{- ' ' -}}
+        data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <span class="form-multiselect-placeholder">{{ params.multiselect.placeholder|raw }}</span>
+      </button>
+      <div class="dropdown-menu
+        {%- if params.multiselect.menu_class %} {{ params.multiselect.menu_class}}{% endif -%}">
+  {%- endif -%}
+
+  {% set child_params = {
+      translation_domain: choice_translation_domain,
+      valid: valid,
+      params: params
+    }|merge(
+      disabled is defined and disabled? {disabled:true}: {}
+    )
+  %}
+
   <div class="form-collection{%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}">
 
     {%- for child in form %}
-      {{- form_row(child, {
-        parent_label_class: label_attr.class|default(''),
-        translation_domain: choice_translation_domain,
-        valid: valid,
-        params: params
-      }|merge(disabled is defined and disabled? {disabled:true}: {})) -}}
+      {{- form_row(child, child_params ) -}}
     {% endfor -%}
 
   </div>
 
-{#     {% if '-inline' in label_attr.class|default('') -%}
-      {%- for child in form %}
-        {{- form_row(child, {
-          parent_label_class: label_attr.class|default(''),
-          translation_domain: choice_translation_domain,
-          valid: valid,
-          params: params
-        }) -}}
-      {% endfor -%}
-    {%- else -%}
-      {%- if not valid -%}
-        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control is-invalid')|trim}) %}
-      {%- endif -%}
-      {%- for child in form %}
-        {{- form_row(child, {
-          parent_label_class: label_attr.class|default(''),
-          translation_domain: choice_translation_domain,
-          valid: true,
-          params: params
-        }) -}}
-      {% endfor -%}
-
-    {%- endif %} #}
-
+  {%- if params.multiselect != false -%}
+    </div> {# /dropdown-menu #}
+    </div> {# /btn-group #}
+  {%- endif -%}
 
 {%- endblock choice_widget_expanded %}
 

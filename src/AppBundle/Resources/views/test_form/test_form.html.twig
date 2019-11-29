@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Symfony + Bootstrap 4 Form Test</title>
-  {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"> #}
   <link rel="stylesheet" href="{{ asset('/public/prism/prism.css') }}" type="text/css" media="all">
   <link rel="stylesheet" href="{{ asset('/public/forms/test_page_assets/sf_test_form.css') }}" type="text/css" media="all">
 
@@ -20,11 +19,14 @@
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
     This page twig template: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
     Form template: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
-    Scss file: <code>src/AppBundle/Resources/public/forms/_forms.scss</code>
+    Scss file: <code>src/web/public/forms/_forms.scss</code><br>
+    JS file: <code>src/web/public/forms/_forms.js</code>
     </p>
     <p class="font-italic">Note: for better clarity, in this test page, twig parameters
     (as required or disabled) have been added to the twig widget,
     even if they are tipically defined in the controller.</p>
+
+
 
     <div id="toc"></div>
 
@@ -173,7 +175,8 @@
         info: "Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code>.<br>" ~
           "Note that the <code>required</code> has the unique effect to add the required class to the fieldset,
           to highlight that at least one of the controls must be selected.
-          However, the final check must be performed using javascript",
+          However, the final check must be performed using javascript.<br>
+          The <code>help</code> parameter, if present, is placed at top, under the <code>legend</code> tag",
         varname: 'multiCbox1',
         args: {
           help: 'Help text',
@@ -240,10 +243,23 @@
       } %}
 
       {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple checkboxes + inline',
+        info: "Checkboxes are rendered as inline elements. This option is obviously incompatible with multiple columns",
+        varname: 'multiCbox6',
+        args: {
+          label: 'Multiple checkboxes',
+          help: "Help text",
+          params: {
+            inline: true
+          }
+        }
+      } %}
+
+      {% include 'test_form/test_form.incl.html.twig' with {
         title: 'Multiple stacked checkboxes + custom control',
         info: "Note that actually multiple checkboxes with custom controls don't fully support
           all the parameters like disabled, required etc...",
-        varname: 'multiCbox6',
+        varname: 'multiCbox7',
         args: {
           label: 'Multiple checkboxes',
           params: {
@@ -252,22 +268,72 @@
         }
       } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Grouped stacked checkboxes',
+        varname: 'groupedCbox1',
+        todo: true,
+        args: {
+          label: 'Multiple checkboxes',
+          help: "Help text"
+        }
+      } %}
+
+
       <h2>Radios</h2>
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Stacked radio buttons',
+        info: "Same of multiple checkboxes, the unique difference if that the
+          the controller <code>multiple</code> option is set to <code>false</code>.<br>
+          All the parameter available for multiple checkboxes can be applied to radio buttons",
+        varname: 'radios1',
+        args: {
+          label: 'Radio buttons',
+          help: "Help text"
+        }
+      } %}
 
       <h2 id="multiselect">Multiselect</h2>
+      <p>A way to handle multiple checkboxes or radio buttons using a dropdown panel.<br>
+      It uses <a href="https://getbootstrap.com/docs/4.4/components/dropdowns/">Bootstraps dropdowns</a> for markup
+      (<a href="https://jquery.com/">jQuery</a>, <a href="https://popper.js.org/">Popper.js</a>,
+        and related Bootstrap JS scripts are requested).</p>
+
+      <p>To activate this option add <code>params.multiselect: true</code> to the widget for
+      default settings or set it as an object to define a <code>placeholder</code>,
+      <code>button_class</code> (default: <code>btn-multiselect</code>,
+      defined in <code>_forms.scss</code>) and
+      <code>menu_class</code> (default: <em>none</em>) parameters according to Bootstrap docs.</p>
+
+      <div class="text-danger">
+        <p><strong>TODO</strong>: css for sizing classes</p>
+      </div>
+
       {% include 'test_form/test_form.incl.html.twig' with {
-        title: 'MultiSelect',
+        title: 'Standard multiSelect',
+        info: "Basic dropdown with checkboxes",
         varname: 'multiSelect1',
         args: {
           label: 'Multiselect',
+          params: {
+            multiselect: true
+          }
         }
       } %}
 
       {% include 'test_form/test_form.incl.html.twig' with {
-        title: 'MultiSelect',
+        title: 'MultiSelect with columns',
+        info: "Basic dropdown with radio buttons arranged in columns and custom options",
         varname: 'multiSelect2',
         args: {
           label: 'Multiselect',
+          params: {
+            multiselect: {
+              placeholder: 'Choose an option',
+              button_class: 'btn-outline-primary',
+              menu_class: 'dropdown-menu-md-right'
+            },
+            columns: {sm:1, md:2}
+          }
         }
       } %}
 
@@ -359,8 +425,12 @@
     {{ form_end(form) }}
 
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+
   <script src="{{ asset('/public/prism/prism-min.js') }}"></script>
+  <script src="{{ asset('/public/forms/test_page_assets/bootstrap-min.js') }}"></script>
   <script src="{{ asset('/public/forms/test_page_assets/sf_test_form-min.js') }}"></script>
 </body>
 </html>

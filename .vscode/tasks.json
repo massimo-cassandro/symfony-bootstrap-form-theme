@@ -8,7 +8,7 @@
       "type": "shell",
       "command": "gulp --gulpfile docs/gulpfile-remove-cache.js",
       "presentation": {
-        "reveal": "always",
+        "reveal": "silent",
         "panel": "shared",
         "clear": true
       },
@@ -19,7 +19,7 @@
       "type": "shell",
       "command": "gulp --gulpfile docs/gulpfile-make-docs.js",
       "presentation": {
-        "reveal": "always",
+        "reveal": "silent",
         "panel": "shared",
         "clear": true
       },

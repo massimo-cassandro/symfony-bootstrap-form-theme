@@ -8,12 +8,13 @@ https://github.com/beautify-web/js-beautify
 https://prismjs.com/
 */
 
+// @codekit-append '../_forms.js'
 
 /* globals Prism, html_beautify */
 (() => {
   'use strict';
 
-  const test_elements = document.querySelectorAll('.form-test-element'),
+  const test_elements = document.querySelectorAll('.form-test-element:not(.todo)'),
     escapeHTML=function(text) {
       var characters = {
         '&': '&amp;',
@@ -44,6 +45,21 @@ https://prismjs.com/
         'indent_handlebars': false,
         'extra_liners': ['/html']
       };
+
+    // remove multiple .form-check elements from .form-collections
+    let parser = new DOMParser(),
+      temp_doc = parser.parseFromString(result, 'text/html'),
+      commentNode = document.createComment('Other .form-check nodes');
+
+    temp_doc.body.querySelectorAll('.form-collection .form-check:not(:first-child)').forEach(item => {
+      item.replaceWith(commentNode);
+    });
+
+    commentNode = document.createComment('Other .custom-control nodes');
+    temp_doc.body.querySelectorAll('.form-collection .custom-control:not(:first-child)').forEach(item => {
+      item.replaceWith(commentNode);
+    });
+    result = temp_doc.body.innerHTML;
 
     result = result.replace(/\s{2,}/g, ' ')
       .replace(/>/g, '>\n')
@@ -77,11 +93,13 @@ https://prismjs.com/
     let this_id = item.id;
 
     if(!this_id) {
-      this_id = item.innerText.toLowerCase().replace(/[ |\W]+/g, '_'); //`toc-${idx}`;
+      this_id = item.innerText.toLowerCase()
+        .replace(/todo$/, '')
+        .replace(/[ |\W]+/g, '_'); //`toc-${idx}`;
       item.id = this_id;
     }
 
-    let toc_str = `<a href="#${this_id}">${item.innerText}</a>`;
+    let toc_str = `<a href="#${this_id}">${item.innerHTML}</a>`;
 
     item.insertAdjacentHTML('beforeend',
       '<a href="#top" class="badge-link badge badge-secondary initialism">top</a>' +

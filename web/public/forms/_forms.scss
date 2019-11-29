@@ -1,6 +1,6 @@
 /*
 This style sheet expands and modify some Bootstrap css settings and must
-be included in the projects that implement the `bs4_form_layout.html.twig` template
+be included in projects that implement the `bs4_form_layout.html.twig` template
 
 https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 */
@@ -33,6 +33,9 @@ input, button, select, textarea {
   @extend .small;
   .disabled & {
     color: $sf-disabled-color;
+  }
+  &.form-help-top {
+    margin:0 0 .5rem 0;
   }
 }
 
@@ -110,5 +113,29 @@ fieldset.required:not(.disabled) {
   .custom-control-label, // custom controls
   .form-check label {
     font-weight: $font-weight-normal;
+  }
+}
+
+// multiselect
+.form-multiselect {
+  &, & button {
+    width:100%;
+    max-width:100%;
+  }
+  .btn {
+    text-align:left;
+    &::after {
+      position:absolute;
+      top:50%;
+      right: $input-btn-padding-y;
+      transform: translateY(-50%);
+    }
+    &.btn-multiselect {
+      @include button-variant($input-bg, $input-border-color);
+    }
+  }
+  .dropdown-menu {
+    padding-left: $dropdown-padding-y;
+    padding-right: $dropdown-padding-y;
   }
 }

@@ -6,9 +6,10 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
 
 ## Using the form theme
 
-* Add the `/Resources/public/test_form/_forms.scss` file to your css (after Bootstrap css). Change default options if necessary
+* Add the `/web/public/forms/_forms.scss` file to your css (after Bootstrap css). Change default options if necessary. In the test page, `_forms.scss` is bundled within the `/web/public/forms/test_page_assets/sf_test_form.scss` file.
+* Add the `/web/public/forms/_forms.js` file to your js (after Bootstrap js). In the test page, `_forms.js` is bundled within the `/web/public/forms/test_page_assets/sf_test_form.js` file.
 * Place the `/Resources/views/form/bs4_form_layout.html.twig` in your *view* folder (in this test app it is located in the `form` subdir)
-* Modify your `/app/config/config.yml` file and add
+* Modify your `/app/config/config.yml` file and add:
 
 ```yaml
 # Twig Configuration
@@ -24,7 +25,7 @@ You can clone the test app repository and run the form test app.
 Clone the repo and run composer to install Symfony. Run npm in the public directory to install Bootstrap, if you need to test your changes.
 
 The form test page url will be: `<your_test_domain>/test-form'.
-The css and js directory is `/web/assets`.
+The css and js directory is `/web/public`.
 
 * twig: `src/AppBundle/Resources/views/test_form/test_form.html.twig`
 * controller: `src/AppBundle/Controller/TestFormController.php`
@@ -38,7 +39,7 @@ The test page gives you detailed informations about all form widgets:
 
 ### General
 
-* A new `help` parameter allows you to add custom help text. It adds a `div.form-help-text` element to the rendered markup that contains the help string (HTML can be used). The `form-help-text` class is defined in `_forms.scss`.
+* The `help` parameter allows you to add custom help text. It adds a `div.form-help-text` element to the rendered markup that contains the help string (HTML can be used). The `form-help-text` class is defined in `_forms.scss`.
 
 ```twig
 {{ form_row(form.xxxx, {
@@ -152,11 +153,41 @@ Take a look to the [test result page](https://massimo-cassandro.github.io/symfon
 
 ### Radios
 
+Radio buttons options are the same of checkboxes.
+
 ### Multiselect
+Multiple checkboxes and radio button can be displydes as a dropdown using the `multiselect` option.
+
+This option is inspired by the <a href="http://davidstutz.de/bootstrap-multiselect/">Bootstrap Multiselect plugin</a>, and offers a way to arrange in a more compact way multiple elements.
+
+For usability reasons, it should not be used if you have a lot of elements.
+
+To activate this option set `params.multiselect` to `true` for default settings, or set placeholder and specific classes for menu and buttons as described in [Bootstrap docs](https://getbootstrap.com/docs/4.4/components/dropdowns/):
+
+```twig
+{{ form_row(form.xxxx, {
+  "params": {
+    "multiselect": true
+  }
+}) }}
+
+{{ form_row(form.xxxx, {
+  "params": {
+    "multiselect": {
+        placeholder: 'Select an option'
+        button_class: '...',
+        menu_class: '...'
+    }
+  }
+}) }}
+```
+This option needs some [Bootstrap JS components](https://getbootstrap.com/docs/4.4/components/dropdowns/#overview), [Popper.JS](https://popper.js.org/) and [jQuery](https://jquery.com/).
+
+In addition, the `_forms.js` script is needed.
 
 ### Select elements
 
-* Select elements have `custom-select` (<https://getbootstrap.com/docs/4.3/components/forms/#select-menu>) by default, this behaviour can be changed using the `params` element of `form_row`
+* Select elements have `custom-select` (<https://getbootstrap.com/docs/4.4/components/forms/#select-menu>) by default, this behaviour can be changed using the `params` element of `form_row`
 
 
 
@@ -168,9 +199,9 @@ Take a look to the [test result page](https://massimo-cassandro.github.io/symfon
 * https://symfony.com/doc/3.4/form/rendering.html
 * https://symfony.com/doc/3.4/reference/forms/twig_reference.html
 * https://symfony.com/doc/3.4/form/bootstrap4.html
-* https://getbootstrap.com/docs/4.3/components/forms/
-* https://getbootstrap.com/docs/4.3/components/input-group/
-* https://getbootstrap.com/docs/4.3/components/buttons/
+* https://getbootstrap.com/docs/4.4/components/forms/
+* https://getbootstrap.com/docs/4.4/components/input-group/
+* https://getbootstrap.com/docs/4.4/components/buttons/
 
 
 

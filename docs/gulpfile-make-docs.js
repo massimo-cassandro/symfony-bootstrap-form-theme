@@ -13,6 +13,8 @@ gulp.task('copy_assets', function () {
     '../web/public/forms/test_page_assets/sf_test_form-min.js.map',
     '../web/public/forms/test_page_assets/sf_test_form.css',
     '../web/public/forms/test_page_assets/sf_test_form.css.map',
+    '../web/public/forms/test_page_assets/bootstrap-min.js',
+    '../web/public/forms/test_page_assets/bootstrap-min.js.map',
     '../web/public/prism/prism-min.js',
     '../web/public/prism/prism-min.js.map',
     '../web/public/prism/prism.css',

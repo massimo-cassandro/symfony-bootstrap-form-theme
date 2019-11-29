@@ -17,6 +17,17 @@
 		"oO": 0,
 		"oS": 1
 		},
+	"/forms/_forms.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/forms/_forms-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/forms/_forms.scss": {
 		"aP": 1,
 		"bl": 0,
@@ -30,8 +41,38 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/forms/test_page_assets/bootstrap-min.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/forms/test_page_assets/bootstrap-min-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/forms/test_page_assets/bootstrap-min.js.map": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/forms/test_page_assets/bootstrap-min.js.map",
+		"oF": 0
+		},
+	"/forms/test_page_assets/bootstrap.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "/forms/test_page_assets/bootstrap-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
 	"/forms/test_page_assets/sf_test_form-min.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -68,7 +109,7 @@
 		"oF": 0
 		},
 	"/forms/test_page_assets/sf_test_form.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -96,6 +137,28 @@
 		"oA": 2,
 		"oAP": "/build/node_modules",
 		"oF": 0
+		},
+	"/node_modules/bootstrap/js/dist/dropdown.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/node_modules/bootstrap/js/dist/dropdown-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/node_modules/bootstrap/js/dist/util.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 1,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/node_modules/bootstrap/js/dist/util-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
 		},
 	"/node_modules/bootstrap/scss/_alert.scss": {
 		"aP": 1,
@@ -1242,7 +1305,7 @@
 		"uL": 1
 		},
 	"/node_modules/prismjs/components/prism-clike.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1253,7 +1316,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-core.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1264,7 +1327,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-css-extras.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1275,7 +1338,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-css.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1286,7 +1349,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-javascript.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1297,7 +1360,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-json.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1308,7 +1371,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-markup-templating.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1319,7 +1382,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-markup.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1330,7 +1393,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-php.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1341,7 +1404,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-scss.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1352,7 +1415,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/components/prism-twig.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1363,7 +1426,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/highlight-keywords/prism-highlight-keywords.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1374,7 +1437,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1385,7 +1448,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1396,7 +1459,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/previewers/prism-previewers.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1407,7 +1470,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/show-language/prism-show-language.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1418,7 +1481,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/toolbar/prism-toolbar.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1429,7 +1492,7 @@
 		"tS": 0
 		},
 	"/node_modules/prismjs/plugins/unescaped-markup/prism-unescaped-markup.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -1456,7 +1519,7 @@
 		"oS": 1
 		},
 	"/prism/prism-min.js": {
-		"bF": 4,
+		"bF": 0,
 		"ft": 64,
 		"ma": 1,
 		"mi": 1,
@@ -3422,7 +3485,7 @@
 		"autoOutputPathReplace1": "",
 		"autoOutputPathReplace2": "",
 		"autoOutputPathStyle": 0,
-		"bundleFormat": 4,
+		"bundleFormat": 0,
 		"createSourceMap": 1,
 		"minifyOutput": 1,
 		"syntaxCheckerStyle": 3,

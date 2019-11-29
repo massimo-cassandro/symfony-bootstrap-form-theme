@@ -96,10 +96,50 @@ class TestFormController extends Controller
             'choices'  => array(
                 'Option 1'  =>  '1',
                 'Option 2'  =>  '2',
+                'Option 3'  =>  '3',
+            ),
+            'expanded' => true,
+            'multiple' => true
+          ))
+          ->add('multiCbox7', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Option 1'  =>  '1',
+                'Option 2'  =>  '2',
                 'Option 3'  =>  '3'
             ),
             'expanded' => true,
             'multiple' => true
+          ))
+
+          // grouped checkboxes
+          ->add('groupedCbox1', ChoiceType::class, array(
+            'required' => false,
+            'choices' => [
+              'Group A' => [
+                'Option 1'  =>  1,
+                'Option 2'  =>  2,
+              ],
+              'Group B' => [
+                'Option 3'  =>  3,
+                'Option 4'  =>  4,
+              ],
+            ],
+            'expanded' => true,
+            'multiple' => true
+          ))
+
+          // radios
+          ->add('radios1', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(
+                'Yes'    =>  1,
+                'No'     =>  2,
+                'Maybe'  =>  3
+            ),
+            'expanded' => true,
+            'multiple' => false,
+            'placeholder' => false
           ))
 
           // multiselect
@@ -122,7 +162,8 @@ class TestFormController extends Controller
                 'Option 4'  =>  '4'
             ),
             'expanded' => true,
-            'multiple' => true
+            'multiple' => false,
+            'placeholder' => false
           ))
 
           // select

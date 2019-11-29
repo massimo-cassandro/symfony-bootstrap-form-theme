@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Symfony + Bootstrap 4 Form Test</title>
-    <link rel="stylesheet" href="assets/prism.css" type="text/css" media="all">
+  <link rel="stylesheet" href="assets/prism.css" type="text/css" media="all">
   <link rel="stylesheet" href="assets/sf_test_form.css" type="text/css" media="all">
 
 </head>
@@ -24,6 +24,8 @@
     (as required or disabled) have been added to the twig widget,
     even if they are tipically defined in the controller.</p>
 
+
+
     <div id="toc"></div>
 
     <form name="form" method="post" id="form1">
@@ -40,16 +42,16 @@
       <h2>Single checkboxes</h2>
 
         <div class="form-test-element"><h3>Checkbox (input element only)</h3><div class="row align-items-stretch"><div class="col-4 result"><div><input type="checkbox" id="form_cbox1" name="form[cbox1]" value="1" /></div></div><div class="col-4 twig" data-is-widget="true"  data-args=""></div><div class="col-4 markup"></div></div></div>
-        <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required</h3><div class="info">With custom id and custom label</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group required"><div class="form-check required"><input type="checkbox" id="custom-id" name="form[cbox2]" required="required" class="form-check-input" value="1" /><label for="custom-id">
-      Checkbox label    </label></div><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;id&quot;:&quot;custom-id&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Checkbox label&quot;,&quot;required&quot;:true}"></div><div class="col-4 markup"></div></div></div>
+        <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required</h3><div class="info">With custom id and custom label</div><div class="row align-items-stretch"><div class="col-4 result"><div><checkbox class="form-group required"><div class="form-check required"><input type="checkbox" id="custom-id" name="form[cbox2]" required="required" class="form-check-input" value="1" /><label for="custom-id">
+      Checkbox label    </label></div><div class="form-help-text">Help text</div></checkbox></div></div><div class="col-4 twig" data-args="{&quot;id&quot;:&quot;custom-id&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Checkbox label&quot;,&quot;required&quot;:true}"></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) without container + required + disabled</h3><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-check disabled required"><input type="checkbox" id="form_cbox3" name="form[cbox3]" disabled="disabled" required="required" class="form-check-input" value="1" /><label for="form_cbox3">
-      Cbox3    </label></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true,&quot;params&quot;:{&quot;container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>        <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) + container + required + disabled</h3><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group disabled required"><div class="form-check disabled required"><input type="checkbox" id="form_cbox5" name="form[cbox5]" disabled="disabled" required="required" class="form-check-input" value="1" /><label for="form_cbox5">
-      Cbox5    </label></div><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true}"></div><div class="col-4 markup"></div></div></div>
+      Cbox3    </label></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true,&quot;params&quot;:{&quot;container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>        <div class="form-test-element"><h3>Checkbox Bootstrap default (stacked) + container + required + disabled</h3><div class="row align-items-stretch"><div class="col-4 result"><div><checkbox class="form-group disabled required"><div class="form-check disabled required"><input type="checkbox" id="form_cbox5" name="form[cbox5]" disabled="disabled" required="required" class="form-check-input" value="1" /><label for="form_cbox5">
+      Cbox5    </label></div><div class="form-help-text">Help text</div></checkbox></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true}"></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>Checkbox with label on top</h3><div class="info">Place the label above the checkbox field. This option requires the cointainer markup,
             therefore the <code>container: false</code> option is ignored. Furhermore,
             the <code>top_label</code> option can't be activated if the <code>bs_custom_control</code>
-            is set to true</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group required"><label for="form_cbox7">
-      Cbox7    </label><input type="checkbox" id="form_cbox7" name="form[cbox7]" required="required" class="d-block" value="1" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;required&quot;:true,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;container&quot;:false,&quot;top_label&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
+            is set to true</div><div class="row align-items-stretch"><div class="col-4 result"><div><checkbox class="form-group required"><label for="form_cbox7">
+      Cbox7    </label><input type="checkbox" id="form_cbox7" name="form[cbox7]" required="required" class="d-block" value="1" /><div class="form-help-text">Help text</div></checkbox></div></div><div class="col-4 twig" data-args="{&quot;required&quot;:true,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;container&quot;:false,&quot;top_label&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
 
         <h2>Single checkboxes with custom controls</h2>
         <p>Note that checkboxes with custom controls are not fully supported with this template.<br>
@@ -67,66 +69,134 @@
 
       <div class="form-test-element"><h3>Multiple stacked checkboxes</h3><div class="info">Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code>.<br>Note that the <code>required</code> has the unique effect to add the required class to the fieldset,
           to highlight that at least one of the controls must be selected.
-          However, the final check must be performed using javascript</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group required"><legend class="label">
-      Multiple checkboxes    </legend><div><div class="form-check"><input type="checkbox" id="form_multiCbox1_0" name="form[multiCbox1][]" class="form-check-input" value="1" /><label for="form_multiCbox1_0">
+          However, the final check must be performed using javascript.<br>
+          The <code>help</code> parameter, if present, is placed at top, under the <code>legend</code> tag</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group required"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox1_0" name="form[multiCbox1][]" class="form-check-input" value="1" /><label for="form_multiCbox1_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox1_1" name="form[multiCbox1][]" class="form-check-input" value="2" /><label for="form_multiCbox1_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox1_2" name="form[multiCbox1][]" class="form-check-input" value="3" /><label for="form_multiCbox1_2">
-      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;required&quot;:true}"></div><div class="col-4 markup"></div></div></div>
+      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;required&quot;:true}"></div><div class="col-4 markup"></div></div></div>
       <div class="form-test-element"><h3>Multiple stacked checkboxes + disabled</h3><div class="info">Same of previous with disabled parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group disabled required"><legend class="label">
-      Multiple checkboxes    </legend><div><div class="form-check"><input type="checkbox" id="form_multiCbox2_0" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="1" /><label for="form_multiCbox2_0">
+      Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox2_0" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="1" /><label for="form_multiCbox2_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox2_1" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="2" /><label for="form_multiCbox2_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox2_2" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="3" /><label for="form_multiCbox2_2">
-      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>Multiple stacked checkboxes without fieldset</h3><div class="info">For cases where checkboxes must be inserted in a fieldset already present in the markup</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group"><div class="form-check"><input type="checkbox" id="form_multiCbox3_0" name="form[multiCbox3][]" class="form-check-input" value="1" /><label for="form_multiCbox3_0">
+      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;required&quot;:true,&quot;disabled&quot;:true}"></div><div class="col-4 markup"></div></div></div>
+      <div class="form-test-element"><h3>Multiple stacked checkboxes without fieldset</h3><div class="info">For cases where checkboxes must be inserted in a fieldset already present in the markup.
+          In this case, the <code>help</code> parameter takes no effects.</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox3_0" name="form[multiCbox3][]" class="form-check-input" value="1" /><label for="form_multiCbox3_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox3_1" name="form[multiCbox3][]" class="form-check-input" value="2" /><label for="form_multiCbox3_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox3_2" name="form[multiCbox3][]" class="form-check-input" value="3" /><label for="form_multiCbox3_2">
-      Option 3    </label></div></div></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;params&quot;:{&quot;compound_container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>
+      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;params&quot;:{&quot;compound_container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>
       <div class="form-test-element"><h3>Multiple stacked checkboxes without fieldset + required + disabled </h3><div class="info">Same of previous with disabled and required parameter.
-        Note that the <code>required</code> parameter takes no effect.</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group disabled required"><div class="form-check"><input type="checkbox" id="form_multiCbox4_0" name="form[multiCbox4][]" disabled="disabled" class="form-check-input" value="1" /><label for="form_multiCbox4_0">
+        Note that the <code>required</code> parameter takes no effect.</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group disabled required"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox4_0" name="form[multiCbox4][]" disabled="disabled" class="form-check-input" value="1" /><label for="form_multiCbox4_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox4_1" name="form[multiCbox4][]" disabled="disabled" class="form-check-input" value="2" /><label for="form_multiCbox4_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox4_2" name="form[multiCbox4][]" disabled="disabled" class="form-check-input" value="3" /><label for="form_multiCbox4_2">
-      Option 3    </label></div></div></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;disabled&quot;:true,&quot;required&quot;:true,&quot;params&quot;:{&quot;compound_container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>
+      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;disabled&quot;:true,&quot;required&quot;:true,&quot;params&quot;:{&quot;compound_container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>
       <div class="form-test-element"><h3 id="multiple_cboxes_multi_columns">Multiple stacked checkboxes + multiple columns</h3><div class="info">Distributes checkboxes into responsive columns.
           The <code>column</code> parameter is an array whose keys are the bootstrap breakpoints
-          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5)</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiple checkboxes    </legend><div class="rcolumns"><div class="form-check"><input type="checkbox" id="form_multiCbox5_0" name="form[multiCbox5][]" class="form-check-input" value="1" /><label for="form_multiCbox5_0">
+          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5).
+          This option also works with <code>params.compound_container = false</code> parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="checkbox" id="form_multiCbox5_0" name="form[multiCbox5][]" class="form-check-input" value="1" /><label for="form_multiCbox5_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_1" name="form[multiCbox5][]" class="form-check-input" value="2" /><label for="form_multiCbox5_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_2" name="form[multiCbox5][]" class="form-check-input" value="3" /><label for="form_multiCbox5_2">
       Option 3    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_3" name="form[multiCbox5][]" class="form-check-input" value="4" /><label for="form_multiCbox5_3">
       Option 4    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;params&quot;:{&quot;columns&quot;:{&quot;sm&quot;:1,&quot;md&quot;:2}}}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>Multiple stacked checkboxes + custom control</h3><div class="info">Note that multiple checkboxes with custom controls don't fully support
+      <div class="form-test-element"><h3>Multiple checkboxes + inline</h3><div class="info">Checkboxes are rendered as inline elements. This option is obviously incompatible with multiple columns</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_0" name="form[multiCbox6][]" class="form-check-input" value="1" /><label for="form_multiCbox6_0">
+      Option 1    </label></div><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_1" name="form[multiCbox6][]" class="form-check-input" value="2" /><label for="form_multiCbox6_1">
+      Option 2    </label></div><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_2" name="form[multiCbox6][]" class="form-check-input" value="3" /><label for="form_multiCbox6_2">
+      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;inline&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
+      <div class="form-test-element"><h3>Multiple stacked checkboxes + custom control</h3><div class="info">Note that actually multiple checkboxes with custom controls don't fully support
           all the parameters like disabled, required etc...</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiple checkboxes    </legend><div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox6_0" name="form[multiCbox6][]" class="custom-control-input" value="1" /><label class="custom-control-label" for="form_multiCbox6_0">
-      Option 1    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox6_1" name="form[multiCbox6][]" class="custom-control-input" value="2" /><label class="custom-control-label" for="form_multiCbox6_1">
-      Option 2    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox6_2" name="form[multiCbox6][]" class="custom-control-input" value="3" /><label class="custom-control-label" for="form_multiCbox6_2">
+      Multiple checkboxes    </legend><div class="form-collection"><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_0" name="form[multiCbox7][]" class="custom-control-input" value="1" /><label class="custom-control-label" for="form_multiCbox7_0">
+      Option 1    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_1" name="form[multiCbox7][]" class="custom-control-input" value="2" /><label class="custom-control-label" for="form_multiCbox7_1">
+      Option 2    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_2" name="form[multiCbox7][]" class="custom-control-input" value="3" /><label class="custom-control-label" for="form_multiCbox7_2">
       Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;params&quot;:{&quot;bs_custom_control&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
-      <h2>Radios</h2>
+      <div class="form-test-element todo"><h3>Grouped stacked checkboxes<span class="ml-2 badge badge-danger initialism">todo</span></h3><div class="text-muted">Still working on...</div></div>
 
+      <h2>Radios</h2>
+      <div class="form-test-element"><h3>Stacked radio buttons</h3><div class="info">Same of multiple checkboxes, the unique difference if that the
+          the controller <code>multiple</code> option is set to <code>false</code>.<br>
+          All the parameter available for multiple checkboxes can be applied to radio buttons</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Radio buttons    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="radio" id="form_radios1_0" name="form[radios1]" class="form-check-input" value="1" /><label for="form_radios1_0">
+      Yes    </label></div><div class="form-check"><input type="radio" id="form_radios1_1" name="form[radios1]" class="form-check-input" value="2" /><label for="form_radios1_1">
+      No    </label></div><div class="form-check"><input type="radio" id="form_radios1_2" name="form[radios1]" class="form-check-input" value="3" /><label for="form_radios1_2">
+      Maybe    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Radio buttons&quot;,&quot;help&quot;:&quot;Help text&quot;}"></div><div class="col-4 markup"></div></div></div>
       <h2 id="multiselect">Multiselect</h2>
-      <div class="form-test-element"><h3>MultiSelect</h3><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiselect    </legend><div><div class="form-check"><input type="checkbox" id="form_multiSelect1_0" name="form[multiSelect1][]" class="form-check-input" value="1" /><label for="form_multiSelect1_0">
+      <p>A way to handle multiple checkboxes or radio buttons using a dropdown panel.<br>
+      It uses <a href="https://getbootstrap.com/docs/4.4/components/dropdowns/">Bootstraps dropdowns</a> for markup
+      (<a href="https://jquery.com/">jQuery</a>, <a href="https://popper.js.org/">Popper.js</a>,
+        and related Bootstrap JS scripts are requested).</p>
+
+      <p>To activate this option add <code>params.multiselect: true</code> to the widget for
+      default settings or set it as an object to define a <code>placeholder</code>,
+      <code>button_class</code> (default: <code>btn-multiselect</code>,
+      defined in <code>_forms.scss</code>) and
+      <code>menu_class</code> (default: <em>none</em>) parameters according to Bootstrap docs.</p>
+
+      <div class="text-danger">
+        <p><strong>TODO</strong>: css for sizing classes</p>
+      </div>
+
+      <div class="form-test-element"><h3>Standard multiSelect</h3><div class="info">Basic dropdown with checkboxes</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-multiselect" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        &nbsp;
+      </button><div class="dropdown-menu"><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiSelect1_0" name="form[multiSelect1][]" class="form-check-input" value="1" /><label for="form_multiSelect1_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_1" name="form[multiSelect1][]" class="form-check-input" value="2" /><label for="form_multiSelect1_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_2" name="form[multiSelect1][]" class="form-check-input" value="3" /><label for="form_multiSelect1_2">
-      Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>MultiSelect</h3><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiselect    </legend><div><div class="form-check"><input type="checkbox" id="form_multiSelect2_0" name="form[multiSelect2][]" class="form-check-input" value="1" /><label for="form_multiSelect2_0">
-      Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect2_1" name="form[multiSelect2][]" class="form-check-input" value="2" /><label for="form_multiSelect2_1">
-      Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect2_2" name="form[multiSelect2][]" class="form-check-input" value="3" /><label for="form_multiSelect2_2">
-      Option 3    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect2_3" name="form[multiSelect2][]" class="form-check-input" value="4" /><label for="form_multiSelect2_3">
-      Option 4    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;}"></div><div class="col-4 markup"></div></div></div>
+      Option 3    </label></div></div></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;,&quot;params&quot;:{&quot;multiselect&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
+      <div class="form-test-element"><h3>MultiSelect with columns</h3><div class="info">Basic dropdown with radio buttons arranged in columns and custom options</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-outline-primary" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        Choose an option
+      </button><div class="dropdown-menu dropdown-menu-md-right"><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="radio" id="form_multiSelect2_0" name="form[multiSelect2]" class="form-check-input" value="1" /><label for="form_multiSelect2_0">
+      Option 1    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_1" name="form[multiSelect2]" class="form-check-input" value="2" /><label for="form_multiSelect2_1">
+      Option 2    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_2" name="form[multiSelect2]" class="form-check-input" value="3" /><label for="form_multiSelect2_2">
+      Option 3    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_3" name="form[multiSelect2]" class="form-check-input" value="4" /><label for="form_multiSelect2_3">
+      Option 4    </label></div></div></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;,&quot;params&quot;:{&quot;multiselect&quot;:{&quot;placeholder&quot;:&quot;Choose an option&quot;,&quot;button_class&quot;:&quot;btn-outline-primary&quot;,&quot;menu_class&quot;:&quot;dropdown-menu-md-right&quot;},&quot;columns&quot;:{&quot;sm&quot;:1,&quot;md&quot;:2}}}"></div><div class="col-4 markup"></div></div></div>
       <h2>Select</h2>
 
 
       <h2>Other elements</h2>
       <div class="form-test-element"><h3>Textarea</h3><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group"><label for="form_textarea1">
       form label    </label><textarea id="form_textarea1" name="form[textarea1]" placeholder="Placeholder text" class="form-control"></textarea><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
-    <div class="form-group">
+    <fieldset class="form-group">
+    <legend class="label">
+      Grouped cbox1    </legend>      
+  <div class="form-collection">
+    
+    <div class="form-check"><input type="checkbox" id="form_groupedCbox1_0" name="form[groupedCbox1][]" class="form-check-input" value="1" />
+    <label for="form_groupedCbox1_0">
+      Option 1    </label></div>
+    
+    
+    
+    <div class="form-check"><input type="checkbox" id="form_groupedCbox1_1" name="form[groupedCbox1][]" class="form-check-input" value="2" />
+    <label for="form_groupedCbox1_1">
+      Option 2    </label></div>
+    
+    
+    
+    <div class="form-check"><input type="checkbox" id="form_groupedCbox1_2" name="form[groupedCbox1][]" class="form-check-input" value="3" />
+    <label for="form_groupedCbox1_2">
+      Option 3    </label></div>
+    
+    
+    
+    <div class="form-check"><input type="checkbox" id="form_groupedCbox1_3" name="form[groupedCbox1][]" class="form-check-input" value="4" />
+    <label for="form_groupedCbox1_3">
+      Option 4    </label></div>
+    
+    </div></fieldset><div class="form-group">
     <label for="form_select1">
-      Select1    </label><select id="form_select1" name="form[select1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="4pJ_1dvPVILu3PBz4p5sne1JzXpEpbySnR-_4WpL2d0" /></form>
+      Select1    </label><select id="form_select1" name="form[select1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="b5Zrslbgwi4GKOH8bfI9YHI8ySDfG9hgVMd1gbAugas" /></form>
 
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.10.2/beautify-html.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+
   <script src="assets/prism-min.js"></script>
+  <script src="assets/bootstrap-min.js"></script>
   <script src="assets/sf_test_form-min.js"></script>
 </body>
 </html>
