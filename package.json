@@ -1,0 +1,33 @@
+{
+  "name": "symfony-bootstrap-form-theme",
+  "version": "1.0.0",
+  "description": "A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too)",
+  "main": "/web/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/massimo-cassandro/symfony-bootstrap-form-theme.git#master"
+  },
+  "keywords": [
+    "symfony",
+    "twig",
+    "twig-templates",
+    "forms",
+    "bootstrap-4",
+    "form-theme",
+    "bootstrap"
+  ],
+  "author": "Massimo Cassandro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/massimo-cassandro/symfony-bootstrap-form-theme/issues"
+  },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "homepage": "https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme",
+  "files": [
+    "./web/public/forms/_forms.scss",
+    "./web/public/forms/_forms.js",
+    "./src/AppBundle/Resources/views/Form/bs4_form_layout.html.twig",
+    "./docs/assets/*.*",
+    "./docs/form-test.html"
+  ]
+}

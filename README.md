@@ -1,4 +1,6 @@
-# Symfony Bootstrap 4 Form Theme
+# Symfony Bootstrap 4 Form Theme 
+
+\#*1.0*
 
 A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too).
 
