@@ -18,7 +18,8 @@
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
     This page twig template: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
     Form template: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
-    Scss file: <code>src/AppBundle/Resources/public/forms/_forms.scss</code>
+    Scss file: <code>src/web/public/forms/_forms.scss</code><br>
+    JS file: <code>src/web/public/forms/_forms.js</code>
     </p>
     <p class="font-italic">Note: for better clarity, in this test page, twig parameters
     (as required or disabled) have been added to the twig widget,
@@ -139,16 +140,12 @@
       </div>
 
       <div class="form-test-element"><h3>Standard multiSelect</h3><div class="info">Basic dropdown with checkboxes</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-multiselect" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-        &nbsp;
-      </button><div class="dropdown-menu"><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiSelect1_0" name="form[multiSelect1][]" class="form-check-input" value="1" /><label for="form_multiSelect1_0">
+      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-multiselect" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><span class="form-multiselect-placeholder">&nbsp;</span></button><div class="dropdown-menu"><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiSelect1_0" name="form[multiSelect1][]" class="form-check-input" value="1" /><label for="form_multiSelect1_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_1" name="form[multiSelect1][]" class="form-check-input" value="2" /><label for="form_multiSelect1_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_2" name="form[multiSelect1][]" class="form-check-input" value="3" /><label for="form_multiSelect1_2">
       Option 3    </label></div></div></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;,&quot;params&quot;:{&quot;multiselect&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
       <div class="form-test-element"><h3>MultiSelect with columns</h3><div class="info">Basic dropdown with radio buttons arranged in columns and custom options</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
-      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-outline-primary" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-        Choose an option
-      </button><div class="dropdown-menu dropdown-menu-md-right"><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="radio" id="form_multiSelect2_0" name="form[multiSelect2]" class="form-check-input" value="1" /><label for="form_multiSelect2_0">
+      Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-outline-primary" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><span class="form-multiselect-placeholder">Choose an option</span></button><div class="dropdown-menu dropdown-menu-md-right"><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="radio" id="form_multiSelect2_0" name="form[multiSelect2]" class="form-check-input" value="1" /><label for="form_multiSelect2_0">
       Option 1    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_1" name="form[multiSelect2]" class="form-check-input" value="2" /><label for="form_multiSelect2_1">
       Option 2    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_2" name="form[multiSelect2]" class="form-check-input" value="3" /><label for="form_multiSelect2_2">
       Option 3    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_3" name="form[multiSelect2]" class="form-check-input" value="4" /><label for="form_multiSelect2_3">
@@ -188,7 +185,7 @@
     
     </div></fieldset><div class="form-group">
     <label for="form_select1">
-      Select1    </label><select id="form_select1" name="form[select1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="b5Zrslbgwi4GKOH8bfI9YHI8ySDfG9hgVMd1gbAugas" /></form>
+      Select1    </label><select id="form_select1" name="form[select1]"><option value=""></option><option value="1">val1</option><option value="2">val2</option><option value="3">val3</option><option value="4">val4</option></select></div><input type="hidden" id="form__token" name="form[_token]" value="QQUUfv_CEWipcXie6dmODM2FbxvzPiepqBynQt3L2nI" /></form>
 
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>

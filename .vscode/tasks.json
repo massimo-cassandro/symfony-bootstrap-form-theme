@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "remove-cache",
+      "label": "remove sf cache",
       "type": "shell",
-      "command": "gulp --gulpfile docs/gulpfile-remove-cache.js",
+      "command": "gulp --gulpfile ./gulpfile-remove-cache.js",
       "presentation": {
         "reveal": "silent",
         "panel": "shared",
@@ -15,9 +15,9 @@
       "problemMatcher": []
     },
     {
-      "label": "make-docs",
+      "label": "make docs & dist",
       "type": "shell",
-      "command": "gulp --gulpfile docs/gulpfile-make-docs.js",
+      "command": "gulp --gulpfile ./gulpfile-make-dist-and-docs.js",
       "presentation": {
         "reveal": "silent",
         "panel": "shared",
