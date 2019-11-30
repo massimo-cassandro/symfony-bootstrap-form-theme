@@ -37,6 +37,19 @@ The test page gives you detailed informations about all form widgets:
 ![](docs/readme_files/sample.png)
 
 
+## Quick install using npm
+
+If you don't need the whole test application, you can only download the files located in the `dist` folder, that contains the files `_forms.js`, `_forms.scss` and `bs4_form_layout.html.twig`.
+
+You can also install them (with the addition of the `docs` folder) in your project using npm:
+
+```
+npm i symfony-bootstrap-form-theme
+```
+
+After the installation, you'll have to manually place the twig file in your templates folder.
+
+
 ## Reference
 
 ### General
