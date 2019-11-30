@@ -24,8 +24,8 @@
   "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "homepage": "https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme",
   "files": [
-    "./dist/*.*",
-    "./docs/assets/*.*",
-    "./docs/form-test.html"
+    "dist/*.*",
+    "docs/assets/*.*",
+    "docs/form-test.html"
   ]
 }
