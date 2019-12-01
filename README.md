@@ -207,16 +207,17 @@ In addition, the `_forms.js` script is needed.
 
 
 
-## Reference:
-* https://symfony.com/doc/3.4/form/form_themes.html
-* https://symfony.com/doc/3.4/forms.html
-* https://symfony.com/doc/current/reference/forms/types.html
-* https://symfony.com/doc/3.4/form/rendering.html
-* https://symfony.com/doc/3.4/reference/forms/twig_reference.html
-* https://symfony.com/doc/3.4/form/bootstrap4.html
-* https://getbootstrap.com/docs/4.4/components/forms/
-* https://getbootstrap.com/docs/4.4/components/input-group/
-* https://getbootstrap.com/docs/4.4/components/buttons/
+## Reference
+* <https://symfony.com/doc/current/form/form_customization.html>
+* <https://symfony.com/doc/3.4/form/form_themes.html>
+* <https://symfony.com/doc/3.4/forms.html>
+* <https://symfony.com/doc/current/reference/forms/types.html>
+* <https://symfony.com/doc/3.4/form/rendering.html>
+* <https://symfony.com/doc/3.4/reference/forms/twig_reference.html>
+* <https://symfony.com/doc/3.4/form/bootstrap4.html>
+* <https://getbootstrap.com/docs/4.4/components/forms/>
+* <https://getbootstrap.com/docs/4.4/components/input-group/>
+* <https://getbootstrap.com/docs/4.4/components/buttons/>
 
 
 
