@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Symfony + Bootstrap 4 Form Test</title>
   <link rel="stylesheet" href="{{ asset('/public/prism/prism.css') }}" type="text/css" media="all">
-  <link rel="stylesheet" href="{{ asset('/public/forms/test_page_assets/sf_test_form.css') }}" type="text/css" media="all">
+  <link rel="stylesheet" href="{{ asset('/public/test_form/sf_test_form.css') }}" type="text/css" media="all">
 
 </head>
 <body>
@@ -422,7 +422,7 @@
         }
       } %}
 
-    {{ form_end(form) }}
+    {{ form_end(form, {'render_rest': false}) }}
 
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
@@ -430,8 +430,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
 
   <script src="{{ asset('/public/prism/prism-min.js') }}"></script>
-  <script src="{{ asset('/public/forms/test_page_assets/bootstrap-min.js') }}"></script>
-  <script src="{{ asset('/public/forms/test_page_assets/sf_test_form-min.js') }}"></script>
+  <script src="{{ asset('/public/test_form/bootstrap-min.js') }}"></script>
+  <script src="{{ asset('/public/test_form/sf_test_form-min.js') }}"></script>
 </body>
 </html>
 

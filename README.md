@@ -1,15 +1,15 @@
-# Symfony Bootstrap 4 Form Theme 
+# Symfony Bootstrap 4 Form Theme
 
 \#*1.0*
 
 A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too).
 
-For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced buy the Symfony apps, and can be viewed without installing it.
+For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced by the Symfony apps, and can be viewed without installing it.
 
 ## Using the form theme
 
-* Add the `/web/public/forms/_forms.scss` file to your css (after Bootstrap css). Change default options if necessary. In the test page, `_forms.scss` is bundled within the `/web/public/forms/test_page_assets/sf_test_form.scss` file.
-* Add the `/web/public/forms/_forms.js` file to your js (after Bootstrap js). In the test page, `_forms.js` is bundled within the `/web/public/forms/test_page_assets/sf_test_form.js` file.
+* Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary. In the test page, `_forms.scss` is bundled within the `/web/public/test_form/sf_test_form.scss` file.
+* If you want to use the multiselect widget, add the `_forms-multiselect.js` and `_forms-multiselect.scss` files (both located in the `dist` folder) to your js and scss. In the test page, both files are bundled within the main js and scss files.
 * Place the `/Resources/views/form/bs4_form_layout.html.twig` in your *view* folder (in this test app it is located in the `form` subdir)
 * Modify your `/app/config/config.yml` file and add:
 
@@ -17,7 +17,7 @@ For a complete lookup to all widgets and parameter take a look at <https://massi
 # Twig Configuration
 twig:
   form_themes:
-    - '/form/bs4_form_layout.html.twig'
+    - '/path/to/bs4_form_layout.html.twig'
 ```
 
 
@@ -47,7 +47,17 @@ You can also install them (with the addition of the `docs` folder) in your proje
 npm i symfony-bootstrap-form-theme
 ```
 
-After the installation, you'll have to manually place the twig file in your templates folder.
+After the installation, you'll have to manually place the twig file in your templates folder, or, alternatively, add a new location to the twig path in your `config.yml` file:
+
+```yaml
+# Twig Configuration
+twig:
+    paths:
+      #- other paths
+      - "%kernel.project_dir%/path/to/node_modules/symfony-bootstrap-form-theme"
+```
+
+Note that this option requires the node_modules folder to be distributed to your server.
 
 
 ## Reference

@@ -8,7 +8,7 @@ https://github.com/beautify-web/js-beautify
 https://prismjs.com/
 */
 
-// @codekit-append '../_forms.js'
+// @codekit-append '../../../dist/js/_forms-multiselect.js'
 
 /* globals Prism, html_beautify */
 (() => {

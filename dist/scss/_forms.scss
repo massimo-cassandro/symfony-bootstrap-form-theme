@@ -115,27 +115,3 @@ fieldset.required:not(.disabled) {
     font-weight: $font-weight-normal;
   }
 }
-
-// multiselect
-.form-multiselect {
-  &, & button {
-    width:100%;
-    max-width:100%;
-  }
-  .btn {
-    text-align:left;
-    &::after {
-      position:absolute;
-      top:50%;
-      right: $input-btn-padding-y;
-      transform: translateY(-50%);
-    }
-    &.btn-multiselect {
-      @include button-variant($input-bg, $input-border-color);
-    }
-  }
-  .dropdown-menu {
-    padding-left: $dropdown-padding-y;
-    padding-right: $dropdown-padding-y;
-  }
-}
