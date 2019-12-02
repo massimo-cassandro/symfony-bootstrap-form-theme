@@ -148,7 +148,7 @@ class TestFormController extends Controller
             'choices'  => array(
                 'Option 1'  =>  '1',
                 'Option 2'  =>  '2',
-                'Option 3'  =>  '3'
+                'A very very loooong option'  =>  '3'
             ),
             'expanded' => true,
             'multiple' => true

@@ -7454,7 +7454,7 @@ button.bg-dark:focus {
 .text-nowrap {
   white-space: nowrap !important; }
 
-.text-truncate {
+.text-truncate, .form-multiselect-placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; }
@@ -7832,7 +7832,12 @@ label, .label {
   max-width: 100%; }
 
 .form-multiselect .btn {
-  text-align: left; }
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+          align-items: center; }
   .form-multiselect .btn::after {
     position: absolute;
     top: 50%;
@@ -7868,6 +7873,13 @@ label, .label {
 .form-multiselect .dropdown-menu {
   padding-left: 0.5rem;
   padding-right: 0.5rem; }
+
+.form-multiselect-placeholder {
+  padding-right: 1.125rem;
+  max-width: 100%;
+  display: inline-block;
+  text-align: left;
+  min-height: 1.5em; }
 
 /*
 Foglio per la corretta visualizzazione della pagina di test del template form BS4

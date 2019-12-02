@@ -1,5 +1,6 @@
+/* eslint-env node */
 /*
-Prepare docs and dist files
+Prepares docs files
 */
 var gulp = require('gulp'),
   replace = require('gulp-replace'),
@@ -33,17 +34,17 @@ gulp.task('copy_assets', function () {
     '../web/public/prism/prism.css',
     '../web/public/prism/prism.css.map'
   ])
-    .pipe(gulp.dest('./docs/assets/'));
+    .pipe(gulp.dest('./assets/'));
 });
 
 gulp.task('replace_source', gulp.series('remove_cache', function () {
   remoteSrc(['test-form'], {
     base: 'http://sf-form-test.test:8888/'
   })
-  .pipe(replace('/public/prism/', 'assets/'))
-  .pipe(replace('/public/test_form/', 'assets/'))
-  .pipe( rename('form-test.html') )
-  .pipe(gulp.dest('./docs'));
+    .pipe(replace('/public/prism/', 'assets/'))
+    .pipe(replace('/public/test_form/', 'assets/'))
+    .pipe( rename('form-test.html') )
+    .pipe(gulp.dest('./'));
 }));
 
 

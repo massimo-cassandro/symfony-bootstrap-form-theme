@@ -39,7 +39,7 @@ The test page gives you detailed informations about all form widgets:
 
 ## Quick install using npm
 
-If you don't need the whole test application, you can only download the files located in the `dist` folder, that contains the files `_forms.js`, `_forms.scss` and `bs4_form_layout.html.twig`.
+If you don't need the whole test application, you can only download the files located in the `dist` folder, that contains the js and scss files and `bs4_form_layout.html.twig`.
 
 You can also install them (with the addition of the `docs` folder) in your project using npm:
 
@@ -185,7 +185,7 @@ Multiple checkboxes and radio button can be displydes as a dropdown using the `m
 
 This option is inspired by the <a href="http://davidstutz.de/bootstrap-multiselect/">Bootstrap Multiselect plugin</a>, and offers a way to arrange in a more compact way multiple elements.
 
-For usability reasons, it should not be used if you have a lot of elements.
+For usability reasons, it should not be used with a large number of items.
 
 To activate this option set `params.multiselect` to `true` for default settings, or set placeholder and specific classes for menu and buttons as described in [Bootstrap docs](https://getbootstrap.com/docs/4.4/components/dropdowns/):
 

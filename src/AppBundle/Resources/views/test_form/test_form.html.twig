@@ -18,9 +18,9 @@
     <p>Symfony controller:
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
     This page twig template: <code>src/AppBundle/Resources/views/test_form/test_form.html.twig</code><br>
-    Form template: <code>src/AppBundle/Resources/views/form/bs4_form_layout.html.twig</code><br>
-    Scss file: <code>src/web/public/forms/_forms.scss</code><br>
-    JS file: <code>src/web/public/forms/_forms.js</code>
+    Form template: <code>dist/bs4_form_layout.html.twig</code><br>
+    Scss files: <code>dist/scss</code><br>
+    JS files: <code>dist/js</code>
     </p>
     <p class="font-italic">Note: for better clarity, in this test page, twig parameters
     (as required or disabled) have been added to the twig widget,
@@ -321,7 +321,7 @@
       } %}
 
       {% include 'test_form/test_form.incl.html.twig' with {
-        title: 'MultiSelect with columns',
+        title: 'Multiselect with columns',
         info: "Basic dropdown with radio buttons arranged in columns and custom options",
         varname: 'multiSelect2',
         args: {
