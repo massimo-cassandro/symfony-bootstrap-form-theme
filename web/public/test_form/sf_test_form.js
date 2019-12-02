@@ -59,6 +59,18 @@ https://prismjs.com/
     temp_doc.body.querySelectorAll('.form-collection .custom-control:not(:first-child)').forEach(item => {
       item.replaceWith(commentNode);
     });
+
+    // remove multiple options and option groups form select
+    commentNode = document.createComment('Other `optgroup` nodes');
+    temp_doc.body.querySelectorAll('select optgroup:not(:first-child)').forEach(item => {
+      item.replaceWith(commentNode);
+    });
+
+    commentNode = document.createComment('Other `option` nodes');
+    temp_doc.body.querySelectorAll('select option:not(:first-child)').forEach(item => {
+      item.replaceWith(commentNode);
+    });
+
     result = temp_doc.body.innerHTML;
 
     result = result.replace(/\s{2,}/g, ' ')
@@ -78,7 +90,7 @@ https://prismjs.com/
 
     twig_el.innerHTML = '<pre><code class="language-twig">'+
       '{{ ' + (isWidget? 'form_widget' : 'form_row') +
-      '(form.xxxx' + (twig_args? ', ' + twig_args : '') + ') }}' +
+      '(form.xxxx' + (twig_args? ', ' + escapeHTML(twig_args) : '') + ') }}' +
       '</code></pre>';
   });
 

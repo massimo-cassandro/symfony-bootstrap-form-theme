@@ -26,6 +26,16 @@
     (as required or disabled) have been added to the twig widget,
     even if they are tipically defined in the controller.</p>
 
+    <p class="text-danger">
+      <strong>TODO:</strong>
+      boostrap validation markup<br>
+      errors<br>
+      custom validity<br>
+      grouped checkboxes<br>
+      progress?<br>
+      buttons?<br>
+      date interval?
+    </p>
 
 
     <div id="toc"></div>
@@ -129,6 +139,20 @@
             params: {
               container: false,
               top_label: true
+           }
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Single checkbox switch',
+          info: 'See <a href="https://getbootstrap.com/docs/4.4/components/forms/#switches">https://getbootstrap.com/docs/4.4/components/forms/#switches</a>',
+          varname: 'cbox8',
+          args: {
+            required: true,
+            help: 'Help text',
+            params: {
+              container: true,
+              switch: true
            }
           }
         } %}
@@ -339,77 +363,109 @@
 
       <h2>Select</h2>
 
-{#
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Standard select field',
+        info: "Note that select fields have the <code>params.bs_custom_control</code> option
+          set to <code>true</code> by default. This option adds the <code>custom-select</code>
+          class to to select element. To avoid this behavior, you must explicitly set the
+          <code>bs_custom_control</code> option to <code>false</code>.",
+        varname: 'select1',
+        args: {
+          label: 'Select field',
+          help: 'Help text',
+          required: true
+        }
+      } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Select field with <code>optgroup</code>',
+        info: "Select with grouped options and <code>bs_custom_control = false</code>.
+          This setting essentially affects rendering with Firefox and Safari, while it doesn't
+          generate big differences on Chrome and Edge (Blink).
+          Note that we don't have an empty option at the the top, since the
+          <code>placeholder</code> option (in the controller) is set to <code>false</code>",
+        varname: 'select2',
+        args: {
+          label: 'Select field',
+          help: 'Help text',
+          required: false,
+          params: {
+            bs_custom_control: false
+          }
+        }
+      } %}
 
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Select field with <code>optgroup</code> and <code>multiple</code> attribute',
+        varname: 'select3',
+        args: {
+          label: 'Select field',
+          help: 'Help text'
+        }
+      } %}
 
-    <div class="row">
-    {*
-      <div class="col-sm-6 col-md-3">
-        {{ form_row(form.textField, {
-          id: 'my_id',
-          label: 'Campo text',
-          attr: {}
-        }) }}
-      </div>
-    *}
-      <div class="col-sm-6 col-md-3">
-        <div class="form-group">
-          {{ form_label(form.textField2,
-            'Campo con form_label separato',
-            {id: 'custom_id'}
-          ) }}
-          {{ form_widget(form.textField2, {
-            id: 'custom_id',
-            attr: {}
-          }) }}
-        </div>
-      </div>
+      <h2 id="input_groups">Input groups</h2>
+      <p>Options to add text, buttons, or button groups on either side of textual inputs, selects, or file inputs.
+        See <a href="http://getbootstrap.com/docs/4.4/components/input-group/#input-group">
+        http://getbootstrap.com/docs/4.4/components/input-group/#input-group</a>.<br>
+        This option does not include all the options of variations of the Boostrap input group,
+        but it allows to easily manage the most common cases.
+      </p>
+      <p>The <code>before</code> and <code>after</code> parameters allow you to define the
+      position of the addon. Each of them may have more items.</p>
+      <p>Use the <code>type: text</code> option to add simple text add-ons
+      (a <code>span.input-group-text</code> tag will be added), and
+      <code>type: markup</code> for more complex and customizable elements.</p>
 
-    </div>
+      <p>If <code>before</code> and <code>after</code> are <strong>strings</strong>,
+        the add-on is considered to be a single <code>type: text</code> element,<br>
+        if they are <strong>arrays of strings</strong>, each sub-element is considered to be a
+        <code>type: text</code> element.</p>
+      <p>Finally, if they are <strong>arrays of objects</strong>, each element is treated according
+      to its <code>type</code> option.</p>
 
-    <div class="row">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        {{ form_row(form.campo_select, {
-          id: 'campo_select',
-          label: 'Campo select',
-          attr: {},
-          help: 'help text'
-        }) }}
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Text input group',
+        info: "Input field with text before and after",
+        varname: 'inputGroup1',
+        args: {
+          label: 'Input group',
+          help: 'Help text',
+          type: 'number',
+          attr: {
+            step: 10
+          },
+          params: {
+            before: '$',
+            after: [
+              {
+                type: 'markup',
+                content: '<span class="input-group-text text-danger">.00</span>'
+              }
+            ]
+          }
+        }
+      } %}
 
-      </div>
-    </div>
-
-    // TODO trasformare in widget
-    <div class="row">
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <div class="form-group">
-          <label for="select_optgroup">Select con option group</label>
-          <select class="form-control custom-select"  id="select_optgroup">
-            <option value="">&mdash;</option>
-            <option value="1">Option semplice</option>
-
-            <optgroup label="Option group 1">
-              <option value="2">Option in option group 1</option>
-              <option value="3">Option in option group 2</option>
-            </optgroup>
-
-            <optgroup label="Option group con annidamento">
-              <optgroup label="Option group annidato">
-                <option value="4">Option in option group annidato 1</option>
-                <option value="5">Option in option group annidato 2</option>
-              </optgroup>
-            </optgroup>
-
-          </select>
-        </div>
-      </div>
-
-    </div>
-
-#}
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Select input group',
+        info: "Select field with text and button at the end",
+        varname: 'inputGroup2',
+        args: {
+          label: 'Select input group',
+          help: 'Help text',
+          required : true,
+          params: {
+            after: [
+              'Some text',
+              {
+                type: 'markup',
+                content: '<button class="btn btn-secondary" type="button">Button</button>'
+              }
+            ]
+          }
+        }
+      } %}
 
       <h2>Other elements</h2>
       {% include 'test_form/test_form.incl.html.twig' with {
@@ -419,6 +475,30 @@
           help: 'Help text',
           label: 'form label',
           attr: {placeholder: 'Placeholder text'}
+        }
+      } %}
+
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Range',
+        info: '<div class="text-danger">
+          <p><strong>TODO</strong>: current value label, step labels</p>
+        </div>',
+        varname: 'range1',
+        args: {
+          help: 'Help text',
+          label: 'Range label',
+          type: 'range',
+          attr: {min: 1, max: 10, step:1}
+        }
+      } %}
+
+      {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'File',
+        varname: 'file1',
+        args: {
+          help: 'Help text',
+          label: 'File label',
+          type: 'file'
         }
       } %}
 

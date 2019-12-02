@@ -25,6 +25,7 @@
   "files": [
     "dist/**/*.*",
     "docs/assets/*.*",
+    "docs/readme_files/*.*",
     "docs/form-test.html"
   ]
 }

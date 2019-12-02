@@ -6,23 +6,6 @@
 #}
 
 {#
-
-TODO:
-boostrap validation markup
-custom validity
-grouped checkboxes
-
-range
-file
-number, date, datetime, money, time
-dateinterval
-Switches
-input groups
-progress?
-buttons?
-#}
-
-{#
   estende il template form base:
   `/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig`
 #}
@@ -101,10 +84,41 @@ buttons?
   </{{ element|default('div') }}>
 {%- endblock form_container_end %}
 
+{% block input_group_elements -%}
+  {% set parsed_input_group = [] %}
+  {%- if input_group is not iterable -%} {# single string parameter #}
+    {% set parsed_input_group = [{type:'text', content: input_group}] %}
+  {%- else  -%}
+    {%- for item in input_group -%}
+      {%- if item is not iterable -%} {# array of strings #}
+        {% set parsed_input_group = parsed_input_group|merge([
+          {type:'text', content: item}
+        ]) %}
+      {%- else -%} {# array of arrays #}
+        {% set parsed_input_group = parsed_input_group|merge([
+          item
+        ]) %}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  <div class="input-group-{{ input_group_mode }}">
+    {%- for item in parsed_input_group -%}
+      {%- if item.type == 'text' -%}
+        <span class="input-group-text">{{ item.content }}</span>
+      {%- else -%}
+        {{ item.content|raw }}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endblock input_group_elements %}
+
 {% block form_row -%}
   {% set params = {
       container: true,
-      collection_container: true
+      collection_container: true,
+      before: false,
+      after: false
     }|merge(params|default({}))
   %}
 
@@ -120,7 +134,25 @@ buttons?
     {%- endif -%}
   {% endif %}
 
-   {{- form_widget(form) -}}
+  {%- if (not params.before) and (not params.after) -%}
+    {{- form_widget(form) -}}
+  {%- else -%}
+    <div class="input-group">
+      {%- if params.before -%}
+        {% set input_group_mode = 'prepend' %}
+        {% set input_group = params.before %}
+        {{- block('input_group_elements') -}}
+      {%- endif -%}
+
+      {{- form_widget(form) -}}
+
+      {%- if params.after -%}
+        {% set input_group_mode = 'append' %}
+        {% set input_group = params.after %}
+        {{- block('input_group_elements') -}}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
 
   {%- if params.container == true and params.collection_container == true -%}
     {{- block('form_container_end') -}}
@@ -143,7 +175,8 @@ buttons?
     collection_container: true,
     bs_custom_control: false,
     top_label: false,
-    inline: false
+    inline: false,
+    switch: false
   }|merge(params|default({})) %}
 
   {# the `top_label` option requires the container #}
@@ -159,6 +192,12 @@ buttons?
       {% if required %}
         <span class="required"></span>
       {% endif %}
+    </div>
+  {%- elseif params.switch -%}
+    <div class="custom-control custom-switch">
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+      {{- block('checkbox_widget') -}}
+      {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
     </div>
   {%- else -%}
     {% if params.container %}
@@ -194,6 +233,7 @@ buttons?
 
 {% block radio_row -%}
   {% set element = 'radio' %}
+  {% set params = params|default({})|merge({switch: false, top_label: false}) %}
   {{- block('checkbox_radio_row') -}}
 {%- endblock radio_row %}
 
@@ -273,6 +313,18 @@ buttons?
   {%- endif -%}
 
 {%- endblock choice_widget_expanded %}
+
+{# select no multiple #}
+{%- block choice_widget_collapsed %}
+  {% set params = {
+      bs_custom_control: true
+    }|merge(params|default({}))
+  %}
+  {% set attr = attr|merge({class: (attr.class|default('') ~
+    ' ' ~ (params.bs_custom_control? 'custom-select' : 'form-control')
+  )|trim}) %}
+  {{- parent() -}}
+{%- endblock choice_widget_collapsed %}
 
 {# textarea #}
 {% block textarea_widget -%}

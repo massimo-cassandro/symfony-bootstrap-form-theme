@@ -39,6 +39,8 @@ class TestFormController extends Controller
           ->add('cbox6', CheckboxType::class, array('required' => false))
           ->add('cbox7', CheckboxType::class, array('required' => false))
 
+          ->add('cbox8', CheckboxType::class, array('required' => false))
+
           // multiple checkbox
           ->add('multiCbox1', ChoiceType::class, array(
             'required' => false,
@@ -169,17 +171,70 @@ class TestFormController extends Controller
           // select
           ->add('select1', ChoiceType::class, array(
             'choices'  => array(
-                'val1'    =>  '1',
-                'val2'    =>  '2',
-                'val3'    =>  '3',
-                'val4'    =>  '4'
+              'Option 1'  =>  '1',
+              'Option 2'  =>  '2',
+              'Option 3'  =>  '3',
+              'Option 4'  =>  '4'
             ),
-            'required' => false
+            'required' => false,
+            'expanded' => false,
+            'multiple' => false,
+            'placeholder' => 'Select an option...'
+          ))
+          // grouped options
+          ->add('select2', ChoiceType::class, array(
+            'choices' => [
+              'Group A' => [
+                'Option 1'  =>  1,
+                'Option 2'  =>  2,
+              ],
+              'Group B' => [
+                'Option 3'  =>  3,
+                'Option 4'  =>  4,
+              ],
+            ],
+            'required' => false,
+            'expanded' => false,
+            'multiple' => false,
+            'placeholder' => false
+          ))
+          // grouped + multiple options
+          ->add('select3', ChoiceType::class, array(
+            'choices' => [
+              'Group A' => [
+                'Option 1'  =>  1,
+                'Option 2'  =>  2,
+              ],
+              'Group B' => [
+                'Option 3'  =>  3,
+                'Option 4'  =>  4,
+              ],
+            ],
+            'required' => false,
+            'expanded' => false,
+            'multiple' => true,
+            'placeholder' => false
+          ))
+
+          // input groups
+          ->add('inputGroup1', TextType::class, array('required' => false))
+          ->add('inputGroup2', ChoiceType::class, array(
+            'choices'  => array(
+              'Option 1'  =>  '1',
+              'Option 2'  =>  '2',
+              'Option 3'  =>  '3'
+            ),
+            'required' => false,
+            'expanded' => false,
+            'multiple' => false,
+            'placeholder' => 'Choose an option...'
           ))
 
 
           // other elements
           ->add('textarea1', TextareaType::class, array('required' => false))
+          ->add('range1', TextType::class, array('required' => false))
+          ->add('file1', TextType::class, array('required' => false))
 
         ->getForm();
 

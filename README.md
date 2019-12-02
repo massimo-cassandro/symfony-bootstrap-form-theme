@@ -53,7 +53,7 @@ After the installation, you'll have to manually place the twig file in your temp
 # Twig Configuration
 twig:
     paths:
-      #- other paths
+      #- ...
       - "%kernel.project_dir%/path/to/node_modules/symfony-bootstrap-form-theme"
 ```
 
@@ -212,9 +212,34 @@ In addition, the `_forms.js` script is needed.
 
 ### Select elements
 
-* Select elements have `custom-select` (<https://getbootstrap.com/docs/4.4/components/forms/#select-menu>) by default, this behaviour can be changed using the `params` element of `form_row`
+* Select elements have `custom-select` class (<https://getbootstrap.com/docs/4.4/components/forms/#select-menu>) by default, this behaviour can be changed using the `params` element of `form_row`
 
+### Input groups
 
+This option allows to add text, buttons, or button groups on either side of textual inputs, selects, or file inputs.
+
+Add a `before` and/or an `after` parameter to the `params` option to generate an input group.
+
+Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#input_groups) for detailed info and examples
+
+```twig
+{{ form_row(form.xxxx, {
+  "params": {
+    "before": [
+      {
+        "type": "text",
+        "content": "$"
+      }
+    ],
+    "after": [
+      {
+        "type": "text",
+        "content": ".00"
+      }
+    ]
+  }
+}) }}
+```
 
 
 ## Reference

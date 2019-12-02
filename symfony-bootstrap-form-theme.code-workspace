@@ -6,10 +6,6 @@
 		{
       "name": "Default form templates",
       "path": "vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form"
-		},
-		{
-      "name": "PHP form components",
-      "path": "vendor/symfony/symfony/src/Symfony/Component/Form"
 		}
 	],
 	"settings": {}
