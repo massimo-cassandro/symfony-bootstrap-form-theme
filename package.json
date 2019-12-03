@@ -1,6 +1,6 @@
 {
   "name": "symfony-bootstrap-form-theme",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too)",
   "repository": {
     "type": "git",
