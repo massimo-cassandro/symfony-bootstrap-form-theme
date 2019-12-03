@@ -1,12 +1,16 @@
 /*
+https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
+
 This style sheet expands and modify some Bootstrap css settings and must
 be included in projects that implement the `bs4_form_layout.html.twig` template
 
-https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
-*/
+-------------
 
-// https://github.com/massimo-cassandro/m-utilities
-@import '../node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
+The responsive columns files (from https://github.com/massimo-cassandro/m-utilitie)
+is required. Add this line to your scss:
+
+@import 'path/to/node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
+*/
 
 $sf-label-color : $body-color!default; // condiviso da legend in alcuni casi
 $sf-label-font-weight: $font-weight-bold!default;

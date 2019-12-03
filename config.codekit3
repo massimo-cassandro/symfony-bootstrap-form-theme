@@ -1403,6 +1403,19 @@
 		"oS": 0,
 		"uL": 1
 		},
+	"/web/public/node_modules/m-utilities/sass_utilities/_bs4_responsive_columns.scss": {
+		"aP": 1,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 1,
+		"oA": 1,
+		"oAP": "/web/public/node_modules/m-utilities/sass_utilities/_bs4_responsive_columns.css",
+		"oF": 0,
+		"oS": 0,
+		"uL": 1
+		},
 	"/web/public/node_modules/prismjs/components/prism-clike.js": {
 		"bF": 0,
 		"ft": 64,

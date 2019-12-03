@@ -170,7 +170,15 @@ Note that this option requires the node_modules folder to be distributed to your
 
 Multiple checkboxes are element rendered by the `ChoyceType` type (https://symfony.com/doc/current/reference/forms/types/choice.html) with 'expanded' => true, 'multiple' => true options.
 
-The multiple columns option uses a scss snippet included in my [m-utilities](https://github.com/massimo-cassandro/m-utilities) package. See the [`_forms.scss`](/symfony-bootstrap-form-theme/blob/master/web/public/forms/_forms.scss) file and [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_cboxes_multi_columns) for info and examples.
+The **multiple columns** option requires a scss file included in my [m-utilities](https://github.com/massimo-cassandro/m-utilities) package. 
+
+After downloaded the package, you need to add the respoinsive columns file to your scss:
+
+```scss
+@import 'path/to/node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
+```
+
+See the [`_forms.scss`](/symfony-bootstrap-form-theme/blob/master/web/public/forms/_forms.scss) file and [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_cboxes_multi_columns) for info and examples.
 
 Take a look to the [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_checkboxes) for detailed info.
 

@@ -1,6 +1,9 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
+
 @import '../../../dist/scss/forms';
 @import '../../../dist/scss/forms-multiselect';
+
 
 /*
 Foglio per la corretta visualizzazione della pagina di test del template form BS4
