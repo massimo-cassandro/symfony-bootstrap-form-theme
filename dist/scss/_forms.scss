@@ -59,7 +59,7 @@ label {
   font-weight: $sf-label-font-weight;
   font-size: $sf-label-font-size;
 
-  &.disabled, .disabled &, [disabled] & {
+  &.disabled, .disabled &, .disabled>&, [disabled] & {
     font-style: italic;
     color: $sf-disabled-color;
 
@@ -97,7 +97,9 @@ fieldset.required:not(.disabled) {
   }
 }
 
-.label { // usata per simulare il tag label
+// simulazione tag label
+fieldset.form-group > legend,
+.label {
   @extend label;
   color: $sf-label-color;
 }
