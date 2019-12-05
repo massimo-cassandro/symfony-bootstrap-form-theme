@@ -20,7 +20,8 @@ https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
           );
         });
       multiselect_item
-        .querySelector('.form-multiselect-placeholder').innerText = selected_labels.join(', ');
+        .querySelector('.form-multiselect-placeholder').innerText =
+          selected_labels.length? selected_labels.join(', ') : '—';
     };
 
   multiselects.forEach( item => {
