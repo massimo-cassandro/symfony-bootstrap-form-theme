@@ -13,7 +13,11 @@
     "forms",
     "bootstrap-4",
     "form-theme",
-    "bootstrap"
+    "bootstrap",
+    "user-experience",
+    "user-interface",
+    "checkboxes",
+    "single-checkboxes"
   ],
   "author": "Massimo Cassandro",
   "license": "MIT",
