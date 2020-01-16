@@ -30,6 +30,11 @@
   {{ parent() }}
 {%- endblock widget_attributes -%}
 
+{%- block float_widget -%}
+  {%- set type = type|default('number') -%}
+  {{ block('form_widget_simple') }}
+{%- endblock float_widget -%}
+
 
 {% block form_label -%}
 
