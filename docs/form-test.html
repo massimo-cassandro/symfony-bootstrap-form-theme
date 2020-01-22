@@ -12,7 +12,9 @@
 <body>
   <main class="container-fluid my-4">
     <h1 id="top">Symfony + Bootstrap 4 Form Test</h1>
-    <p class="font-italic mb-2">Rendering test of form elements (Massimo Cassandro 2016/2019 - v. 1.0).</p>
+    <p class="font-italic mb-2">Rendering test of form elements (Massimo Cassandro 2016/2020).</p>
+
+    <p>Repository readme: <a href="https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme">https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme</a></p>
 
     <p>Symfony controller:
     <code>/src/AppBundle/Controller/TestFormController.php</code><br>
@@ -21,7 +23,7 @@
     Scss files: <code>dist/scss</code><br>
     JS files: <code>dist/js</code>
     </p>
-    <p class="font-italic">Note: for better clarity, in this test page, twig parameters
+    <p class="font-italic">Note: for easier readability, in this test page, twig parameters
     (as required or disabled) have been added to the twig widget,
     even if they are tipically defined in the controller.</p>
 
@@ -83,12 +85,12 @@
       <div class="form-test-element"><h3>Multiple stacked checkboxes</h3><div class="info">Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code>.<br>Note that the <code>required</code> has the unique effect to add the required class to the fieldset,
           to highlight that at least one of the controls must be selected.
           However, the final check must be performed using javascript.<br>
-          The <code>help</code> parameter, if present, is placed at top, under the <code>legend</code> tag</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group required"><legend class="label">
+          The <code>help</code> parameter, if present, is placed at top, under the <code>legend</code> tag</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group required"><legend>
       Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox1_0" name="form[multiCbox1][]" class="form-check-input" value="1" /><label for="form_multiCbox1_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox1_1" name="form[multiCbox1][]" class="form-check-input" value="2" /><label for="form_multiCbox1_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox1_2" name="form[multiCbox1][]" class="form-check-input" value="3" /><label for="form_multiCbox1_2">
       Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;required&quot;:true}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>Multiple stacked checkboxes + disabled</h3><div class="info">Same of previous with disabled parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group disabled required"><legend class="label">
+      <div class="form-test-element"><h3>Multiple stacked checkboxes + disabled</h3><div class="info">Same of previous with disabled parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group disabled required"><legend>
       Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiCbox2_0" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="1" /><label for="form_multiCbox2_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox2_1" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="2" /><label for="form_multiCbox2_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox2_2" name="form[multiCbox2][]" disabled="disabled" class="form-check-input" value="3" /><label for="form_multiCbox2_2">
@@ -106,19 +108,19 @@
       <div class="form-test-element"><h3 id="multiple_cboxes_multi_columns">Multiple stacked checkboxes + multiple columns</h3><div class="info">Distributes checkboxes into responsive columns.
           The <code>column</code> parameter is an array whose keys are the bootstrap breakpoints
           abbreviations (sm, md, ...) and values are the number of desidered columns (max 5).
-          This option also works with <code>params.collection_container = false</code> parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+          This option also works with <code>params.collection_container = false</code> parameter</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Multiple checkboxes    </legend><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="checkbox" id="form_multiCbox5_0" name="form[multiCbox5][]" class="form-check-input" value="1" /><label for="form_multiCbox5_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_1" name="form[multiCbox5][]" class="form-check-input" value="2" /><label for="form_multiCbox5_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_2" name="form[multiCbox5][]" class="form-check-input" value="3" /><label for="form_multiCbox5_2">
       Option 3    </label></div><div class="form-check"><input type="checkbox" id="form_multiCbox5_3" name="form[multiCbox5][]" class="form-check-input" value="4" /><label for="form_multiCbox5_3">
       Option 4    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;params&quot;:{&quot;columns&quot;:{&quot;sm&quot;:1,&quot;md&quot;:2}}}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>Multiple checkboxes + inline</h3><div class="info">Checkboxes are rendered as inline elements. This option is obviously incompatible with multiple columns</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      <div class="form-test-element"><h3>Multiple checkboxes + inline</h3><div class="info">Checkboxes are rendered as inline elements. This option is obviously incompatible with multiple columns</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Multiple checkboxes    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_0" name="form[multiCbox6][]" class="form-check-input" value="1" /><label for="form_multiCbox6_0">
       Option 1    </label></div><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_1" name="form[multiCbox6][]" class="form-check-input" value="2" /><label for="form_multiCbox6_1">
       Option 2    </label></div><div class="form-check form-check-inline"><input type="checkbox" id="form_multiCbox6_2" name="form[multiCbox6][]" class="form-check-input" value="3" /><label for="form_multiCbox6_2">
       Option 3    </label></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiple checkboxes&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;inline&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
       <div class="form-test-element"><h3>Multiple stacked checkboxes + custom control</h3><div class="info">Note that actually multiple checkboxes with custom controls don't fully support
-          all the parameters like disabled, required etc...</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+          all the parameters like disabled, required etc...</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Multiple checkboxes    </legend><div class="form-collection"><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_0" name="form[multiCbox7][]" class="custom-control-input" value="1" /><label class="custom-control-label" for="form_multiCbox7_0">
       Option 1    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_1" name="form[multiCbox7][]" class="custom-control-input" value="2" /><label class="custom-control-label" for="form_multiCbox7_1">
       Option 2    </label></div><div class="custom-control custom-checkbox"><input type="checkbox" id="form_multiCbox7_2" name="form[multiCbox7][]" class="custom-control-input" value="3" /><label class="custom-control-label" for="form_multiCbox7_2">
@@ -128,7 +130,7 @@
       <h2>Radios</h2>
       <div class="form-test-element"><h3>Stacked radio buttons</h3><div class="info">Same of multiple checkboxes, the unique difference if that the
           the controller <code>multiple</code> option is set to <code>false</code>.<br>
-          All the parameter available for multiple checkboxes can be applied to radio buttons</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+          All the parameter available for multiple checkboxes can be applied to radio buttons</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Radio buttons    </legend><div class="form-help-text form-help-top">Help text</div><div class="form-collection"><div class="form-check"><input type="radio" id="form_radios1_0" name="form[radios1]" class="form-check-input" value="1" /><label for="form_radios1_0">
       Yes    </label></div><div class="form-check"><input type="radio" id="form_radios1_1" name="form[radios1]" class="form-check-input" value="2" /><label for="form_radios1_1">
       No    </label></div><div class="form-check"><input type="radio" id="form_radios1_2" name="form[radios1]" class="form-check-input" value="3" /><label for="form_radios1_2">
@@ -149,12 +151,12 @@
         <p><strong>TODO</strong>: css for sizing classes</p>
       </div>
 
-      <div class="form-test-element"><h3>Standard multiSelect</h3><div class="info">Basic dropdown with checkboxes</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      <div class="form-test-element"><h3>Standard multiSelect</h3><div class="info">Basic dropdown with checkboxes</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-multiselect" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><span class="form-multiselect-placeholder">&nbsp;</span></button><div class="dropdown-menu"><div class="form-collection"><div class="form-check"><input type="checkbox" id="form_multiSelect1_0" name="form[multiSelect1][]" class="form-check-input" value="1" /><label for="form_multiSelect1_0">
       Option 1    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_1" name="form[multiSelect1][]" class="form-check-input" value="2" /><label for="form_multiSelect1_1">
       Option 2    </label></div><div class="form-check"><input type="checkbox" id="form_multiSelect1_2" name="form[multiSelect1][]" class="form-check-input" value="3" /><label for="form_multiSelect1_2">
       A very very loooong option    </label></div></div></div></div></fieldset></div></div><div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Multiselect&quot;,&quot;params&quot;:{&quot;multiselect&quot;:true}}"></div><div class="col-4 markup"></div></div></div>
-      <div class="form-test-element"><h3>Multiselect with columns</h3><div class="info">Basic dropdown with radio buttons arranged in columns and custom options</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend class="label">
+      <div class="form-test-element"><h3>Multiselect with columns</h3><div class="info">Basic dropdown with radio buttons arranged in columns and custom options</div><div class="row align-items-stretch"><div class="col-4 result"><div><fieldset class="form-group"><legend>
       Multiselect    </legend><div class="btn-group form-multiselect"><button type="button" class="btn dropdown-toggle btn-outline-primary" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false"><span class="form-multiselect-placeholder">Choose an option</span></button><div class="dropdown-menu dropdown-menu-md-right"><div class="form-collection rcolumns rcolumns-sm-1 rcolumns-md-2"><div class="form-check"><input type="radio" id="form_multiSelect2_0" name="form[multiSelect2]" class="form-check-input" value="1" /><label for="form_multiSelect2_0">
       Option 1    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_1" name="form[multiSelect2]" class="form-check-input" value="2" /><label for="form_multiSelect2_1">
       Option 2    </label></div><div class="form-check"><input type="radio" id="form_multiSelect2_2" name="form[multiSelect2]" class="form-check-input" value="3" /><label for="form_multiSelect2_2">
@@ -185,7 +187,7 @@
       <p>The <code>before</code> and <code>after</code> parameters allow you to define the
       position of the addon. Each of them may have more items.</p>
       <p>Use the <code>type: text</code> option to add simple text add-ons
-      (a <code>span.input-group-text</code> tag will be added), and
+      (a <code>span.input-group-text</code> tag will be added), or
       <code>type: markup</code> for more complex and customizable elements.</p>
 
       <p>If <code>before</code> and <code>after</code> are <strong>strings</strong>,

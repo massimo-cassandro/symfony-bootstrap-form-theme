@@ -183,7 +183,8 @@ caption {
 th {
   text-align: inherit; }
 
-label, .label {
+label, fieldset.form-group > legend,
+.label {
   display: inline-block;
   margin-bottom: 0.5rem; }
 
@@ -1907,7 +1908,8 @@ textarea.form-control {
   .form-inline .form-check {
     width: 100%; }
   @media (min-width: 576px) {
-    .form-inline label, .form-inline .label {
+    .form-inline label, .form-inline fieldset.form-group > legend,
+    .form-inline .label {
       display: -webkit-box;
       display: flex;
       -webkit-box-align: center;
@@ -7802,8 +7804,10 @@ input, button, select, textarea {
   .form-help-text.form-help-top {
     margin: 0 0 .5rem 0; }
 
-label.required:not(.disabled)::before, .required.label:not(.disabled)::before,
-div.required:not(.disabled) label::before, div.required:not(.disabled) .label::before, fieldset.required:not(.disabled) legend::before, .custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
+label.required:not(.disabled)::before, fieldset.form-group > legend.required:not(.disabled)::before,
+.required.label:not(.disabled)::before,
+div.required:not(.disabled) label::before, div.required:not(.disabled) fieldset.form-group > legend::before,
+div.required:not(.disabled) .label::before, fieldset.required:not(.disabled) legend::before, .custom-checkbox .custom-control-input[required]:not([disabled]) ~ .required::before {
   position: relative;
   top: 3px;
   color: #c00;
@@ -7812,17 +7816,28 @@ div.required:not(.disabled) label::before, div.required:not(.disabled) .label::b
   line-height: 1;
   content: '\002A'; }
 
-label, .label {
+label, fieldset.form-group > legend,
+.label {
   font-weight: 700;
   font-size: 0.9rem; }
-  label.disabled, .disabled.label, .disabled label, .disabled .label, [disabled] label, [disabled] .label {
+  label.disabled, fieldset.form-group > legend.disabled,
+  .disabled.label, .disabled label, .disabled fieldset.form-group > legend,
+  .disabled .label, .disabled > label, fieldset.form-group.disabled > legend,
+  .disabled > .label, [disabled] label, [disabled] fieldset.form-group > legend,
+  [disabled] .label {
     font-style: italic;
     color: #adb5bd; }
-    label.disabled:not(.custom-control-label)::before, .disabled.label:not(.custom-control-label)::before, .disabled label:not(.custom-control-label)::before, .disabled .label:not(.custom-control-label)::before, [disabled] label:not(.custom-control-label)::before, [disabled] .label:not(.custom-control-label)::before {
+    label.disabled:not(.custom-control-label)::before, fieldset.form-group > legend.disabled:not(.custom-control-label)::before,
+    .disabled.label:not(.custom-control-label)::before, .disabled label:not(.custom-control-label)::before, .disabled fieldset.form-group > legend:not(.custom-control-label)::before,
+    .disabled .label:not(.custom-control-label)::before, .disabled > label:not(.custom-control-label)::before, fieldset.form-group.disabled > legend:not(.custom-control-label)::before,
+    .disabled > .label:not(.custom-control-label)::before, [disabled] label:not(.custom-control-label)::before, [disabled] fieldset.form-group > legend:not(.custom-control-label)::before,
+    [disabled] .label:not(.custom-control-label)::before {
       content: none !important; }
-  .form-group label, .form-group .label {
+  .form-group label, fieldset.form-group > legend,
+  .form-group .label {
     margin-bottom: .3rem; }
 
+fieldset.form-group > legend,
 .label {
   color: #212529; }
 
@@ -7831,6 +7846,7 @@ label, .label {
 
 .form-collection .custom-control-label,
 .form-collection .form-check label,
+.form-collection .form-check fieldset.form-group > legend,
 .form-collection .form-check .label {
   font-weight: 400; }
 

@@ -38,8 +38,8 @@ gulp.task('copy_assets', function () {
 });
 
 gulp.task('replace_source', gulp.series('remove_cache', function () {
-  remoteSrc(['test-form'], {
-    base: 'http://sf-form-test.test:8888/'
+  return remoteSrc(['test-form'], {
+    base: 'http://sf-bs4-form.local:8888/'
   })
     .pipe(replace('/public/prism/', 'assets/'))
     .pipe(replace('/public/test_form/', 'assets/'))
@@ -50,3 +50,6 @@ gulp.task('replace_source', gulp.series('remove_cache', function () {
 
 
 gulp.task('default', gulp.parallel(/* 'copy_dist',  */'copy_assets', 'replace_source'));
+
+
+
