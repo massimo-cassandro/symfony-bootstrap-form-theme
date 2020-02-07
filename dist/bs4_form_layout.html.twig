@@ -14,7 +14,13 @@
 {# base #}
 {% block form_widget_simple -%}
   {% if type is not defined or type != 'hidden' %}
-    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control' ~ (type|default('') == 'file' ? '-file' : ''))|trim}) -%}
+    {%- if 'form-control-plaintext' in attr.class|default() -%}
+      {% set base_class = '' %}
+    {%- else -%}
+      {% set base_class = 'form-control' ~ (type|default('') == 'file' ? '-file' : '') %}
+    {%- endif -%}
+
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' ' ~ base_class)|trim}) -%}
   {% endif %}
   {%- if type is defined and (type == 'range' or type == 'color') %}
     {# Attribute "required" is not supported #}

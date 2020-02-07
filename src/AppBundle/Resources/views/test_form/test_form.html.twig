@@ -62,6 +62,19 @@
         } %}
 
         {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'readonly fields with <code>form-control-plaintext</code> class',
+          is_widget: false,
+          varname: 'text_readonly',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {class: 'form-control-plaintext', readonly: true}
+          }
+        } %}
+
+
+        {% include 'test_form/test_form.incl.html.twig' with {
           title: 'form_row required + help text',
           info: 'input text',
           varname: 'text2',

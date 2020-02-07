@@ -25,6 +25,10 @@ class TestFormController extends Controller
           ->add('hidden1', HiddenType::class, array('required' => false))
           ->add('text1', TextType::class, array('required' => false))
           ->add('text2', TextType::class, array('required' => false))
+          ->add('text_readonly', TextType::class, array(
+            'attr' => array('value'=>'Some values'),
+            'required' => false
+          ))
           ->add('text3', TextType::class, array(
             'attr' => array('value'=>'Some values'),
             'required' => false
