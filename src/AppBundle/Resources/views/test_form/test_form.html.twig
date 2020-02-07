@@ -212,6 +212,21 @@
       } %}
 
       {% include 'test_form/test_form.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without elements',
+        info: "An optional parameter <code>no_items_mes</code> (text with markup) can be added to be displayed" ~
+          " if the Choice array is empty",
+        varname: 'multiCboxNoItems',
+        args: {
+          help: 'Help text',
+          label: 'Multiple checkboxes',
+          required: false,
+          params: {
+            no_items_mes: '<p class="font-italic small text-muted">This element is empty</p>'
+          }
+        }
+      } %}
+
+      {% include 'test_form/test_form.incl.html.twig' with {
         title: 'Multiple stacked checkboxes + disabled',
         info: "Same of previous with disabled parameter",
         varname: 'multiCbox2',

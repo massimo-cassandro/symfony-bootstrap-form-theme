@@ -52,6 +52,12 @@ class TestFormController extends Controller
             'expanded' => true,
             'multiple' => true
           ))
+          ->add('multiCboxNoItems', ChoiceType::class, array(
+            'required' => false,
+            'choices'  => array(),
+            'expanded' => true,
+            'multiple' => true
+          ))
           ->add('multiCbox2', ChoiceType::class, array(
             'required' => false,
             'choices'  => array(

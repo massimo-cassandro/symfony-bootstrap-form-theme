@@ -7,8 +7,7 @@
 
 {#
   estende il template form base:
-  sf3 → `/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig`
-  sf4 → `/vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig`
+  `/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig`
 #}
 {% use "form_div_layout.html.twig" %}
 
@@ -246,12 +245,13 @@
 {# multiple checkbox / radios #}
 {% block choice_widget_expanded -%}
 
-  {# the params.collection option tells to other widgets we are making a series of fields #}
+  {# the params.collection option tells other widgets that we are creating a series of checkboxes or radios #}
   {% set params = {
       bs_custom_control: false,
       collection_container: true,
       inline: false,
-      multiselect: false
+      multiselect: false,
+      no_items_mes: null
     }|merge(params|default({}))|merge({
       container: false,
       top_label: false,
@@ -309,6 +309,10 @@
 
     {%- for child in form %}
       {{- form_row(child, child_params ) -}}
+    {% else -%}
+      {%- if params.no_items_mes -%}
+        {{ params.no_items_mes|raw }}
+      {%- endif -%}
     {% endfor -%}
 
   </div>
