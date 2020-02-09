@@ -79,7 +79,8 @@ Note that this option requires the node_modules folder to be distributed to your
 </div>
 ```
 
-* A new `params` parameter allows you to change some behaviour of thwe widgets. It is a json-like element whose sub-parameters changed depending on the widget used
+* A new `params` parameter allows you to change some behaviour of the widgets. It is a json-like element whose sub-parameters changed depending on the widget used. Take a look at the [sample page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html) for a complete list of all
+parameters.
 
 ```twig
 {{ form_row(form.xxxx, {
@@ -170,7 +171,7 @@ Note that this option requires the node_modules folder to be distributed to your
 
 Multiple checkboxes are element rendered by the `ChoyceType` type (https://symfony.com/doc/current/reference/forms/types/choice.html) with 'expanded' => true, 'multiple' => true options.
 
-The **multiple columns** option requires a scss file included in my [m-utilities](https://github.com/massimo-cassandro/m-utilities) package. 
+The **multiple columns** option requires a scss file included in my [m-utilities](https://github.com/massimo-cassandro/m-utilities) package.
 
 After downloaded the package, you need to add the respoinsive columns file to your scss:
 

@@ -8,6 +8,16 @@
   <link rel="stylesheet" href="assets/prism.css" type="text/css" media="all">
   <link rel="stylesheet" href="assets/sf_test_form.css" type="text/css" media="all">
 
+  <link rel="apple-touch-icon" sizes="180x180" href="http://primominuto.altervista.org/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://primominuto.altervista.org/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://primominuto.altervista.org/favicons/favicon-16x16.png">
+  <link rel="manifest" href="http://primominuto.altervista.org/favicons/site.webmanifest">
+  <link rel="mask-icon" href="http://primominuto.altervista.org/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="http://primominuto.altervista.org/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-config" content="http://primominuto.altervista.org/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
 </head>
 <body>
   <main class="container-fluid my-4">
@@ -55,6 +65,9 @@
       form label    </label><input type="text" id="form_text2" name="form[text2]" required="required" placeholder="Placeholder text" class="form-control" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
         <div class="form-test-element"><h3>form_row required + disabled + help text</h3><div class="info">input text</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group disabled required"><label for="form_text3">
       form label    </label><input type="text" id="form_text3" name="form[text3]" disabled="disabled" required="required" value="Some values" placeholder="Placeholder text" class="form-control" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;disabled&quot;:true,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div><div class="col-4 markup"></div></div></div>
+        <div class="form-test-element"><h3>form_row without container</h3><div class="info">Basic form_rows elements require the <code>.form-group</code> container; if it is set to <code>false</code>, labels, help text, etc are not displayed.</div><div class="row align-items-stretch"><div class="col-4 result"><div><input type="text" id="form_text4" name="form[text4]" required="required" placeholder="Placeholder text" class="form-control" /></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;},&quot;params&quot;:{&quot;container&quot;:false}}"></div><div class="col-4 markup"></div></div></div>
+        <div class="form-test-element"><h3>Extra container classes</h3><div class="info">Extra classes can be added to the <code>.form-group</code> container thru the <code>container_class</code> option</div><div class="row align-items-stretch"><div class="col-4 result"><div><div class="form-group bg-dark text-white p-2 rounded required"><label for="form_text5">
+      form label    </label><input type="text" id="form_text5" name="form[text5]" required="required" placeholder="Placeholder text" class="form-control" /><div class="form-help-text">Help text</div></div></div></div><div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;},&quot;params&quot;:{&quot;container_class&quot;:&quot;bg-dark text-white p-2 rounded&quot;}}"></div><div class="col-4 markup"></div></div></div>
       <h2>Single checkboxes</h2>
 
         <div class="form-test-element"><h3>Checkbox (input element only)</h3><div class="row align-items-stretch"><div class="col-4 result"><div><input type="checkbox" id="form_cbox1" name="form[cbox1]" value="1" /></div></div><div class="col-4 twig" data-is-widget="true"  data-args=""></div><div class="col-4 markup"></div></div></div>

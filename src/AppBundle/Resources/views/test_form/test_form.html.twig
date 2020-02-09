@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="{{ asset('/public/prism/prism.css') }}" type="text/css" media="all">
   <link rel="stylesheet" href="{{ asset('/public/test_form/sf_test_form.css') }}" type="text/css" media="all">
 
+  <link rel="apple-touch-icon" sizes="180x180" href="http://primominuto.altervista.org/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="http://primominuto.altervista.org/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="http://primominuto.altervista.org/favicons/favicon-16x16.png">
+  <link rel="manifest" href="http://primominuto.altervista.org/favicons/site.webmanifest">
+  <link rel="mask-icon" href="http://primominuto.altervista.org/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="http://primominuto.altervista.org/favicons/favicon.ico">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="msapplication-config" content="http://primominuto.altervista.org/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
 </head>
 <body>
   <main class="container-fluid my-4">
@@ -96,6 +106,38 @@
             disabled: true,
             required: true,
             attr: {placeholder: 'Placeholder text'}
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'form_row without container',
+          info: 'Basic form_rows elements require the <code>.form-group</code> container; if it is set to ' ~
+            '<code>false</code>, labels, help text, etc are not displayed.',
+          varname: 'text4',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              container: false
+            }
+          }
+        } %}
+
+        {% include 'test_form/test_form.incl.html.twig' with {
+          title: 'Extra container classes',
+          info: 'Extra classes can be added to the <code>.form-group</code> container thru the ' ~
+            '<code>container_class</code> option',
+          varname: 'text5',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              container_class: 'bg-dark text-white p-2 rounded'
+            }
           }
         } %}
 

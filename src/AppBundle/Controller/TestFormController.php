@@ -33,6 +33,8 @@ class TestFormController extends Controller
             'attr' => array('value'=>'Some values'),
             'required' => false
           ))
+          ->add('text4', TextType::class, array('required' => false))
+          ->add('text5', TextType::class, array('required' => false))
 
           // checkboxes
           ->add('cbox1', CheckboxType::class, array('required' => false))

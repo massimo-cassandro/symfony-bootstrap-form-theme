@@ -85,7 +85,9 @@
 {%- endblock containers_classes %}
 
 {% block form_container_start -%}
-  <{{ element|default('div') }} class="form-group {{- block('containers_classes') -}}">
+  <{{ element|default('div') }} class="form-group
+    {{- params.container_class? ' ' ~ params.container_class : '' -}}
+    {{- block('containers_classes') -}}">
 {%- endblock form_container_start %}
 
 {% block form_container_end -%}
@@ -127,6 +129,7 @@
 {% block form_row -%}
   {% set params = {
       container: true,
+      container_class: null,
       collection_container: true,
       before: false,
       after: false
@@ -183,6 +186,7 @@
 
   {% set params = {
     container: true,
+    container_class: null,
     collection_container: true,
     bs_custom_control: false,
     top_label: false,
