@@ -248,6 +248,19 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 }) }}
 ```
 
+## TODO
+* switch to Symfony 4 or 5
+* readonly checkboxes
+* check bootstrap validation markup
+* errors
+* custom validity
+* Grouped stacked checkboxes
+* progress?
+* buttons?
+* date interval?
+* css for sizing classes
+* range: current value label, step labels
+
 
 ## Reference
 * <https://symfony.com/doc/current/form/form_customization.html>
@@ -260,7 +273,3 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 * <https://getbootstrap.com/docs/4.4/components/forms/>
 * <https://getbootstrap.com/docs/4.4/components/input-group/>
 * <https://getbootstrap.com/docs/4.4/components/buttons/>
-
-
-
-
