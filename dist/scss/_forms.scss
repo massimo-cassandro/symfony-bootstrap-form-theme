@@ -31,7 +31,7 @@ input, button, select, textarea {
 }
 
 .form-help-text {
-  @extend .form-text;
+  @extend .form-text !optional;
   //@extend .text-muted;
   color: $sf-form-help-text-color;
   @extend .small;
