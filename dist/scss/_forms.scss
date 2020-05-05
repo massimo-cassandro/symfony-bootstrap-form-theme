@@ -16,7 +16,7 @@ $sf-label-color : $body-color!default; // condiviso da legend in alcuni casi
 $sf-label-font-weight: $font-weight-bold!default;
 $sf-label-font-size: .9rem!default;
 $sf-form-font-family: $font-family-base!default;
-$sf-form-help-text-color: $gray-300|default;
+$sf-form-help-text-color: $gray-300!default;
 $sf-input-group-text-weight: $font-weight-normal!default;
 $sf-disabled-color: $gray-500!default;
 $sf-required-asterisk-color: #c00!default;
@@ -31,7 +31,7 @@ input, button, select, textarea {
 }
 
 .form-help-text {
-  @extend .form-text !optional;
+  @extend .form-text;
   //@extend .text-muted;
   color: $sf-form-help-text-color;
   @extend .small;
