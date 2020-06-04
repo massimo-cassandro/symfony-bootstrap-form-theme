@@ -1,13 +1,12 @@
 /*
 This file must be included in projects that implement the
-`bs4_form_layout.html.twig` template
+`bs4_form_layout.html.twig` template, if you are using the multiselect option
 
 https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
 */
 
 // multiselect widget
-
-(() => {
+export function form_multiselect() {
   'use strict';
 
   const multiselects = document.querySelectorAll('.form-multiselect'),
@@ -34,4 +33,4 @@ https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
     setMultiselectPlaceholder(item);
   });
 
-})();
+}
