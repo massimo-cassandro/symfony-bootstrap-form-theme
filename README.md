@@ -260,6 +260,8 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 * date interval?
 * css for sizing classes
 * range: current value label, step labels
+* Option to have help text printed at bottom of radio buttons or multiple checkboxes
+* Option for adding custom classes to fieldset or div containers
 
 
 ## Reference
