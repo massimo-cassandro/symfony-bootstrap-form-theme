@@ -1,0 +1,8 @@
+*~
+.codekit-cache/
+config.codekit3
+*.code-workspace
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
