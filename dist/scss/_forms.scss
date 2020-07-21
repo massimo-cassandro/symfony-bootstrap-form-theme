@@ -12,7 +12,7 @@ is required. Add this line to your scss:
 @import 'path/to/node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
 */
 
-$sf-label-color : $body-color!default; // condiviso da legend in alcuni casi
+$sf-label-color : $body-color!default; // sometimes shared by legend
 $sf-label-font-weight: $font-weight-bold!default;
 $sf-label-font-size: .9rem!default;
 $sf-form-font-family: $font-family-base!default;
@@ -20,6 +20,7 @@ $sf-form-help-text-color: $gray-300!default;
 $sf-input-group-text-weight: $font-weight-normal!default;
 $sf-disabled-color: $gray-500!default;
 $sf-required-asterisk-color: #c00!default;
+$sf-error-text-color: theme-color(danger)!default;
 
 input, button, select, textarea {
   font-family: $sf-form-font-family;
@@ -97,7 +98,7 @@ fieldset.required:not(.disabled) {
   }
 }
 
-// simulazione tag label
+// label tag simulation
 fieldset.form-group > legend,
 .label {
   @extend label;
@@ -119,5 +120,21 @@ fieldset.form-group > legend,
   .custom-control-label, // custom controls
   .form-check label {
     font-weight: $font-weight-normal;
+  }
+}
+
+
+// errors
+// .sf-error element is an <ul> inside the label of the form element with errors
+// each error message is a <li> element
+.sf-error {
+  list-style: none;
+  margin: 0 0 .5rem;
+  padding:0;
+
+  li {
+    padding:0;
+    margin: .3rem 0 0;
+    color: $sf-error-text-color;
   }
 }

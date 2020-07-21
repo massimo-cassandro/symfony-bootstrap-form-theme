@@ -1,6 +1,6 @@
 # Symfony Bootstrap 4 Form Theme
 
-A Bootstrap 4 Form Theme for Symfony 3.x (works with 4.x version too).
+A Bootstrap 4 Form Theme for Symfony 3, 4 and 5.
 
 For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced by the Symfony apps, and can be viewed without installing it.
 
