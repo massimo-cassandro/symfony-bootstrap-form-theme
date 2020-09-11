@@ -1,5 +1,5 @@
 {
-  "name": "symfony-bootstrap-form-theme",
+  "name": "@massimo-cassandro/symfony-bootstrap-form-theme",
   "version": "1.0.1",
   "description": "A Bootstrap 4 Form Theme for Symfony 3, 4 and 5",
   "repository": {
@@ -20,6 +20,9 @@
     "single-checkboxes"
   ],
   "author": "Massimo Cassandro",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/massimo-cassandro/symfony-bootstrap-form-theme/issues"

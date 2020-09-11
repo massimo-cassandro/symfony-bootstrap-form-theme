@@ -4,6 +4,7 @@ A Bootstrap 4 Form Theme for Symfony 3, 4 and 5.
 
 For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced by the Symfony apps, and can be viewed without installing it.
 
+
 ## Using the form theme
 
 * Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary. In the test page, `_forms.scss` is bundled within the `/web/public/test_form/sf_test_form.scss` file.
@@ -42,7 +43,7 @@ If you don't need the whole test application, you can only download the files lo
 You can also install them (with the addition of the `docs` folder) in your project using npm:
 
 ```
-npm i symfony-bootstrap-form-theme
+npm i --save @massimo-cassandro/symfony-bootstrap-form-theme
 ```
 
 After the installation, you'll have to manually place the twig file in your templates folder, or, alternatively, add a new location to the twig path in your `config.yml` file:
