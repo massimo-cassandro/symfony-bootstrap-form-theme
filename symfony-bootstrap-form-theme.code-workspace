@@ -2,11 +2,11 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-      "name": "Default form templates",
-      "path": "vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form"
 		}
 	],
-	"settings": {}
+  "settings": {
+    "preview-in-browser.domain": "http://sf-form.local:8888/",
+		"preview-in-browser.removeStartString": "~/Sites/symfony-bootstrap-form-theme/sf-test-app/public",
+		"git.ignoreLimitWarning": true
+  }
 }
