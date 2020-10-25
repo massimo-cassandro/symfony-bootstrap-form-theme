@@ -1,41 +1,39 @@
-/*
 //main
-@codekit-prepend '../node_modules/prismjs/components/prism-core.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-markup.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-css.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-clike.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-javascript.js'
+import 'prismjs/components/prism-core.js';
+import 'prismjs/components/prism-markup.js';
+import 'prismjs/components/prism-css.js';
+import 'prismjs/components/prism-clike.js';
+import 'prismjs/components/prism-javascript.js';
 
 //languages
-@codekit-prepend '../node_modules/prismjs/components/prism-css-extras.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-json.js'
--codekit-prepend '../node_modules/prismjs/components/prism-less.js'
--codekit-prepend '../node_modules/prismjs/components/prism-markdown.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-markup-templating.js' // richiesto da php
-@codekit-prepend '../node_modules/prismjs/components/prism-php.js'
--codekit-prepend '../node_modules/prismjs/components/prism-php-extras.min.js'
--codekit-prepend '../node_modules/prismjs/components/prism-pug.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-scss.js'
--codekit-prepend '../node_modules/prismjs/components/prism-sql.js'
--codekit-prepend '../node_modules/prismjs/components/prism-stylus.js'
-@codekit-prepend '../node_modules/prismjs/components/prism-twig.js'
--codekit-prepend '../node_modules/prismjs/components/prism-typescript.js'
--codekit-prepend '../node_modules/prismjs/components/prism-yaml.js'
+import 'prismjs/components/prism-css-extras.js';
+import 'prismjs/components/prism-json.js';
+// import 'prismjs/components/prism-less.js';
+// import 'prismjs/components/prism-markdown.js';
+import 'prismjs/components/prism-markup-templating.js'; // richiesto da php
+import 'prismjs/components/prism-php.js';
+// import 'prismjs/components/prism-php-extras.min.js';
+// import 'prismjs/components/prism-pug.js';
+// import 'prismjs/components/prism-scss.js';
+// import 'prismjs/components/prism-sql.js';
+// import 'prismjs/components/prism-stylus.js';
+import 'prismjs/components/prism-twig.js';
+// import 'prismjs/components/prism-typescript.js';
+// import 'prismjs/components/prism-yaml.js';
 
 //plugins
--codekit-prepend '../node_modules/prismjs/plugins/command-line/prism-command-line.js'
-@codekit-prepend '../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js'
-@codekit-prepend '../node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js'
-@codekit-prepend '../node_modules/prismjs/plugins/previewers/prism-previewers.js'
-@codekit-prepend '../node_modules/prismjs/plugins/toolbar/prism-toolbar.js' // richiesto da show-languages
-@codekit-prepend '../node_modules/prismjs/plugins/show-language/prism-show-language.js'
-@codekit-prepend '../node_modules/prismjs/plugins/highlight-keywords/prism-highlight-keywords.js'
--codekit-prepend '../node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js'
-@codekit-prepend '../node_modules/prismjs/plugins/unescaped-markup/prism-unescaped-markup.js'
-*/
+// import 'prismjs/plugins/command-line/prism-command-line.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import 'prismjs/plugins/previewers/prism-previewers.js';
+import 'prismjs/plugins/toolbar/prism-toolbar.js'; // richiesto da show-languages
+import 'prismjs/plugins/show-language/prism-show-language.js';
+import 'prismjs/plugins/highlight-keywords/prism-highlight-keywords.js';
+// import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+import 'prismjs/plugins/unescaped-markup/prism-unescaped-markup.js';
 
-/* globals Prism */
 
+/* global Prism */
 Prism.plugins.NormalizeWhitespace.setDefaults({
   'remove-trailing': false,
   'remove-indent': false,
@@ -47,3 +45,4 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
   'tabs-to-spaces': 2
   //'spaces-to-tabs': 4
 });
+

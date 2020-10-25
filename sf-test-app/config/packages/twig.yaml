@@ -1,2 +1,4 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    form_themes:
+      - 'bs4_form_layout_WORK_COPY.html.twig'

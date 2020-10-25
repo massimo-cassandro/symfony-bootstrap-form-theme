@@ -1,65 +1,83 @@
 # Symfony Bootstrap 4 Form Theme
 
-A Bootstrap 4 Form Theme for Symfony 3, 4 and 5.
+A [Bootstrap](https://getbootstrap.com/) 4 Form Theme for [Symfony](https://symfony.com/) 3, 4 and 5.
+
+v.2 - Oct 2020
 
 For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced by the Symfony apps, and can be viewed without installing it.
 
 
-## Using the form theme
-
-* Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary. In the test page, `_forms.scss` is bundled within the `/web/public/test_form/sf_test_form.scss` file.
-* If you want to use the multiselect widget, add the `_forms-multiselect.js` and `_forms-multiselect.scss` files (both located in the `dist` folder) to your js and scss. In the test page, both files are bundled within the main js and scss files.
-* Place the `/Resources/views/form/bs4_form_layout.html.twig` in your *view* folder (in this test app it is located in the `form` subdir)
-* Modify your `/app/config/config.yml` file and add:
-
-```yaml
-# Twig Configuration
-twig:
-  form_themes:
-    - '/path/to/bs4_form_layout.html.twig'
-```
-
-
-## Using the test Symfony application
-
-You can clone the test app repository and run the form test app.
-Clone the repo and run composer to install Symfony. Run npm in the public directory to install Bootstrap, if you need to test your changes.
-
-The form test page url will be: `<your_test_domain>/test-form'.
-The css and js directory is `/web/public`.
-
-* twig: `src/AppBundle/Resources/views/test_form/test_form.html.twig`
-* controller: `src/AppBundle/Controller/TestFormController.php`
-
-The test page gives you detailed informations about all form widgets:
-
-![](docs/readme_files/sample.png)
-
-
-## Quick install using npm
+## Quick install
 
 If you don't need the whole test application, you can only download the files located in the `dist` folder, that contains the js and scss files and `bs4_form_layout.html.twig`.
 
 You can also install them (with the addition of the `docs` folder) in your project using npm:
 
 ```
-npm i --save @massimo-cassandro/symfony-bootstrap-form-theme
+npm i --save --only=prod @massimo-cassandro/symfony-bootstrap-form-theme
 ```
 
-After the installation, you'll have to manually place the twig file in your templates folder, or, alternatively, add a new location to the twig path in your `config.yml` file:
+## Using the form theme
+
+* Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary. 
+
+>In the demo page, `_forms.scss` is bundled within the `public/assets/sf-bs4-form-test.scss` file.
+
+* If you want to use the multiselect widget, add the `_forms-multiselect.js` and `_forms-multiselect.scss` files (both located in the `dist` folder) to your js and scss. 
+
+> In the demo page, both files are bundled within the main js and scss files.
+
+* Copy the `dist/bs4_form_layout.html.twig` file in your *template* folder 
+* Modify your configuration file as explained below:
+
+**Symfony 5 `/config/packages/twig.yaml`**
+
+```yaml
+twig:
+    form_themes:
+      - 'path/to/bs4_form_layout.html.twig'
+```
+
+
+**Symfony 3 `config.yml`**
 
 ```yaml
 # Twig Configuration
 twig:
     paths:
-      #- ...
-      - "%kernel.project_dir%/path/to/node_modules/symfony-bootstrap-form-theme"
+      - "path/to/bs4_form_layout.html.twig"
 ```
 
-Note that this option requires the node_modules folder to be distributed to your server.
 
+## Using the Symfony test application
 
-## Reference
+You can clone the test app repository and run the form test app:
+* clone the repo and run composer to install Symfony. 
+* run npm in the `public/assets` directory allowing dev dependencies (omit the `--only=prod` flag):
+
+```
+npm i --save @massimo-cassandro/symfony-bootstrap-form-theme
+```
+
+* The main twig file is: `templates/index.html.twig`
+* The controller is: `src/Controller/DefaultController.php`
+* The form theme used for testing is: `templates/bs4_form_layout_WORK_COPY.html.twig` 
+* js and scss source files are located in `/src` folder
+
+The test page gives you detailed informations about all form widgets:
+
+![](docs/readme_files/sample.png)
+
+You can easily modify the template, the js or the css and immediately test the result.
+
+Run `sh build.sh` to update the `dist` and `docs` folders, if you need.  
+`build.sh` creates a static html file from the Symfony page. You may need the change the url of your local domain in `gulpfile.js`.
+
+### Codekit
+
+I've used [Codekit](https://codekitapp.com/) to build js and scss in the test app (the `assets/config.codekit3` file contains the project configuration), anyway to can easily switch to another tool.
+
+## Symfony Widgets Reference
 
 ### General
 
@@ -250,7 +268,6 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 ```
 
 ## TODO
-* switch to Symfony 4 or 5
 * readonly checkboxes
 * check bootstrap validation markup
 * errors
@@ -276,3 +293,14 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 * <https://getbootstrap.com/docs/4.4/components/forms/>
 * <https://getbootstrap.com/docs/4.4/components/input-group/>
 * <https://getbootstrap.com/docs/4.4/components/buttons/>
+
+
+## Changelog
+
+### v.2 / Oct 2020
+* Environment switched to Symfony 5
+* All js scripts rearranged as ES modules
+
+
+### v.1 / Sep 2019
+* First release built on Symfony 3

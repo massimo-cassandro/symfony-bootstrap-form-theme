@@ -1,4 +1,4 @@
-(function () {
+var form_multiselect = (function () {
   'use strict';
 
   /*
@@ -9,7 +9,8 @@
   */
 
   // multiselect widget
-  function form_multiselect() {
+
+  function formMultiselect() {
 
     const multiselects = document.querySelectorAll('.form-multiselect'),
       setMultiselectPlaceholder = multiselect_item => {
@@ -37,6 +38,6 @@
 
   }
 
-  form_multiselect();
+  return formMultiselect;
 
 }());

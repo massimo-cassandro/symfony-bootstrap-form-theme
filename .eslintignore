@@ -1,0 +1,3 @@
+dist/js/*.js
+!dist/js/src/*.js
+rollup.config.js

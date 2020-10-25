@@ -2,11 +2,43 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "sf-test-app/public/assets"
+		},
+		{
+			"path": "sf-test-app/templates"
+    },
+    {
+			"path": "src"
+    },
+		{
+      "name": "Symfony src",
+      "path": "sf-test-app/src"
+		},
+
+		{
+			"name": "Default form templates",
+			"path": "sf-test-app/vendor/symfony/twig-bridge/Resources/views/Form"
 		}
 	],
   "settings": {
     "preview-in-browser.domain": "http://sf-form.local:8888/",
 		"preview-in-browser.removeStartString": "~/Sites/symfony-bootstrap-form-theme/sf-test-app/public",
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/*-lock.json": true,
+			"**/*.css.map": true,
+			"**/*.js.map": true,
+			"**/*.lock": true,
+			"**/*.mwb.bak": true,
+			"**/config.codekit3": true
+		},
+		"explorerExclude.backup": null
   }
 }

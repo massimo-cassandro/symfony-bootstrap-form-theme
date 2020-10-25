@@ -1,0 +1,355 @@
+{#
+  Bootstrap 4 Symfony form layout
+  =======================================
+  Massimo Cassandro
+  https://github.com/massimo-cassandro/symfony-bootstrap-form-theme
+#}
+
+{#
+  estende il template form base:
+  `/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig`
+#}
+{% use "form_div_layout.html.twig" %}
+
+{# base #}
+{% block form_widget_simple -%}
+  {% if type is not defined or type != 'hidden' %}
+    {%- if 'form-control-plaintext' in attr.class|default() -%}
+      {% set base_class = '' %}
+    {%- else -%}
+      {% set base_class = 'form-control' ~ (type|default('') == 'file' ? '-file' : '') %}
+    {%- endif -%}
+
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' ' ~ base_class)|trim}) -%}
+  {% endif %}
+  {%- if type is defined and (type == 'range' or type == 'color') %}
+    {# Attribute "required" is not supported #}
+    {%- set required = false -%}
+  {% endif %}
+  {{- parent() -}}
+{%- endblock form_widget_simple %}
+
+{%- block widget_attributes -%}
+  {%- if not valid %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) %}
+  {% endif -%}
+  {{ parent() }}
+{%- endblock widget_attributes -%}
+
+{%- block float_widget -%}
+  {%- set type = type|default('number') -%}
+  {{ block('form_widget_simple') }}
+{%- endblock float_widget -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+    <ul class="sf-error">
+        {%- for error in errors -%}
+            <li>{{ error.message }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{% block form_label -%}
+
+  {% if label is not same as(false) -%}
+    {%- if compound is defined and compound -%}
+      {%- set element = 'legend' -%}
+      {# {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' label')|trim}) -%} #}
+    {%- else -%}
+      {%- set label_attr = label_attr|merge({for: id}) -%}
+    {%- endif -%}
+
+    {% if label is empty -%}
+      {%- if label_format is not empty -%}
+        {% set label = label_format|replace({
+          '%name%': name,
+          '%id%': id,
+        }) %}
+      {%- else -%}
+        {% set label = name|humanize %}
+      {%- endif -%}
+    {%- endif -%}
+    <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+      {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+      {# {% block form_label_errors %}{{- form_errors(form) -}}{% endblock form_label_errors %} #}
+    </{{ element|default('label') }}>
+  {%- endif -%}
+
+{%- endblock form_label %}
+
+{# Rows #}
+{% block containers_classes -%}
+  {%- if disabled is defined and disabled %} disabled{%- endif -%}
+  {%- if required is defined and required %} required{%- endif -%}
+{%- endblock containers_classes %}
+
+{% block form_container_start -%}
+  <{{ element|default('div') }} class="form-group
+    {{- params.container_class? ' ' ~ params.container_class : '' -}}
+    {{- block('containers_classes') -}}">
+{%- endblock form_container_start %}
+
+{% block form_container_end -%}
+  {{- form_errors(form) -}}
+  {%- if help is defined and help|trim and not compound -%}
+    <div class="form-help-text">{{ help|raw }}</div>
+  {%- endif -%}
+  </{{ element|default('div') }}>
+{%- endblock form_container_end %}
+
+{% block input_group_elements -%}
+  {% set parsed_input_group = [] %}
+  {%- if input_group is not iterable -%} {# single string parameter #}
+    {% set parsed_input_group = [{type:'text', content: input_group}] %}
+  {%- else  -%}
+    {%- for item in input_group -%}
+      {%- if item is not iterable -%} {# array of strings #}
+        {% set parsed_input_group = parsed_input_group|merge([
+          {type:'text', content: item}
+        ]) %}
+      {%- else -%} {# array of arrays #}
+        {% set parsed_input_group = parsed_input_group|merge([
+          item
+        ]) %}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  <div class="input-group-{{ input_group_mode }}">
+    {%- for item in parsed_input_group -%}
+      {%- if item.type == 'text' -%}
+        <span class="input-group-text">{{ item.content }}</span>
+      {%- else -%}
+        {{ item.content|raw }}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endblock input_group_elements %}
+
+{% block form_row -%}
+  {% set params = {
+      container: true,
+      container_class: null,
+      collection_container: true,
+      before: false,
+      after: false
+    }|merge(params|default({}))
+  %}
+
+  {%- if compound is defined and compound and params.collection_container -%}
+    {%- set element = 'fieldset' -%}
+  {%- endif -%}
+
+  {%- if params.container == true and params.collection_container == true -%}
+    {{- block('form_container_start') -}}
+    {{- form_label(form) -}}
+    {%- if help is defined and help|trim and compound -%}
+      <div class="form-help-text form-help-top">{{ help|raw }}</div>
+    {%- endif -%}
+  {% endif %}
+
+  {%- if (not params.before) and (not params.after) -%}
+    {{- form_widget(form) -}}
+  {%- else -%}
+    <div class="input-group">
+      {%- if params.before -%}
+        {% set input_group_mode = 'prepend' %}
+        {% set input_group = params.before %}
+        {{- block('input_group_elements') -}}
+      {%- endif -%}
+
+      {{- form_widget(form) -}}
+
+      {%- if params.after -%}
+        {% set input_group_mode = 'append' %}
+        {% set input_group = params.after %}
+        {{- block('input_group_elements') -}}
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if params.container == true and params.collection_container == true -%}
+    {{- block('form_container_end') -}}
+  {%- endif -%}
+
+{%- endblock form_row %}
+
+{# checkboxes and radios #}
+{% block checkbox_widget -%}
+  {{ parent() }}
+{%- endblock checkbox_widget %}
+{% block radio_widget -%}
+  {{ parent() }}
+{%- endblock radio_widget %}
+
+{% block checkbox_radio_row -%}
+
+  {% set params = {
+    container: true,
+    container_class: null,
+    collection_container: true,
+    bs_custom_control: false,
+    top_label: false,
+    inline: false,
+    switch: false
+  }|merge(params|default({})) %}
+
+  {# the `top_label` option requires the container #}
+  {% if params.top_label %}
+    {% set params = params|merge({container: true}) %}
+  {% endif %}
+
+  {%- if params.bs_custom_control -%}
+    {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+    <div class="custom-control custom-checkbox{{ params.inline ? ' custom-control-inline' }}">
+      {{- block( cbox_radio ~ '_widget') -}}
+      {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
+      {% if required %}
+        <span class="required"></span>
+      {% endif %}
+    </div>
+  {%- elseif params.switch -%}
+    <div class="custom-control custom-switch">
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+      {{- block('checkbox_widget') -}}
+      {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
+    </div>
+  {%- else -%}
+    {% if params.container %}
+      {{ block('form_container_start') }}
+    {% endif %}
+
+    {% if params.top_label %}
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' d-block')|trim}) -%}
+      {{- form_label(form) -}}
+        {{- block( cbox_radio ~ '_widget') -}}
+    {% else %}
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim}) -%}
+      <div class="form-check
+        {%- if params.inline %} form-check-inline{% endif -%}
+        {%- if not (params.collection is defined and params.collection) -%}
+          {{- block('containers_classes') -}}
+        {%- endif -%}">
+        {{- block( cbox_radio ~ '_widget') -}}
+        {{- form_label(form) -}}
+      </div>
+    {% endif %}
+
+    {% if params.container %}
+      {{ block('form_container_end') }}
+    {% endif %}
+  {%- endif -%}
+{%- endblock checkbox_radio_row %}
+
+{% block checkbox_row -%}
+  {% set cbox_radio = 'checkbox' %}
+  {{- block('checkbox_radio_row') -}}
+{%- endblock checkbox_row %}
+
+{% block radio_row -%}
+  {% set cbox_radio = 'radio' %}
+  {% set params = params|default({})|merge({switch: false, top_label: false}) %}
+  {{- block('checkbox_radio_row') -}}
+{%- endblock radio_row %}
+
+{# multiple checkbox / radios #}
+{% block choice_widget_expanded -%}
+
+  {# the params.collection option tells other widgets that we are creating a series of checkboxes or radios #}
+  {% set params = {
+      bs_custom_control: false,
+      collection_container: true,
+      inline: false,
+      multiselect: false,
+      no_items_mes: null
+    }|merge(params|default({}))|merge({
+      container: false,
+      top_label: false,
+      collection: true
+    })
+  %}
+  {% set inner_container_classes = '' %}
+  {% if not params.collection_container %}
+    {% set inner_container_classes = 'form-group' ~ block('containers_classes')  %}
+  {% endif %}
+
+  {%- if params.columns is defined and params.columns is iterable and not params.inline -%}
+    {# rcolumns classes come from https://github.com/massimo-cassandro/m-utilities #}
+    {% set inner_container_classes = inner_container_classes ~ ' rcolumns'  %}
+    {%- for brkp, cols in params.columns -%}
+      {% set inner_container_classes = inner_container_classes ~ " rcolumns-#{brkp}-#{cols}"  %}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- if params.multiselect != false -%}
+
+    {# multiselect is not compatible with inline option #}
+    {% set params = params|merge({
+      inline:false}) %}
+
+    {% set params = params|merge({multiselect:
+      {
+        placeholder: '&nbsp;',
+        button_class: 'btn-multiselect',
+        menu_class: ''
+      }|merge(params.multiselect is iterable? params.multiselect : {})
+    }) %}
+
+    <div class="btn-group form-multiselect">
+      <button type="button" class="btn dropdown-toggle
+        {%- if params.multiselect.button_class %} {{ params.multiselect.button_class}}{% endif -%}"
+        {{- ' ' -}}
+        data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+        <span class="form-multiselect-placeholder">{{ params.multiselect.placeholder|raw }}</span>
+      </button>
+      <div class="dropdown-menu
+        {%- if params.multiselect.menu_class %} {{ params.multiselect.menu_class}}{% endif -%}">
+  {%- endif -%}
+
+  {% set child_params = {
+      translation_domain: choice_translation_domain,
+      valid: valid,
+      params: params
+    }|merge(
+      disabled is defined and disabled? {disabled:true}: {}
+    )
+  %}
+
+  <div class="form-collection{%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}">
+
+    {%- for child in form %}
+      {{- form_row(child, child_params ) -}}
+    {% else -%}
+      {%- if params.no_items_mes -%}
+        {{ params.no_items_mes|raw }}
+      {%- endif -%}
+    {% endfor -%}
+
+  </div>
+
+  {%- if params.multiselect != false -%}
+    </div> {# /dropdown-menu #}
+    </div> {# /btn-group #}
+  {%- endif -%}
+
+{%- endblock choice_widget_expanded %}
+
+{# select no multiple #}
+{%- block choice_widget_collapsed %}
+  {% set params = {
+      bs_custom_control: true
+    }|merge(params|default({}))
+  %}
+  {% set attr = attr|merge({class: (attr.class|default('') ~
+    ' ' ~ (params.bs_custom_control? 'custom-select' : 'form-control')
+  )|trim}) %}
+  {{- parent() -}}
+{%- endblock choice_widget_collapsed %}
+
+{# textarea #}
+{% block textarea_widget -%}
+  {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) %}
+  {{- parent() -}}
+{%- endblock textarea_widget %}
