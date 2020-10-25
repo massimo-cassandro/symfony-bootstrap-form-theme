@@ -4,7 +4,7 @@ A [Bootstrap](https://getbootstrap.com/) 4 Form Theme for [Symfony](https://symf
 
 v.2 - Oct 2020
 
-For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html>, that is the html produced by the Symfony apps, and can be viewed without installing it.
+For a complete lookup to all widgets and parameter take a look at <https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/>, that is the html produced by the Symfony apps, and can be viewed without installing it.
 
 
 ## Quick install
@@ -19,15 +19,15 @@ npm i --save --only=prod @massimo-cassandro/symfony-bootstrap-form-theme
 
 ## Using the form theme
 
-* Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary. 
+* Add the `/dist/scss/_forms.scss` file to your scss (after Bootstrap css). Change default options if necessary.
 
 >In the demo page, `_forms.scss` is bundled within the `public/assets/sf-bs4-form-test.scss` file.
 
-* If you want to use the multiselect widget, add the `_forms-multiselect.js` and `_forms-multiselect.scss` files (both located in the `dist` folder) to your js and scss. 
+* If you want to use the multiselect widget, add the `_forms-multiselect.js` and `_forms-multiselect.scss` files (both located in the `dist` folder) to your js and scss.
 
 > In the demo page, both files are bundled within the main js and scss files.
 
-* Copy the `dist/bs4_form_layout.html.twig` file in your *template* folder 
+* Copy the `dist/bs4_form_layout.html.twig` file in your *template* folder
 * Modify your configuration file as explained below:
 
 **Symfony 5 `/config/packages/twig.yaml`**
@@ -52,7 +52,7 @@ twig:
 ## Using the Symfony test application
 
 You can clone the test app repository and run the form test app:
-* clone the repo and run composer to install Symfony. 
+* clone the repo and run composer to install Symfony.
 * run npm in the `public/assets` directory allowing dev dependencies (omit the `--only=prod` flag):
 
 ```
@@ -61,7 +61,7 @@ npm i --save @massimo-cassandro/symfony-bootstrap-form-theme
 
 * The main twig file is: `templates/index.html.twig`
 * The controller is: `src/Controller/DefaultController.php`
-* The form theme used for testing is: `templates/bs4_form_layout_WORK_COPY.html.twig` 
+* The form theme used for testing is: `templates/bs4_form_layout_WORK_COPY.html.twig`
 * js and scss source files are located in `/src` folder
 
 The test page gives you detailed informations about all form widgets:
@@ -70,7 +70,7 @@ The test page gives you detailed informations about all form widgets:
 
 You can easily modify the template, the js or the css and immediately test the result.
 
-Run `sh build.sh` to update the `dist` and `docs` folders, if you need.  
+Run `sh build.sh` to update the `dist` and `docs` folders, if you need.
 `build.sh` creates a static html file from the Symfony page. You may need the change the url of your local domain in `gulpfile.js`.
 
 ### Codekit
@@ -98,7 +98,7 @@ I've used [Codekit](https://codekitapp.com/) to build js and scss in the test ap
 </div>
 ```
 
-* A new `params` parameter allows you to change some behaviour of the widgets. It is a json-like element whose sub-parameters changed depending on the widget used. Take a look at the [sample page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html) for a complete list of all
+* A new `params` parameter allows you to change some behaviour of the widgets. It is a json-like element whose sub-parameters changed depending on the widget used. Take a look at the [sample page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/) for a complete list of all
 parameters.
 
 ```twig
@@ -198,9 +198,9 @@ After downloaded the package, you need to add the respoinsive columns file to yo
 @import 'path/to/node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
 ```
 
-See the [`_forms.scss`](/symfony-bootstrap-form-theme/blob/master/web/public/forms/_forms.scss) file and [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_cboxes_multi_columns) for info and examples.
+See the [`_forms.scss`](/symfony-bootstrap-form-theme/blob/master/web/public/forms/_forms.scss) file and [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/#multiple_cboxes_multi_columns) for info and examples.
 
-Take a look to the [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#multiple_checkboxes) for detailed info.
+Take a look to the [test result page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/#multiple_checkboxes) for detailed info.
 
 ### Radios
 
@@ -246,7 +246,7 @@ This option allows to add text, buttons, or button groups on either side of text
 
 Add a `before` and/or an `after` parameter to the `params` option to generate an input group.
 
-Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/form-test.html#input_groups) for detailed info and examples
+Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/#input_groups) for detailed info and examples
 
 ```twig
 {{ form_row(form.xxxx, {
