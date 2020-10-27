@@ -1303,7 +1303,7 @@
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/prismjs/components/prism-clike-min.js",
+		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/../node_modules/prismjs/components/prism-clike-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -1347,7 +1347,7 @@
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/prismjs/components/prism-javascript-min.js",
+		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/../node_modules/prismjs/components/prism-javascript-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -1391,7 +1391,7 @@
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/../node_modules/prismjs/components/prism-php-min.js",
+		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/prismjs/components/prism-php-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -1466,7 +1466,7 @@
 		"ma": 1,
 		"mi": 1,
 		"oA": 1,
-		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/prismjs/plugins/previewers/prism-previewers-min.js",
+		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/../node_modules/prismjs/plugins/previewers/prism-previewers-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
