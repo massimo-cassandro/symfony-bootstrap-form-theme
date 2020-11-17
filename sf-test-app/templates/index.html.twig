@@ -93,6 +93,21 @@
         } %}
 
         {% include 'form_element.incl.html.twig' with {
+          title: 'form_row with html label',
+          info: 'input text',
+          varname: 'text_raw_label',
+          args: {
+            help: 'Help text',
+            label: 'form label with <em>some</em> <span class="text-danger">html</span>',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              raw_label: true
+            }
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
           title: 'form_row required + disabled + help text',
           info: 'input text',
           varname: 'text3',
@@ -381,6 +396,19 @@
         args: {
           label: 'Radio buttons',
           help: "Help text"
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Inline radio buttons',
+        info: null,
+        varname: 'radios2',
+        args: {
+          label: 'Radio buttons',
+          help: "Help text",
+          params: {
+            inline: true
+          }
         }
       } %}
 

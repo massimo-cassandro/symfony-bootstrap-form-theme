@@ -35,6 +35,7 @@ class DefaultController extends AbstractController
       ))
       ->add('text4', TextType::class, array('required' => false))
       ->add('text5', TextType::class, array('required' => false))
+      ->add('text_raw_label', TextType::class, array('required' => false))
 
       // checkboxes
       ->add('cbox1', CheckboxType::class, array('required' => false))
@@ -145,6 +146,17 @@ class DefaultController extends AbstractController
 
       // radios
       ->add('radios1', ChoiceType::class, array(
+        'required' => false,
+        'choices'  => array(
+            'Yes'    =>  1,
+            'No'     =>  2,
+            'Maybe'  =>  3
+        ),
+        'expanded' => true,
+        'multiple' => false,
+        'placeholder' => false
+      ))
+      ->add('radios2', ChoiceType::class, array(
         'required' => false,
         'choices'  => array(
             'Yes'    =>  1,

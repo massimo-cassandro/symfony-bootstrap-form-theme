@@ -19,9 +19,9 @@
     {%- else -%}
       {% set base_class = 'form-control' ~ (type|default('') == 'file' ? '-file' : '') %}
     {%- endif -%}
-
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' ' ~ base_class)|trim}) -%}
   {% endif %}
+
   {%- if type is defined and (type == 'range' or type == 'color') %}
     {# Attribute "required" is not supported #}
     {%- set required = false -%}
@@ -33,6 +33,9 @@
   {%- if not valid %}
     {% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) %}
   {% endif -%}
+  {%- if help is defined and help|trim -%}
+    {% set attr = attr|merge({'aria-described-by': 'help-text-' ~ id }) %}
+  {%- endif -%}
   {{ parent() }}
 {%- endblock widget_attributes -%}
 
@@ -42,14 +45,20 @@
 {%- endblock float_widget -%}
 
 {%- block form_errors -%}
-    {%- if errors|length > 0 -%}
+  {%- if errors|length > 0 -%}
     <ul class="sf-error">
-        {%- for error in errors -%}
-            <li>{{ error.message }}</li>
-        {%- endfor -%}
+      {%- for error in errors -%}
+        <li>{{ error.message }}</li>
+      {%- endfor -%}
     </ul>
-    {%- endif -%}
+  {%- endif -%}
 {%- endblock form_errors -%}
+
+{%- block form_help -%}
+  {%- if help is defined and help|trim -%}
+    <div class="form-help-text" id="help-text-{{ id }}">{{ help|raw }}</div>
+  {%- endif -%}
+{%- endblock form_help -%}
 
 {% block form_label -%}
 
@@ -72,7 +81,11 @@
       {%- endif -%}
     {%- endif -%}
     <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
-      {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+      {%- if params.raw_label|default(false) is same as(false) -%}
+        {{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}
+      {%- else -%}
+        {{ translation_domain is same as(false) ? label|raw : label|trans({}, translation_domain)|raw }}
+      {%- endif -%}
       {# {% block form_label_errors %}{{- form_errors(form) -}}{% endblock form_label_errors %} #}
     </{{ element|default('label') }}>
   {%- endif -%}
@@ -93,9 +106,11 @@
 
 {% block form_container_end -%}
   {{- form_errors(form) -}}
-  {%- if help is defined and help|trim and not compound -%}
-    <div class="form-help-text">{{ help|raw }}</div>
+
+  {%- if not compound -%}
+    {{- block('form_help') -}}
   {%- endif -%}
+
   </{{ element|default('div') }}>
 {%- endblock form_container_end %}
 
@@ -134,9 +149,11 @@
       container_class: null,
       collection_container: true,
       before: false,
-      after: false
+      after: false,
+      raw_label: false
     }|merge(params|default({}))
   %}
+
 
   {%- if compound is defined and compound and params.collection_container -%}
     {%- set element = 'fieldset' -%}
@@ -145,8 +162,9 @@
   {%- if params.container == true and params.collection_container == true -%}
     {{- block('form_container_start') -}}
     {{- form_label(form) -}}
-    {%- if help is defined and help|trim and compound -%}
-      <div class="form-help-text form-help-top">{{ help|raw }}</div>
+
+    {%- if compound -%}
+      {{- block('form_help') -}}
     {%- endif -%}
   {% endif %}
 
@@ -193,8 +211,10 @@
     bs_custom_control: false,
     top_label: false,
     inline: false,
-    switch: false
+    switch: false,
+    raw_label: false
   }|merge(params|default({})) %}
+
 
   {# the `top_label` option requires the container #}
   {% if params.top_label %}
@@ -216,6 +236,7 @@
       {{- block('checkbox_widget') -}}
       {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
     </div>
+    {{- block('form_help') -}}
   {%- else -%}
     {% if params.container %}
       {{ block('form_container_start') }}
@@ -233,7 +254,9 @@
           {{- block('containers_classes') -}}
         {%- endif -%}">
         {{- block( cbox_radio ~ '_widget') -}}
+        {# {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' form-check-label')|trim}) -%} #}
         {{- form_label(form) -}}
+
       </div>
     {% endif %}
 
@@ -286,8 +309,7 @@
   {%- if params.multiselect != false -%}
 
     {# multiselect is not compatible with inline option #}
-    {% set params = params|merge({
-      inline:false}) %}
+    {% set params = params|merge({ inline:false }) %}
 
     {% set params = params|merge({multiselect:
       {
@@ -317,7 +339,9 @@
     )
   %}
 
-  <div class="form-collection{%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}">
+  <div class="form-collection {%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}"
+    {%- if help is defined and help|trim -%} aria-described-by="help-text-{{ id }}"{%- endif -%}
+  >
 
     {%- for child in form %}
       {{- form_row(child, child_params ) -}}

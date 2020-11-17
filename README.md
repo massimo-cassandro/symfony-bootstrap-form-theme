@@ -278,7 +278,6 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 * date interval?
 * css for sizing classes
 * range: current value label, step labels
-* Option to have help text printed at bottom of radio buttons or multiple checkboxes
 * Option for adding custom classes to fieldset or div containers
 
 
@@ -296,6 +295,12 @@ Look at the [test page](https://massimo-cassandro.github.io/symfony-bootstrap-fo
 
 
 ## Changelog
+
+### v.2.1 / Nov 2020
+* Implemented `aria-describedby` attribute for help text ([issue #2](https://github.com/massimo-cassandro/symfony-bootstrap-form-theme/issues/2))
+* Inline radios and checkboxes fix
+* Option to have help text printed at bottom of radio buttons or multiple checkboxes
+* Option for using html strings for labels
 
 ### v.2 / Oct 2020
 * Environment switched to Symfony 5

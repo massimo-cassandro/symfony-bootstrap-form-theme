@@ -1,8 +1,8 @@
 /* globals Prism */
 
 import 'jquery';
-import 'bootstrap/js/dist/util';
-import 'bootstrap/js/dist/dropdown'; // this one import popper.js too
+import 'bootstrap4/js/dist/util';
+import 'bootstrap4/js/dist/dropdown'; // this one import popper.js too
 import form_multiselect from '../../../src/js/form-multiselect.js';
 import {html_beautify} from 'js-beautify/js/lib/beautify-html';
 import {escapeHTML} from '@massimo-cassandro/m-utilities/js-utilities/_escapeHTML';

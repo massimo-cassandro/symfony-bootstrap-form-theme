@@ -37,11 +37,10 @@
     "src/**/*.*",
     "docs/**/*.*"
   ],
-  "dependencies": {
-    "bootstrap": "^4.5.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@massimo-cassandro/m-utilities": "^1.22.1",
+    "bootstrap4": "npm:bootstrap@^4.5.3",
     "gulp": "^4.0.2",
     "gulp-remote-src": "^0.4.4",
     "gulp-rename": "^2.0.0",

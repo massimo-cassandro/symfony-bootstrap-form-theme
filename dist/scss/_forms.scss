@@ -12,7 +12,7 @@ is required. Add this line to your scss:
 @import 'path/to/node_modules/m-utilities/sass_utilities/bs4_responsive_columns';
 */
 
-$sf-label-color : $body-color!default; // sometimes shared by legend
+$sf-label-color : currentColor!default; // sometimes shared by legend
 $sf-label-font-weight: $font-weight-bold!default;
 $sf-label-font-size: .9rem!default;
 $sf-form-font-family: $font-family-base!default;
@@ -123,6 +123,17 @@ fieldset.form-group > legend,
   }
 }
 
+// inline checkbox & radios
+.form-check-inline {
+  input {
+    &[type=radio] {
+      margin-bottom:2px;
+    }
+  }
+  label {
+    margin:0;
+  }
+}
 
 // errors
 // .sf-error element is an <ul> inside the label of the form element with errors
