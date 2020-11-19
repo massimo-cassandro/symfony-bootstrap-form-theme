@@ -98,17 +98,6 @@ I've used [Codekit](https://codekitapp.com/) to build js and scss in the test ap
 </div>
 ```
 
-* A new `params` parameter allows you to change some behaviour of the widgets. It is a json-like element whose sub-parameters changed depending on the widget used. Take a look at the [sample page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/) for a complete list of all
-parameters.
-
-```twig
-{{ form_row(form.xxxx, {
-  params: {
-    bs_custom_control: true
-  }
-}) }}
-```
-
 * The `disabled: true` parameter adds a `disabled` class to the group container element (in addition to the `disabled` attribute of the field); this allows you to stylize the whole field group.
 
 ```twig
@@ -122,6 +111,33 @@ parameters.
   <!-- ... -->
 </div>
 ```
+
+
+* A new `params` parameter allows you to change some behaviour of the widgets. It is a json-like element whose sub-parameters changed depending on the widget used. You can find the whole list of parameters below. Take also a look at the [sample page](https://massimo-cassandro.github.io/symfony-bootstrap-form-theme/).
+
+```twig
+{{ form_row(form.xxxx, {
+  params: {
+    bs_custom_control: true
+  }
+}) }}
+```
+
+#### Parameters
+
+* **`container`**: generates a `.form-group` div or fieldset (if the element is a collection) wrapping the form element
+* **`container_class`**: add a custom class to the container element
+* **`collection_container`**: specify if a container element must be added for collecions
+* **`before`** and **`after`**: markup for input groups elements (see examples)
+* **`raw_label`**: if true, allows using html for labels (default false)
+* **`top_label`**: single checkboxes only, put the label at the top of the element
+* **`bs_custom_control`**: if true, activates bootsrap custom controls (default false, see examples)
+* **`inline`**: checkboxes and radio buttons only, if true disposes elements inline (default false)
+* **`no_items_mes`**: collections only, message to be displayed if the Choice array is empty (see examples)
+* **`multiselect`**: collection only, generates a multiselect element
+* **`button_class`**: multiselect only, class for button element (default: btn-multiselect, defined in _forms.scss)
+* **`menu_class`**: multiselect only, class for menu element
+* **`columns`**: collections only, activates a multicolumns layout (see examples)
 
 
 ### Checkboxes
