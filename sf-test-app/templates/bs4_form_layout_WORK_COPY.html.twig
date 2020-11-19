@@ -340,7 +340,7 @@
   %}
 
   <div class="form-collection {%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}"
-    {%- if help is defined and help|trim -%} aria-described-by="help-text-{{ id }}"{%- endif -%}
+    {%- if help is defined and help|trim %} aria-described-by="help-text-{{ id }}"{% endif -%}
   >
 
     {%- for child in form %}

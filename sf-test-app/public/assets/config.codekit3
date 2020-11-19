@@ -129,19 +129,6 @@
 		"oS": 3,
 		"sct": 1
 		},
-	"/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/@massimo-cassandro/m-utilities/bs4-utilities/_bs4_responsive_columns.scss": {
-		"aP": 1,
-		"bl": 0,
-		"dP": 10,
-		"ec": 1,
-		"ft": 4,
-		"ma": 1,
-		"oA": 1,
-		"oAP": "/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/@massimo-cassandro/m-utilities/bs4-utilities/_bs4_responsive_columns.css",
-		"oF": 0,
-		"oS": 0,
-		"sct": 1
-		},
 	"/Users/max/Sites/symfony-bootstrap-form-theme/node_modules/jquery/dist/jquery.js": {
 		"bF": 0,
 		"ft": 64,
