@@ -25,7 +25,7 @@ $sf-error-text-color: theme-color(danger)!default;
 input, button, select, textarea {
   font-family: $sf-form-font-family;
 
-  &[disabled] {
+  &[disabled], fieldset[disabled] & {
     color:$sf-disabled-color;
     font-style:italic;
   }
@@ -69,8 +69,12 @@ label {
     }
   }
 
-  &.required:not(.disabled),      // required class applied directly to the label
-  div.required:not(.disabled) & { // must not be applied to fieldset containers
+  // required class applied directly to the label
+  // must not be applied to fieldset containers
+  &.required:not(.disabled),
+  div.required:not(.disabled) &,
+  fieldset:not([disabled]) &.required:not(.disabled) ,
+  fieldset:not([disabled]) .required:not(.disabled) & {
     @extend %required;
   }
 
