@@ -69,6 +69,11 @@ label {
     }
   }
 
+  // checkbox/radio grouped in fieldset
+  .form-collection &::before {
+    content:none!important;
+  }
+
   // required class applied directly to the label
   // must not be applied to fieldset containers
   &.required:not(.disabled),
