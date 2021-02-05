@@ -44,7 +44,7 @@ input, button, select, textarea {
   }
 }
 
-%required {
+%form-elements-required {
   &::before {
     position:relative;
     top:3px;
@@ -55,14 +55,17 @@ input, button, select, textarea {
     content: '\002A'; //'\2733'; //'*';
   }
 }
+%form-elements-disabled {
+  font-style: italic!important;
+  color: $sf-disabled-color!important;
+}
 
 label {
   font-weight: $sf-label-font-weight;
   font-size: $sf-label-font-size;
 
   &.disabled, .disabled &, .disabled>&, [disabled] & {
-    font-style: italic;
-    color: $sf-disabled-color;
+    @extend %form-elements-disabled;
 
     &:not(.custom-control-label)::before {
       content:none!important;
@@ -80,7 +83,7 @@ label {
   div.required:not(.disabled) &,
   fieldset:not([disabled]) &.required:not(.disabled) ,
   fieldset:not([disabled]) .required:not(.disabled) & {
-    @extend %required;
+    @extend %form-elements-required;
   }
 
   .form-group &{
@@ -103,7 +106,12 @@ label {
 // multiple choices
 fieldset.required:not(.disabled) {
   legend {
-    @extend %required;
+    @extend %form-elements-required;
+  }
+}
+fieldset.disabled {
+  legend {
+    @extend %form-elements-disabled;
   }
 }
 
@@ -117,7 +125,7 @@ fieldset.form-group > legend,
 // custom checkboxes
 .custom-checkbox {
   .custom-control-input[required]:not([disabled]) ~ .required {
-    @extend %required;
+    @extend %form-elements-required;
     &::before {
       margin:0 0 0 .3rem;
     }
