@@ -21,7 +21,8 @@
     "user-experience",
     "user-interface",
     "checkboxes",
-    "single-checkboxes"
+    "single-checkboxes",
+    "interaction-design"
   ],
   "author": "Massimo Cassandro",
   "publishConfig": {
