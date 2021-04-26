@@ -1,13 +1,13 @@
 {
   "name": "@massimo-cassandro/symfony-bootstrap-form-theme",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "A Bootstrap 4 Form Theme for Symfony 3, 4 and 5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/massimo-cassandro/symfony-bootstrap-form-theme.git#master"
   },
   "scripts": {
-    "build": ". ./build.sh",
+    "build-docs-and-dist": ". ./build.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

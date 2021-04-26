@@ -93,15 +93,31 @@
 {%- endblock form_label %}
 
 {# Rows #}
+{# TODO: da eliminare #}
 {% block containers_classes -%}
   {%- if disabled is defined and disabled %} disabled{%- endif -%}
   {%- if required is defined and required %} required{%- endif -%}
 {%- endblock containers_classes %}
 
+{% block containers_attrs -%}
+  {%- if attr is not defined %}
+    {% set attr = {} %}
+  {%- endif -%}
+  {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-group')|trim}) %}
+  {%- if disabled is defined and disabled %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' disabled')|trim}) %}
+  {%- endif -%}
+  {%- if required is defined and required %}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' required')|trim}) %}
+  {%- endif -%}
+  {%- if required is defined and required %} required{%- endif -%}
+  {%- for attr, val in attr -%}
+      {{- ' ' -}} {{- attr -}}="{{ val }}"
+  {%- endfor -%}
+{%- endblock containers_attrs %}
+
 {% block form_container_start -%}
-  <{{ element|default('div') }} class="form-group
-    {{- params.container_class? ' ' ~ params.container_class : '' -}}
-    {{- block('containers_classes') -}}">
+  <{{ element|default('div') }} {{- block('containers_attrs') -}}>
 {%- endblock form_container_start %}
 
 {% block form_container_end -%}
