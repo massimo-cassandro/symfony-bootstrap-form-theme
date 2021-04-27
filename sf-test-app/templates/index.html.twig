@@ -139,7 +139,7 @@
         {% include 'form_element.incl.html.twig' with {
           title: 'Extra container classes',
           info: 'Extra classes can be added to the <code>.form-group</code> container thru the ' ~
-            '<code>container_class</code> option',
+            '<code>container_attr</code> option',
           varname: 'text5',
           args: {
             help: 'Help text',
@@ -147,7 +147,7 @@
             required: true,
             attr: {placeholder: 'Placeholder text'},
             params: {
-              container_class: 'bg-dark text-white p-2 rounded'
+              container_attr: {class: 'bg-dark text-white p-2 rounded'}
             }
           }
         } %}
@@ -396,8 +396,9 @@
         args: {
           label: 'Radio buttons',
           help: "Help text",
-          attr: {'data-some-data': 'abcd', class:'custom-class'},
-          params: {}
+          params: {
+            container_attr: {'data-some-data': 'abcd', class:'custom-class'},
+          }
         }
       } %}
 

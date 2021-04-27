@@ -90,7 +90,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required value="Some values" class="form-control-plaintext form-group required" readonly="1"><label for="form_text_readonly">form label    </label><input type="text" id="form_text_readonly" name="form[text_readonly]" required="required" value="Some values" class="form-control-plaintext" readonly="readonly" aria-described-by="help-text-form_text_readonly" /><div class="form-help-text" id="help-text-form_text_readonly">Help text</div></div>
+                      <div     class="form-group required"><label for="form_text_readonly">form label    </label><input type="text" id="form_text_readonly" name="form[text_readonly]" required="required" value="Some values" class="form-control-plaintext" readonly="readonly" aria-described-by="help-text-form_text_readonly" /><div class="form-help-text" id="help-text-form_text_readonly">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;class&quot;:&quot;form-control-plaintext&quot;,&quot;readonly&quot;:true}}"></div>
@@ -106,7 +106,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required placeholder="Placeholder text" class="form-group required"><label for="form_text2">form label    </label><input type="text" id="form_text2" name="form[text2]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text2" /><div class="form-help-text" id="help-text-form_text2">Help text</div></div>
+                      <div     class="form-group required"><label for="form_text2">form label    </label><input type="text" id="form_text2" name="form[text2]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text2" /><div class="form-help-text" id="help-text-form_text2">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div>
@@ -121,7 +121,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required placeholder="Placeholder text" class="form-group required"><label for="form_text_raw_label">form label with <em>some</em> <span class="text-danger">html</span>    </label><input type="text" id="form_text_raw_label" name="form[text_raw_label]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text_raw_label" /><div class="form-help-text" id="help-text-form_text_raw_label">Help text</div></div>
+                      <div     class="form-group required"><label for="form_text_raw_label">form label with <em>some</em> <span class="text-danger">html</span>    </label><input type="text" id="form_text_raw_label" name="form[text_raw_label]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text_raw_label" /><div class="form-help-text" id="help-text-form_text_raw_label">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label with &lt;em&gt;some&lt;\/em&gt; &lt;span class=\&quot;text-danger\&quot;&gt;html&lt;\/span&gt;&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;},&quot;params&quot;:{&quot;raw_label&quot;:true}}"></div>
@@ -136,7 +136,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div         required value="Some values" placeholder="Placeholder text" class="form-group disabled required"><label for="form_text3">form label    </label><input type="text" id="form_text3" name="form[text3]" disabled="disabled" required="required" value="Some values" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text3" /><div class="form-help-text" id="help-text-form_text3">Help text</div></div>
+                      <div         class="form-group disabled required"><label for="form_text3">form label    </label><input type="text" id="form_text3" name="form[text3]" disabled="disabled" required="required" value="Some values" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text3" /><div class="form-help-text" id="help-text-form_text3">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;disabled&quot;:true,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div>
@@ -162,14 +162,14 @@
 
 <div class="form-test-element">
   <h3>Extra container classes</h3>
-      <div class="info">Extra classes can be added to the <code>.form-group</code> container thru the <code>container_class</code> option</div>
+      <div class="info">Extra classes can be added to the <code>.form-group</code> container thru the <code>container_attr</code> option</div>
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required placeholder="Placeholder text" class="form-group required"><label for="form_text5">form label    </label><input type="text" id="form_text5" name="form[text5]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text5" /><div class="form-help-text" id="help-text-form_text5">Help text</div></div>
+                      <div     class="bg-dark text-white p-2 rounded form-group required"><label for="form_text5">form label    </label><input type="text" id="form_text5" name="form[text5]" required="required" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_text5" /><div class="form-help-text" id="help-text-form_text5">Help text</div></div>
                   </div>
       </div>
-      <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;},&quot;params&quot;:{&quot;container_class&quot;:&quot;bg-dark text-white p-2 rounded&quot;}}"></div>
+      <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;required&quot;:true,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;},&quot;params&quot;:{&quot;container_attr&quot;:{&quot;class&quot;:&quot;bg-dark text-white p-2 rounded&quot;}}}"></div>
       <div class="col-4 markup"></div>
     </div></div>
 
@@ -199,7 +199,7 @@
         <div>
                       
 
-          <div     required class="form-group required">
+          <div     class="form-group required">
     
     <div class="form-check required"><input type="checkbox" id="custom-id" name="form[cbox2]" required="required" class="form-check-input" aria-described-by="help-text-custom-id" value="1" /><label for="custom-id">Checkbox label    </label></div>
     
@@ -238,7 +238,7 @@
         <div>
                       
 
-          <div         required class="form-group disabled required">
+          <div         class="form-group disabled required">
     
     <div class="form-check disabled required"><input type="checkbox" id="form_cbox5" name="form[cbox5]" disabled="disabled" required="required" class="form-check-input" aria-described-by="help-text-form_cbox5" value="1" /><label for="form_cbox5">Cbox5    </label></div>
     
@@ -263,7 +263,7 @@
         <div>
                       
 
-                <div     required class="form-group required">
+                <div     class="form-group required">
     
     <label for="form_cbox7">Cbox7    </label><input type="checkbox" id="form_cbox7" name="form[cbox7]" required="required" class="d-block" aria-described-by="help-text-form_cbox7" value="1" />
           <div class="form-help-text" id="help-text-form_cbox7">Help text</div></div>
@@ -348,7 +348,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <fieldset     required class="form-group required"><legend>Multiple checkboxes    </legend><div class="form-help-text" id="help-text-form_multiCbox1">Help text</div>      
+                      <fieldset     class="form-group required"><legend>Multiple checkboxes    </legend><div class="form-help-text" id="help-text-form_multiCbox1">Help text</div>      
   <div class="form-collection" aria-described-by="help-text-form_multiCbox1">
 
     
@@ -395,7 +395,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <fieldset         required class="form-group disabled required"><legend>Multiple checkboxes    </legend><div class="form-help-text" id="help-text-form_multiCbox2">Help text</div>      
+                      <fieldset         class="form-group disabled required"><legend>Multiple checkboxes    </legend><div class="form-help-text" id="help-text-form_multiCbox2">Help text</div>      
   <div class="form-collection" aria-described-by="help-text-form_multiCbox2">
 
     
@@ -612,7 +612,7 @@
     </div></fieldset>
                   </div>
       </div>
-      <div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Radio buttons&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;attr&quot;:{&quot;data-some-data&quot;:&quot;abcd&quot;,&quot;class&quot;:&quot;custom-class&quot;},&quot;params&quot;:[]}"></div>
+      <div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Radio buttons&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;params&quot;:{&quot;container_attr&quot;:{&quot;data-some-data&quot;:&quot;abcd&quot;,&quot;class&quot;:&quot;custom-class&quot;}}}"></div>
       <div class="col-4 markup"></div>
     </div></div>
 
@@ -754,7 +754,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required class="form-group required"><label for="form_select1">Select field    </label>    <select id="form_select1" name="form[select1]" required="required" class="custom-select" aria-described-by="help-text-form_select1"><option value="" selected="selected">Select an option...</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option></select><div class="form-help-text" id="help-text-form_select1">Help text</div></div>
+                      <div     class="form-group required"><label for="form_select1">Select field    </label>    <select id="form_select1" name="form[select1]" required="required" class="custom-select" aria-described-by="help-text-form_select1"><option value="" selected="selected">Select an option...</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option><option value="4">Option 4</option></select><div class="form-help-text" id="help-text-form_select1">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Select field&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true}"></div>
@@ -826,7 +826,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div step="10" class="form-group"><label for="form_inputGroup1">Input group    </label><div class="input-group">            <div class="input-group-prepend"><span class="input-group-text">$</span></div><input type="number" id="form_inputGroup1" name="form[inputGroup1]" step="10" class="form-control" aria-described-by="help-text-form_inputGroup1" />                <div class="input-group-append"><span class="input-group-text text-danger">.00</span></div></div><div class="form-help-text" id="help-text-form_inputGroup1">Help text</div></div>
+                      <div class="form-group"><label for="form_inputGroup1">Input group    </label><div class="input-group">            <div class="input-group-prepend"><span class="input-group-text">$</span></div><input type="number" id="form_inputGroup1" name="form[inputGroup1]" step="10" class="form-control" aria-described-by="help-text-form_inputGroup1" />                <div class="input-group-append"><span class="input-group-text text-danger">.00</span></div></div><div class="form-help-text" id="help-text-form_inputGroup1">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Input group&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;type&quot;:&quot;number&quot;,&quot;attr&quot;:{&quot;step&quot;:10},&quot;params&quot;:{&quot;before&quot;:&quot;$&quot;,&quot;after&quot;:[{&quot;type&quot;:&quot;markup&quot;,&quot;content&quot;:&quot;&lt;span class=\&quot;input-group-text text-danger\&quot;&gt;.00&lt;\/span&gt;&quot;}]}}"></div>
@@ -841,7 +841,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div     required class="form-group required"><label for="form_inputGroup2">Select input group    </label><div class="input-group">    <select id="form_inputGroup2" name="form[inputGroup2]" required="required" class="custom-select" aria-described-by="help-text-form_inputGroup2"><option value="" selected="selected">Choose an option...</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option></select>                        <div class="input-group-append"><span class="input-group-text">Some text</span><button class="btn btn-secondary" type="button">Button</button></div></div><div class="form-help-text" id="help-text-form_inputGroup2">Help text</div></div>
+                      <div     class="form-group required"><label for="form_inputGroup2">Select input group    </label><div class="input-group">    <select id="form_inputGroup2" name="form[inputGroup2]" required="required" class="custom-select" aria-described-by="help-text-form_inputGroup2"><option value="" selected="selected">Choose an option...</option><option value="1">Option 1</option><option value="2">Option 2</option><option value="3">Option 3</option></select>                        <div class="input-group-append"><span class="input-group-text">Some text</span><button class="btn btn-secondary" type="button">Button</button></div></div><div class="form-help-text" id="help-text-form_inputGroup2">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;label&quot;:&quot;Select input group&quot;,&quot;help&quot;:&quot;Help text&quot;,&quot;required&quot;:true,&quot;params&quot;:{&quot;after&quot;:[&quot;Some text&quot;,{&quot;type&quot;:&quot;markup&quot;,&quot;content&quot;:&quot;&lt;button class=\&quot;btn btn-secondary\&quot; type=\&quot;button\&quot;&gt;Button&lt;\/button&gt;&quot;}]}}"></div>
@@ -856,7 +856,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div placeholder="Placeholder text" class="form-group"><label for="form_textarea1">form label    </label><textarea id="form_textarea1" name="form[textarea1]" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_textarea1"></textarea><div class="form-help-text" id="help-text-form_textarea1">Help text</div></div>
+                      <div class="form-group"><label for="form_textarea1">form label    </label><textarea id="form_textarea1" name="form[textarea1]" placeholder="Placeholder text" class="form-control" aria-described-by="help-text-form_textarea1"></textarea><div class="form-help-text" id="help-text-form_textarea1">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;form label&quot;,&quot;attr&quot;:{&quot;placeholder&quot;:&quot;Placeholder text&quot;}}"></div>
@@ -873,7 +873,7 @@
   <div class="row align-items-stretch">
       <div class="col-4 result">
         <div>
-                      <div min="1" max="10" step="1" class="form-group"><label for="form_range1">Range label    </label>    <input type="range" id="form_range1" name="form[range1]" min="1" max="10" step="1" class="form-control" aria-described-by="help-text-form_range1" /><div class="form-help-text" id="help-text-form_range1">Help text</div></div>
+                      <div class="form-group"><label for="form_range1">Range label    </label>    <input type="range" id="form_range1" name="form[range1]" min="1" max="10" step="1" class="form-control" aria-described-by="help-text-form_range1" /><div class="form-help-text" id="help-text-form_range1">Help text</div></div>
                   </div>
       </div>
       <div class="col-4 twig" data-args="{&quot;help&quot;:&quot;Help text&quot;,&quot;label&quot;:&quot;Range label&quot;,&quot;type&quot;:&quot;range&quot;,&quot;attr&quot;:{&quot;min&quot;:1,&quot;max&quot;:10,&quot;step&quot;:1}}"></div>

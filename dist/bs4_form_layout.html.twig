@@ -100,18 +100,30 @@
 {%- endblock containers_classes %}
 
 {% block containers_attrs -%}
-  {%- if attr is not defined %}
-    {% set attr = {} %}
+  {%- if params is not defined %}
+    {% set params = {} %}
   {%- endif -%}
-  {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-group')|trim}) %}
+  {%- if params.container_attr is not defined %}
+    {% set params = params|merge({container_attr: {}}) %}
+  {%- endif -%}
+
+  {% set params = params|merge({
+    container_attr: params.container_attr|merge({ class: (params.container_attr.class|default('') ~ ' form-group')|trim })
+  }) %}
+
   {%- if disabled is defined and disabled %}
-    {% set attr = attr|merge({class: (attr.class|default('') ~ ' disabled')|trim}) %}
+    {% set params = params|merge({
+      container_attr: params.container_attr|merge({ class: (params.container_attr.class|default('') ~ ' disabled')|trim })
+    }) %}
   {%- endif -%}
+
   {%- if required is defined and required %}
-    {% set attr = attr|merge({class: (attr.class|default('') ~ ' required')|trim}) %}
+    {% set params = params|merge({
+      container_attr: params.container_attr|merge({ class: (params.container_attr.class|default('') ~ ' required')|trim })
+    }) %}
   {%- endif -%}
-  {%- if required is defined and required %} required{%- endif -%}
-  {%- for attr, val in attr -%}
+
+  {%- for attr, val in params.container_attr -%}
       {{- ' ' -}} {{- attr -}}="{{ val }}"
   {%- endfor -%}
 {%- endblock containers_attrs %}
@@ -162,7 +174,7 @@
 {% block form_row -%}
   {% set params = {
       container: true,
-      container_class: null,
+      container_attr: {},
       collection_container: true,
       before: false,
       after: false,
@@ -222,7 +234,7 @@
 
   {% set params = {
     container: true,
-    container_class: null,
+    container_attr: {},
     collection_container: true,
     bs_custom_control: false,
     top_label: false,
