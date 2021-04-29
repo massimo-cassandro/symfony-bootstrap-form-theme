@@ -361,12 +361,12 @@
   {% set child_params = {
       translation_domain: choice_translation_domain,
       valid: valid,
-      params: params
+      params: params,
+      attr:attr|default({})
     }|merge(
       disabled is defined and disabled? {disabled:true}: {}
     )
   %}
-
   <div class="form-collection {%- if inner_container_classes %} {{ inner_container_classes|trim }}{% endif -%}"
     {%- if help is defined and help|trim %} aria-described-by="help-text-{{ id }}"{% endif -%}
   >
