@@ -1,4 +1,7 @@
-import { terser } from "rollup-plugin-terser";
+import { terser } from 'rollup-plugin-terser';
+import sourcemaps from 'rollup-plugin-sourcemaps';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 const terserOptions = {
   compress: {
@@ -8,26 +11,38 @@ const terserOptions = {
 
 export default [
   {
-    input: "./src/js/form-multiselect.js",
+    input: './symfony-test-app/public/assets/prism/prism.js',
+    plugins: [sourcemaps(), resolve(), commonjs()],
     output: [
       {
-        file: "dist/js/form-multiselect.iife.js",
-        name: "form_multiselect",
-        format: "iife"
-      },
-      {
-        file: "dist/js/form-multiselect.iife.min.js",
-        name: "form_multiselect",
-        format: "iife",
+        file: './symfony-test-app/public/assets/prism/prism-min.js',
+        name: 'Prism',
+        format: 'umd',
         plugins: [terser(terserOptions)]
-      },
+      }
+    ]
+  },
+
+  {
+    input: './symfony-test-app/public/assets/bs4/sf-bs4-form-test.js',
+    plugins: [sourcemaps(), resolve(), commonjs()],
+    output: [
       {
-        file: "dist/js/form-multiselect.esm.js",
-        format: "esm"
-      },
+        file: './symfony-test-app/public/assets/bs4/sf-bs4-form-test-min.js',
+        name: 'test_bs4',
+        format: 'iife',
+        plugins: [terser(terserOptions)]
+      }
+    ]
+  },
+  {
+    input: './symfony-test-app/public/assets/bs5/sf-bs5-form-test.js',
+    plugins: [sourcemaps(), resolve(), commonjs()],
+    output: [
       {
-        file: "dist/js/form-multiselect.esm.min.js",
-        format: "esm",
+        file: './symfony-test-app/public/assets/bs5/sf-bs5-form-test-min.js',
+        name: 'test_bs5',
+        format: 'iife',
         plugins: [terser(terserOptions)]
       }
     ]

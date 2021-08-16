@@ -1,0 +1,114 @@
+@import './node_modules/bootstrap/scss/bootstrap';
+@import '../../../../node_modules/@massimo-cassandro/m-utilities/bootstrap-utilities/bs-responsive-columns';
+
+@import '../prism/prism';
+
+@import '../../../../src/forms';
+@import '../../../../src/forms-multiselect';
+
+
+// for demo only
+
+#toc { /* stylelint-disable-line selector-max-id */
+  padding: .5rem;
+  margin: 1rem 0 2rem;
+  background-color: $gray-100;
+}
+
+h2 {
+  padding: .3rem;
+  margin-top: 2rem;
+  background-color: $gray-200;
+}
+
+.form-test-element {
+  padding: .5rem .5rem 1rem;
+  margin: 1.5rem 0;
+  border-bottom: 2px solid $gray-500;
+
+  /* &:nth-child(odd) {
+    background-color: #efefef;
+  } */
+
+  h3 {
+    // font-size:1.3rem;
+    @extend .h4;
+    margin: 0 0 .8rem;
+  }
+  .info {
+    padding: .3rem 0;
+    margin-bottom: .5rem;
+    border-color: $gray-500;
+    border-style: dotted none;
+    border-width: 1px;
+  }
+
+  .result {
+    > div {
+      height: 100%;
+      padding: .4rem;
+      background-color: #f7f7f7;
+      border: 1px solid #d9d5d5;
+    }
+  }
+  // .twig {
+
+  // }
+  // .markup {
+
+  // }
+
+}
+
+.badge-link {
+  position: relative;
+  bottom: 4px;
+  margin-left: .4rem;
+  font-size: .7rem;
+  &:first-of-type {
+    margin-left: 2rem;
+  }
+}
+
+
+// prism
+.code-toolbar {
+  height: 100%;
+}
+.code-toolbar pre {
+  height: 100%;
+  margin: 0;
+}
+
+.github-banner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 12rem;
+    padding: .5rem;
+    text-align: center;
+    background-color: #ddd;
+    transform: translate(3rem, .5rem) rotate(45deg);
+    transform-origin: center;
+
+    &:hover {
+      background-color: #333;
+      svg {
+        fill: #fff;
+      }
+    }
+  }
+  svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #666;
+  }
+}

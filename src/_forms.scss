@@ -1,0 +1,182 @@
+/*
+https: //github.com/massimo-cassandro/symfony-bootstrap-form-theme
+
+This style sheet expands and modify some Bootstrap css settings and must
+be included in projects that implement the `bs*_form_layout.html.twig` template
+
+Note
+BS5 has removed the `.form-group` class
+set the $sf-form-group-margin-bottom to a value to set it
+or set it to null (default) to not set the css rule and use the default
+Bootstrap settings (.form-group is set in BS4)
+
+-------------
+
+The responsive columns files (from https: //github.com/massimo-cassandro/m-utilities)
+is required. Add this line to your scss:
+
+@import '@massimo-cassandro/m-utilities/bootstrap-utilities/bs-responsive-columns';
+*/
+
+$sf-label-color:              currentColor !default; // sometimes shared by legend
+$sf-label-font-weight:        $font-weight-bold !default;
+$sf-label-font-size:          .9rem !default;
+$sf-form-font-family:         $font-family-base !default;
+$sf-form-help-text-color:     $gray-700 !default;
+$sf-input-group-text-weight:  $font-weight-normal !default;
+$sf-disabled-color:           $gray-600 !default;
+$sf-required-asterisk-color:  #c00 !default;
+$sf-error-text-color:         map-get($theme-colors, danger) !default;
+$sf-form-group-margin-bottom: null !default;
+
+
+@if $sf-form-group-margin-bottom != null {
+  .form-group {
+    margin-bottom: $sf-form-group-margin-bottom;
+  }
+}
+
+input, button, select, textarea {
+  font-family: $sf-form-font-family;
+
+  &[disabled], fieldset[disabled] & {
+    font-style: italic;
+    color: $sf-disabled-color;
+  }
+}
+
+.form-help-text {
+  @extend .form-text;
+  //@extend .text-muted;
+  color: $sf-form-help-text-color;
+  @extend .small;
+  .disabled & {
+    color: $sf-disabled-color;
+  }
+  &.form-help-top {
+    margin: 0 0 .5rem;
+  }
+}
+
+%form-elements-required {
+  &::before {
+    position: relative;
+    top: 3px;
+    margin-right: .1em;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: $sf-required-asterisk-color;
+    content: '\002A'; //'\2733'; //'*';
+  }
+}
+%form-elements-disabled {
+  font-style: italic !important; /* stylelint-disable-line declaration-no-important */
+  color: $sf-disabled-color !important; /* stylelint-disable-line declaration-no-important */
+}
+
+label {
+  font-size: $sf-label-font-size;
+  font-weight: $sf-label-font-weight;
+
+  &.disabled, .disabled &, .disabled > &, [disabled] & {
+    @extend %form-elements-disabled;
+
+    &:not(.custom-control-label)::before {
+      content: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+  }
+
+  // checkbox/radio grouped in fieldset
+  .form-collection &::before {
+    content: none !important; /* stylelint-disable-line declaration-no-important */
+  }
+
+  // required class applied directly to the label
+  // must not be applied to fieldset containers
+  &.required:not(.disabled),
+  div.required:not(.disabled) &,
+  fieldset:not([disabled]) &.required:not(.disabled),
+  fieldset:not([disabled]) .required:not(.disabled) & {
+    @extend %form-elements-required;
+  }
+
+  .form-group & {
+
+    // white-space: nowrap;
+    // text-overflow: ellipsis;
+    // overflow: hidden;
+    // display: block;
+    margin-bottom: .3rem;
+
+    // &:not(.input-group-text) {
+    //   font-size: .8rem;
+    // }
+    // &.input-group-text {
+    //   font-weight: $sf-input-group-text-weight;
+    // }
+  }
+}
+
+// multiple choices
+fieldset.required:not(.disabled) {
+  legend {
+    @extend %form-elements-required;
+  }
+}
+fieldset.disabled {
+  legend {
+    @extend %form-elements-disabled;
+  }
+}
+
+// label tag simulation
+fieldset.form-group > legend,
+.label {
+  @extend label;
+  color: $sf-label-color;
+}
+
+// custom checkboxes
+.custom-checkbox {
+  .custom-control-input[required]:not([disabled]) ~ .required {
+    @extend %form-elements-required;
+    &::before {
+      margin: 0 0 0 .3rem;
+    }
+  }
+}
+
+// multiple checkbox
+.form-collection {
+  .custom-control-label, // custom controls
+  .form-check label {
+    font-weight: $font-weight-normal;
+  }
+}
+
+// inline checkbox & radios
+.form-check-inline {
+  input {
+    &[type='radio'] {
+      margin-bottom: 2px;
+    }
+  }
+  label {
+    margin: 0;
+  }
+}
+
+// errors
+// .sf-error element is an <ul> inside the label of the form element with errors
+// each error message is a <li> element
+.sf-error {
+  padding: 0;
+  margin: 0 0 .5rem;
+  list-style: none;
+
+  li {
+    padding: 0;
+    margin: .3rem 0 0;
+    color: $sf-error-text-color;
+  }
+}

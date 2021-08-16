@@ -1,0 +1,38 @@
+// multiselect
+.form-multiselect {
+  &, button {
+    width: 100%;
+    max-width: 100%;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: $input-btn-padding-y;
+      transform: translateY(-50%);
+    }
+    &.btn-multiselect {
+      @include button-variant($input-bg, $input-border-color);
+    }
+  }
+  .dropdown-menu {
+    top: calc(100% + 2px);
+    width: 100%;
+    padding-right: $dropdown-padding-y;
+    padding-left: $dropdown-padding-y;
+
+  }
+}
+
+.form-multiselect-placeholder {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 1em * $input-line-height;
+  padding-right: $input-btn-padding-y * 3;
+  @extend .text-truncate;
+  text-align: left;
+}

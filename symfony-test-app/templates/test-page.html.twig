@@ -1,0 +1,620 @@
+{%- if fw == 'bs4' -%}
+  {% set params = {
+    fw: 'Bootstrap 4',
+    form_theme_WORKING_COPY: 'bs4_form_layout_WORK_COPY.html.twig',
+    form_theme: 'dist/bs4_form_layout.html.twig',
+    css: 'assets/bs4/sf-bs4-form-test.css',
+    js: 'assets/bs4/sf-bs4-form-test-min.js'
+  } %}
+{%- elseif fw == 'bs5' -%}
+  {% set params = {
+    fw: 'Bootstrap 5',
+    form_theme_WORKING_COPY: 'bs5_form_layout_WORK_COPY.html.twig',
+    form_theme: 'dist/bs5_form_layout.html.twig',
+    css: 'assets/bs5/sf-bs5-form-test.css',
+    js: 'assets/bs5/sf-bs5-form-test-min.js'
+  } %}
+{%- endif -%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Symfony + {{ params.fw }} Form Test</title>
+
+  <link rel="stylesheet" href="{{ asset(params.css) }}" type="text/css" media="all">
+
+  <link rel="icon" href="data:;base64,=">
+
+</head>
+<body>
+  <div class="github-banner">
+    <a href="https://github.com/massimo-cassandro/symfony-bootstrap-form-theme" title="Go to repository">
+      {% include 'github.svg' %}
+    </a>
+  </div>
+  <main class="container-fluid my-4">
+    <h1 id="top">Symfony + {{ params.fw }} Form Test</h1>
+    <p class="font-italic mb-2">Rendering test of form elements (Massimo Cassandro 2016/2021).</p>
+
+    <p>Repository readme: <a href="https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme">https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#readme</a></p>
+
+    <p>Form template: <code>{{ params.form_theme }}</code></p>
+
+    <p><a href="/">Back to index</a></p>
+
+    <div id="toc"></div>
+
+    <p><a href="https://github.com/massimo-cassandro/symfony-bootstrap-form-theme#todo">TODO</a> list.</p>
+
+    {% form_theme form params.form_theme_WORKING_COPY %}
+
+    {{ form_start(form, {attr: {id: 'form1'}}) }}
+    {{ form_errors(form) }}
+
+      <h2>Basic elements</h2>
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'form_widget',
+          info: 'Widget basic element (input text)',
+          is_widget: true,
+          varname: 'text1'
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Hidden field',
+          info: 'Note: only the field is returned, even if <code>form_row</code> is used',
+          is_widget: false,
+          varname: 'hidden1'
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'readonly fields with <code>form-control-plaintext</code> class',
+          is_widget: false,
+          varname: 'text_readonly',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {class: 'form-control-plaintext', readonly: true}
+          }
+        } %}
+
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'form_row required + help text',
+          info: 'input text',
+          varname: 'text2',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {placeholder: 'Placeholder text'}
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'form_row with html label',
+          info: 'input text',
+          varname: 'text_raw_label',
+          args: {
+            help: 'Help text',
+            label: 'form label with <em>some</em> <span class="text-danger">html</span>',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              raw_label: true
+            }
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'form_row required + disabled + help text',
+          info: 'input text',
+          varname: 'text3',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            disabled: true,
+            required: true,
+            attr: {placeholder: 'Placeholder text'}
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'form_row without container',
+          info: 'Basic form_rows elements require the <code>.form-group</code> container; if it is set to ' ~
+            '<code>false</code>, labels, help text, etc are not displayed.',
+          varname: 'text4',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              container: false
+            }
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Extra container classes',
+          info: 'Extra classes can be added to the <code>.form-group</code> container thru the ' ~
+            '<code>container_attr</code> option',
+          varname: 'text5',
+          args: {
+            help: 'Help text',
+            label: 'form label',
+            required: true,
+            attr: {placeholder: 'Placeholder text'},
+            params: {
+              container_attr: {class: 'bg-dark text-white p-2 rounded'}
+            }
+          }
+        } %}
+
+      <h2>Single checkboxes</h2>
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox (input element only)',
+          is_widget: true,
+          varname: 'cbox1'
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) + <code>form-group</code> container (default) + required',
+          info: 'With custom id and custom label',
+          varname: 'cbox2',
+          args: {
+            id: 'custom-id',
+            help: 'Help text',
+            label: 'Checkbox label',
+            required: true
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) without container + required + disabled',
+          varname: 'cbox3',
+          args: {
+            help: 'Help text',
+            required : true,
+            disabled: true,
+            params: {
+              container: false
+            }
+          }
+        } %}
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox Bootstrap default (stacked) + container + required + disabled',
+          varname: 'cbox5',
+          args: {
+            help: 'Help text',
+            required: true,
+            disabled: true
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox with label on top',
+          info: "Place the label above the checkbox field. This option requires the cointainer markup,
+            therefore the <code>container: false</code> option is ignored. Furhermore,
+            the <code>top_label</code> option can't be activated if the <code>bs_custom_control</code>
+            is set to true",
+          varname: 'cbox7',
+          args: {
+            required: true,
+            help: 'Help text',
+            params: {
+              container: false,
+              top_label: true
+           }
+          }
+        } %}
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Single checkbox switch',
+          info: 'See <a href="https://getbootstrap.com/docs/5.1/forms/checks-radios/#switches">https://getbootstrap.com/docs/5.1/forms/checks-radios/#switches</a>',
+          varname: 'cbox8',
+          args: {
+            required: true,
+            help: 'Help text',
+            params: {
+              container: true,
+              switch: true
+           }
+          }
+        } %}
+
+
+        <h2>Single checkboxes with custom controls</h2>
+        <p>Note that checkboxes with custom controls are not fully supported with this template.<br>
+          Bootstrap docs: <a href="https://getbootstrap.com/docs/4.3/components/forms/#checkboxes-and-radios-1">https://getbootstrap.com/docs/4.3/components/forms/#checkboxes-and-radios-1</a></p>
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox stacked + custom control + required',
+          info: "Note that the <code>help</code> and <code>params.container</code> don't take effect,
+            and that the required asterisk is located after the label string
+            through the <code>span.required</code> element",
+          varname: 'cbox4',
+          args: {
+            help: 'Help text',
+            required: true,
+            params: {
+              container: true,
+              bs_custom_control: true
+            }
+          }
+        } %}
+
+
+        {% include 'form_element.incl.html.twig' with {
+          title: 'Checkbox stacked + custom control + required + disabled',
+          varname: 'cbox6',
+          args: {
+            required: true,
+            disabled: true,
+            params: {
+              bs_custom_control: true
+            }
+          }
+        } %}
+
+      <h2 id="multiple_checkboxes">Multiple checkboxes</h2>
+      <p>Checkbox series obtained thru the <code>ChoiceType</code> type
+        (<a href="https://symfony.com/doc/current/reference/forms/types/choice.html">https://symfony.com/doc/current/reference/forms/types/choice.html</a>)</p>
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes',
+        info: "Controller <code>ChoiceType</code> options: <code>'expanded' =&gt; true, 'multiple' =&gt; true</code>.<br>" ~
+          "Note that the <code>required</code> has the unique effect to add the required class to the fieldset,
+          to highlight that at least one of the controls must be selected.
+          However, the final check must be performed using javascript.<br>
+          The <code>help</code> parameter, if present, is placed at top, under the <code>legend</code> tag",
+        varname: 'multiCbox1',
+        args: {
+          help: 'Help text',
+          label: 'Multiple checkboxes',
+          required: true
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without elements',
+        info: "An optional parameter <code>no_items_mes</code> (text with markup) can be added to be displayed" ~
+          " if the Choice array is empty",
+        varname: 'multiCboxNoItems',
+        args: {
+          help: 'Help text',
+          label: 'Multiple checkboxes',
+          required: false,
+          params: {
+            no_items_mes: '<p class="font-italic small text-muted">This element is empty</p>'
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + disabled',
+        info: "Same of previous with disabled parameter",
+        varname: 'multiCbox2',
+        args: {
+          help: 'Help text',
+          label: 'Multiple checkboxes',
+          required: true,
+          disabled: true
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without fieldset',
+        info: "For cases where checkboxes must be inserted in a fieldset already present in the markup.
+          In this case, the <code>help</code> parameter takes no effects.",
+        varname: 'multiCbox3',
+        args: {
+          help: 'Help text',
+          label: 'Multiple checkboxes',
+          params: {
+            collection_container: false
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes without fieldset + required + disabled ',
+        info: "Same of previous with disabled and required parameter.
+        Note that the <code>required</code> parameter takes no effect.",
+        varname: 'multiCbox4',
+        args: {
+          label: 'Multiple checkboxes',
+          disabled:true,
+          required: true,
+          params: {
+            collection_container: false
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + multiple columns',
+        id: 'multiple_cboxes_multi_columns',
+        info: "Distributes checkboxes into responsive columns.
+          The <code>column</code> parameter is an array whose keys are the bootstrap breakpoints
+          abbreviations (sm, md, ...) and values are the number of desidered columns (max 5).
+          This option also works with <code>params.collection_container = false</code> parameter",
+        varname: 'multiCbox5',
+        args: {
+          label: 'Multiple checkboxes',
+          params: {
+            columns: {sm:1, md:2}
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple checkboxes + inline',
+        info: "Checkboxes are rendered as inline elements. This option is obviously incompatible with multiple columns",
+        varname: 'multiCbox6',
+        args: {
+          label: 'Multiple checkboxes',
+          help: "Help text",
+          params: {
+            inline: true
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiple stacked checkboxes + custom control',
+        info: "Note that actually multiple checkboxes with custom controls don't fully support
+          all the parameters like disabled, required etc...",
+        varname: 'multiCbox7',
+        args: {
+          label: 'Multiple checkboxes',
+          params: {
+            bs_custom_control: true
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Grouped stacked checkboxes',
+        varname: 'groupedCbox1',
+        todo: true,
+        args: {
+          label: 'Multiple checkboxes',
+          help: "Help text"
+        }
+      } %}
+
+
+      <h2>Radios</h2>
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Stacked radio buttons',
+        info: "Same of multiple checkboxes, the unique difference if that the
+          the controller <code>multiple</code> option is set to <code>false</code>.<br>
+          All the parameter available for multiple checkboxes can be applied to radio buttons",
+        varname: 'radios1',
+        args: {
+          label: 'Radio buttons',
+          help: "Help text",
+          params: {
+            container_attr: {'data-some-data': 'abcd', class:'custom-class'},
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Inline radio buttons',
+        info: null,
+        varname: 'radios2',
+        args: {
+          label: 'Radio buttons',
+          help: "Help text",
+          params: {
+            inline: true
+          }
+        }
+      } %}
+
+      <h2 id="multiselect">Multiselect</h2>
+      <p>A way to handle multiple checkboxes or radio buttons using a dropdown panel.</p>
+
+      <p>To activate this option add <code>params.multiselect: true</code> to the widget for
+      default settings or set it as an object to define a <code>placeholder</code>,
+      <code>button_class</code> (default: <code>btn-multiselect</code>,
+      defined in <code>_forms.scss</code>) and
+      <code>menu_class</code> (default: <em>none</em>) parameters as described
+      in Bootstrap buttons docs.</p>
+      <p>Version 3 of Symfony-bootstrap-form-theme dropped the dependency
+        from Bootstrap JS component, but it still relies to the Bootstrap Dropdown CSS.
+        {# and uses <a href="https://popper.js.org" target="_blank" rel="noopener noreferrer">Popper JS</a>
+        for dropdown menu positioning. #}
+      </p>
+
+      <div class="text-danger">
+        <p><strong>TODO</strong>: css for sizing classes</p>
+      </div>
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Standard multiSelect',
+        info: "Basic dropdown with checkboxes",
+        varname: 'multiSelect1',
+        args: {
+          label: 'Multiselect',
+          params: {
+            multiselect: true
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Multiselect with columns',
+        info: "Basic dropdown with radio buttons arranged in columns and custom options",
+        varname: 'multiSelect2',
+        args: {
+          label: 'Multiselect',
+          params: {
+            multiselect: {
+              placeholder: 'Choose an option',
+              button_class: 'btn-outline-primary',
+              menu_class: 'dropdown-menu-md-right'
+            },
+            columns: {sm:1, md:2}
+          }
+        }
+      } %}
+
+      <h2>Select</h2>
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Standard select field',
+        info: "Note that select fields have the <code>params.bs_custom_control</code> option
+          set to <code>true</code> by default. This option adds the <code>custom-select</code>
+          class to to select element. To avoid this behavior, you must explicitly set the
+          <code>bs_custom_control</code> option to <code>false</code>.",
+        varname: 'select1',
+        args: {
+          label: 'Select field',
+          help: 'Help text',
+          required: true
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Select field with <code>optgroup</code>',
+        info: "Select with grouped options and <code>bs_custom_control = false</code>.
+          This setting essentially affects rendering with Firefox and Safari, while it doesn't
+          generate big differences on Chrome and Edge (Blink).
+          Note that we don't have an empty option at the the top, since the
+          <code>placeholder</code> option (in the controller) is set to <code>false</code>",
+        varname: 'select2',
+        args: {
+          label: 'Select field',
+          help: 'Help text',
+          required: false,
+          params: {
+            bs_custom_control: false
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Select field with <code>optgroup</code> and <code>multiple</code> attribute',
+        varname: 'select3',
+        args: {
+          label: 'Select field',
+          help: 'Help text'
+        }
+      } %}
+
+      <h2 id="input_groups">Input groups</h2>
+      <p>Options to add text, buttons, or button groups on either side of textual inputs, selects, or file inputs.
+        See <a href="https://getbootstrap.com/docs/5.1/forms/input-group/">
+        hhttps://getbootstrap.com/docs/5.1/forms/input-group/</a>.<br>
+        This option does not include all the options of variations of the Bootstrap input group,
+        but it allows to easily manage the most common cases.
+      </p>
+      <p>The <code>before</code> and <code>after</code> parameters allow you to define the
+      position of the addon. Each of them may have more items.</p>
+      <p>Use the <code>type: text</code> option to add simple text add-ons
+      (a <code>span.input-group-text</code> tag will be added), or
+      <code>type: markup</code> for more complex and customizable elements.</p>
+
+      <p>If <code>before</code> and <code>after</code> are <strong>strings</strong>,
+        the add-on is considered to be a single <code>type: text</code> element,<br>
+        if they are <strong>arrays of strings</strong>, each sub-element is considered to be a
+        <code>type: text</code> element.</p>
+      <p>Finally, if they are <strong>arrays of objects</strong>, each element is treated according
+      to its <code>type</code> option.</p>
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Text input group',
+        info: "Input field with text before and after",
+        varname: 'inputGroup1',
+        args: {
+          label: 'Input group',
+          help: 'Help text',
+          type: 'number',
+          attr: {
+            step: 10
+          },
+          params: {
+            before: '$',
+            after: [
+              {
+                type: 'markup',
+                content: '<span class="input-group-text text-danger">.00</span>'
+              }
+            ]
+          }
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Select input group',
+        info: "Select field with text and button at the end",
+        varname: 'inputGroup2',
+        args: {
+          label: 'Select input group',
+          help: 'Help text',
+          required : true,
+          params: {
+            after: [
+              'Some text',
+              {
+                type: 'markup',
+                content: '<button class="btn btn-secondary" type="button">Button</button>'
+              }
+            ]
+          }
+        }
+      } %}
+
+      <h2>Other elements</h2>
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Textarea',
+        varname: 'textarea1',
+        args: {
+          help: 'Help text',
+          label: 'form label',
+          attr: {placeholder: 'Placeholder text'}
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'Range',
+        info: '<div class="text-danger">
+          <p><strong>TODO</strong>: current value label, step labels</p>
+        </div>',
+        varname: 'range1',
+        args: {
+          help: 'Help text',
+          label: 'Range label',
+          type: 'range',
+          attr: {min: 1, max: 10, step:1}
+        }
+      } %}
+
+      {% include 'form_element.incl.html.twig' with {
+        title: 'File',
+        varname: 'file1',
+        args: {
+          help: 'Help text',
+          label: 'File label',
+          type: 'file'
+        }
+      } %}
+
+    {{ form_end(form, {'render_rest': false}) }}
+
+    <p><a href="/">Back to index</a></p>
+
+  </main>
+
+  <script src="{{ asset('assets/prism/prism-min.js') }}"></script>
+  <script src="{{ asset(params.js) }}"></script>
+</body>
+</html>
+

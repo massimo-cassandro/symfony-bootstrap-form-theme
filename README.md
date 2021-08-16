@@ -131,7 +131,7 @@ I've used [Codekit](https://codekitapp.com/) to build js and scss in the test ap
 * **`before`** and **`after`**: markup for input groups elements (see examples)
 * **`raw_label`**: if true, allows using html for labels (default false)
 * **`top_label`**: single checkboxes only, put the label at the top of the element
-* **`bs_custom_control`**: if true, activates bootsrap custom controls (default false, see examples)
+* **`bs_custom_control`**: if true, activates Bootstrap custom controls (default false, see examples)
 * **`inline`**: checkboxes and radio buttons only, if true disposes elements inline (default false)
 * **`no_items_mes`**: collections only, message to be displayed if the Choice array is empty (see examples)
 * **`multiselect`**: collection only, generates a multiselect element
@@ -144,7 +144,7 @@ I've used [Codekit](https://codekitapp.com/) to build js and scss in the test ap
 
 #### Single checkboxes
 
-* The default behaviour generate the Boostrap default stacked markup wrapped into a `.form-group` container:
+* The default behaviour generate the Bootstrap default stacked markup wrapped into a `.form-group` container:
 
 ```markup
 <div class="form-group">
