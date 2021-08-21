@@ -161,7 +161,7 @@
     {%- endfor -%}
   {%- endif -%}
 
-  <div class="input-group-{{ input_group_mode }}">
+  {# <div class="input-group-{{ input_group_mode }}"> #}
     {%- for item in parsed_input_group -%}
       {%- if item.type == 'text' -%}
         <span class="input-group-text">{{ item.content }}</span>
@@ -169,7 +169,7 @@
         {{ item.content|raw }}
       {%- endif -%}
     {%- endfor -%}
-  </div>
+  {# </div> #}
 {%- endblock input_group_elements %}
 
 {% block form_row -%}
@@ -202,7 +202,7 @@
   {%- else -%}
     <div class="input-group">
       {%- if params.before -%}
-        {% set input_group_mode = 'prepend' %}
+        {# {% set input_group_mode = 'prepend' %} #}
         {% set input_group = params.before %}
         {{- block('input_group_elements') -}}
       {%- endif -%}
@@ -210,7 +210,7 @@
       {{- form_widget(form) -}}
 
       {%- if params.after -%}
-        {% set input_group_mode = 'append' %}
+        {# {% set input_group_mode = 'append' %} #}
         {% set input_group = params.after %}
         {{- block('input_group_elements') -}}
       {%- endif -%}
