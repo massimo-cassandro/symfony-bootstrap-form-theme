@@ -250,7 +250,7 @@
     {% set params = params|merge({container: true}) %}
   {% endif %}
 
-  {%- if params.bs_custom_control -%}
+  {# {%- if params.bs_custom_control -%}
     {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
     <div class="custom-control custom-checkbox{{ params.inline ? ' custom-control-inline' }}">
       {{- block( cbox_radio ~ '_widget') -}}
@@ -259,11 +259,13 @@
         <span class="required"></span>
       {% endif %}
     </div>
-  {%- elseif params.switch -%}
-    <div class="custom-control custom-switch">
-      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' custom-control-input')|trim}) -%}
+  {%- elseif params.switch -%} #}
+
+  {%- if params.switch -%}
+    <div class="form-check form-switch">
+      {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-check-input')|trim, role:'switch' }) -%}
       {{- block('checkbox_widget') -}}
-      {{- form_label(form, null, {label_attr: {class:'custom-control-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
+      {{- form_label(form, null, {label_attr: {class:'form-check-label' ~ (disabled|default()? ' disabled' :'') }}) -}}
     </div>
     {{- block('form_help') -}}
   {%- else -%}
