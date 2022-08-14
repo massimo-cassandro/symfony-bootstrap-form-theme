@@ -20,9 +20,9 @@ NB: this version dropped the dependance from bootstrap 5 Dropdown JS Element
 // import flip from '@popperjs/core/dist/esm/modifiers/flip';
 // import preventOverflow from '@popperjs/core/dist/esm/modifiers/preventOverflow';
 
-export default function() {
+export default function(container=document) {
 
-  const multiselects = document.querySelectorAll('.form-multiselect'),
+  const multiselects = container.querySelectorAll('.form-multiselect'),
     setMultiselectPlaceholder = multiselect_item => {
       let selected_labels = [];
       multiselect_item.querySelectorAll('[type="checkbox"]:checked, [type="radio"]:checked')
