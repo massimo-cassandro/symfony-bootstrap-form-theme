@@ -1,5 +1,8 @@
 # Symfony Bootstrap 4 Form Theme
 
+**This repository has been archived, form theme and scripts are now available at: <https://github.com/massimo-cassandro/twig-utilities> and <https://github.com/massimo-cassandro/form-utilities>**
+
+
 A [Bootstrap](https://getbootstrap.com/) 4 Form Theme for [Symfony](https://symfony.com/) 3, 4 and 5.
 
 v.2 - Oct 2020
